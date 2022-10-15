@@ -34,6 +34,8 @@
 
 * *1 hour* Configure GitHub and development environment
 
+## Week 3
+
 ### 10 Oct 2022
 
 * *1 hour* Look at example JSON files
