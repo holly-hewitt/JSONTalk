@@ -29,3 +29,33 @@
 * *1 hour* Developing project roadmap
 * *0.5 hour* Meeting with supervisor
 * *3 hour* Researching audio description standards and existing frameworks
+
+### 6 Oct 2022
+
+* *1 hour* Configure GitHub and development environment
+
+### 10 Oct 2022
+
+* *1 hour* Look at example JSON files
+* *0.5 hour* Examine JSON syntax and grammar
+
+### 11 Oct 2022
+
+* *1 hour* Look at JSON syntax and grammar
+* *1 hour* Research screen reader technology
+* *0.5 hour* Set up reference manager
+
+### 12 Oct 2022
+
+* *2 hour* Develop user stories and scenarios
+* *1 hour* Create example and search for example JSON files
+
+### 13 Oct 2022
+
+* *0.5 hour* Meeting with supervisor
+* *2 hour* Consider and roughly plan the grammar of the audio description
+
+### 14 Oct
+
+* *1 hour* Research accessible resources for software developers
+
