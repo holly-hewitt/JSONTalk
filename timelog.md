@@ -61,3 +61,14 @@
 
 * *1 hour* Research accessible resources for software developers
 
+## Week 4
+
+### 17 Oct 2022
+
+* *3 hour* Research accessible resources for visually impaired software developers
+
+### 18 Oct 2022
+
+* *1 hour* Explore accessible IDE extensions
+* *3 hour* More heavily plan the grammar of the audio description
+
