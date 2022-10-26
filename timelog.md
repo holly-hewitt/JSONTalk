@@ -60,6 +60,7 @@
 ### 14 Oct
 
 * *1 hour* Research accessible resources for software developers
+* *1 hour* Configure reference manager
 
 ## Week 4
 
@@ -72,3 +73,28 @@
 * *1 hour* Explore accessible IDE extensions
 * *3 hour* More heavily plan the grammar of the audio description
 
+### 19 Oct 2022
+
+* *0.5 hour* Meeting with supervisor
+* *2 hours* Collect papers for literature survey
+
+### 20 Oct 2022
+
+* *2 hours* Consider detailed implementation of audio description generation using visitor pattern and AST
+
+## Week 5
+
+### 24 Oct 2022
+
+* *5 hours* Read and summarise related work7
+* *0.5 hour* Request natural language summaries of simple JSON file from other students
+
+### 25 Oct 2022
+
+* *5 hours* Read and summarise related work
+
+### 26 Oct 2022
+
+* *1 hour* Read and summarise related work
+* *1 hour* Generate list of conclusions and design ideas from literature survey
+* *0.5 hour* Meeting with supervisor
