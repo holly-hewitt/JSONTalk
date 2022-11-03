@@ -98,23 +98,3 @@
 * *1 hour* Read and summarise related work
 * *1 hour* Generate list of conclusions and design ideas from literature survey
 * *0.5 hour* Meeting with supervisor
-
-## Week 6
-
-### 1 Nov 2022
-
-* *1 hour* Use VSCode with screen-reader and record observations
-* *1 hour* Laptop broke during week 5 -> set up development environment on temporary replacement laptop
-* *1 hour* Begin generating lexers and parsers for JSON grammar & encounter error
-* *1 hour* Read ANTLR4 documentation
-
-### 2 Nov 2022
-
-* *4 hours* Research & debug lexer and parser generation
-* *4 hours* Begin writing code for visitor pattern
-
-
-
-
-
-
