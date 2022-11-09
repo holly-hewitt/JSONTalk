@@ -113,7 +113,16 @@
 * *4 hours* Research & debug lexer and parser generation
 * *4 hours* Begin writing code for visitor pattern
 
+### 4 Nov 2022
+* *3 hours* Contemplate a plan for the visitor pattern parsing 
 
+## Week 7
+
+### 7 Nov 2022
+* *1 hour* Broken laptop fixed, returned & wiped -> set up development environment on laptop
+
+### 8 Nov 2022
+* *5 hours* Write code to create structural description of json files
 
 
 
