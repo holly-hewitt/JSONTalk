@@ -50,6 +50,7 @@ public class jsonDescriptorVisitor<T> extends AbstractParseTreeVisitor<T> implem
 			objects.get(ctx.parent.parent.parent).addChildObj(currentObj);
 		}
 		
+		
 		//add object to hashmap
 		objects.put(ctx, currentObj);
 		

@@ -8,20 +8,39 @@ public class jsonObject {
 	public ArrayList<jsonObject> objects;
 	jsonParser.ObjContext ctx;
 	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public int getFieldNo() {
 		return fieldNo;
 	}
+
 	public void setFieldNo(int fieldNo) {
 		this.fieldNo = fieldNo;
 	}
-	
+
 	public ArrayList<jsonObject> getObjects() {
 		return objects;
 	}
-	
+
 	public void setObjects(ArrayList<jsonObject> objects) {
 		this.objects = objects;
 	}
+
+	public jsonParser.ObjContext getCtx() {
+		return ctx;
+	}
+
+	public void setCtx(jsonParser.ObjContext ctx) {
+		this.ctx = ctx;
+	}
+
 	public jsonObject(int fieldNo, String name, jsonParser.ObjContext ctx) {
 		super();
 		this.fieldNo = fieldNo;
@@ -34,15 +53,22 @@ public class jsonObject {
 		objects.add(object);	
 	}
 	public String objDescription() {
+		if (name.equals("[10]")) {
+			name = "This json file";
+		}
 		String description = String.format("%s contains %d fields", name, fieldNo);
 		if (objects.size()>0) {
 			String descriptionPart2;
+			String descriptionPart3 = "";
 			if (objects.size() ==1) {
-				descriptionPart2 = (String.format(", %d of which is an object", objects.size()));
+				descriptionPart2 = (String.format(", %d is the object : ", objects.size()));
 			}else {
-				descriptionPart2 = (String.format(", %d of which are objects", objects.size()));
-			}			
-			return description + descriptionPart2;
+				descriptionPart2 = (String.format(", %d are the objects : ", objects.size()));
+			}
+			for (jsonObject child : objects) {
+				descriptionPart3 += child.getName() + ", ";
+			}
+			return description + descriptionPart2 + descriptionPart3.substring(0, descriptionPart3.length()-2);
 		}
 		return description;
 	}
