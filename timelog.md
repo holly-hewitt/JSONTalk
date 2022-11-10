@@ -124,6 +124,9 @@
 ### 8 Nov 2022
 * *5 hours* Write code to create structural description of json files
 
+### 9 Nov 2022
+* *2 hours* Explore how code will deal with arrays of objects
+
 
 
 
