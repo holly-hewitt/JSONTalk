@@ -3,6 +3,9 @@
         "title": "example glossary",
         "GlossDiv": {
             "title": "S",
+            "LipGloss":{ 
+            	"color": "pink"
+            },
             "GlossList": {
                 "GlossEntry": {
                     "ID": "SGML",

@@ -61,9 +61,9 @@ public class jsonObject {
 			String descriptionPart2;
 			String descriptionPart3 = "";
 			if (objects.size() ==1) {
-				descriptionPart2 = (String.format(", %d is the object : ", objects.size()));
+				descriptionPart2 = (String.format(", %d field is an object. The object name is:  ", objects.size()));
 			}else {
-				descriptionPart2 = (String.format(", %d are the objects : ", objects.size()));
+				descriptionPart2 = (String.format(", %d fields are objects. The objects names are: ", objects.size()));
 			}
 			for (jsonObject child : objects) {
 				descriptionPart3 += child.getName() + ", ";

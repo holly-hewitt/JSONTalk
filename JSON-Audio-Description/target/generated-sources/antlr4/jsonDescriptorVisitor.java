@@ -46,7 +46,7 @@ public class jsonDescriptorVisitor<T> extends AbstractParseTreeVisitor<T> implem
 		
 		jsonObject currentObj = new jsonObject(numChildren, objectName, ctx);
 		
-		if (ctx.parent.parent.parent != null) {
+		if (ctx.parent.parent.parent != null & objects.get(ctx.parent.parent.parent)!= null) {
 			objects.get(ctx.parent.parent.parent).addChildObj(currentObj);
 		}
 		
