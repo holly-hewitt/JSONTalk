@@ -127,6 +127,11 @@
 ### 9 Nov 2022
 * *2 hours* Explore how code will deal with arrays of objects
 
+### 10 Nov 2022
+* *2 hours* Read up on antlr4 parsing techniques
+
+### 11 Nov 2022
+* *3 hours* Experiment with code to deal with arrays of objects and describe them
 
 
 
