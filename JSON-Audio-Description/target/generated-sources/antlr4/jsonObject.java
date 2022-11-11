@@ -6,8 +6,9 @@ public class jsonObject {
 	private String name;
 	public int fieldNo;
 	public ArrayList<jsonObject> objects;
+	public ArrayList<jsonObject> arrays;
 	jsonParser.ObjContext ctx;
-	
+	jsonParser.ArrContext ctx2;
 
 	public String getName() {
 		return name;
@@ -47,11 +48,35 @@ public class jsonObject {
 		this.name = name;
 		this.ctx=ctx;
 		this.objects = new ArrayList<jsonObject>();
+		this.arrays = new ArrayList<jsonObject>();
 	}
 	
+	public jsonObject(int fieldNo, jsonParser.ObjContext ctx) {
+		super();
+		this.fieldNo = fieldNo;
+		this.name="";
+		this.ctx = ctx;
+		this.objects = new ArrayList<jsonObject>();
+		this.arrays = new ArrayList<jsonObject>();
+	}
+	
+	public jsonObject(int fieldNo, String name, jsonParser.ArrContext ctx2) {
+		super();
+		this.fieldNo = fieldNo;
+		this.name = name + " is an array which";
+		this.ctx2=ctx2;
+		this.objects = new ArrayList<jsonObject>();
+		this.arrays = new ArrayList<jsonObject>();
+	}
+
 	public void addChildObj(jsonObject object) {
 		objects.add(object);	
 	}
+	
+	public void addChildArr(jsonObject object) {
+		arrays.add(object);	
+	}
+	
 	public String objDescription() {
 		if (name.equals("[10]")) {
 			name = "This json file";
