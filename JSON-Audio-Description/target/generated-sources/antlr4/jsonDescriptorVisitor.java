@@ -47,6 +47,7 @@ public class jsonDescriptorVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 */
 	@Override
 	public T visitObj(jsonParser.ObjContext ctx) {
+		
 
 		int numChildren = ctx.getChildCount();
 		// account for {}
@@ -73,8 +74,8 @@ public class jsonDescriptorVisitor<T> extends AbstractParseTreeVisitor<T> implem
 
 			jsonObject currentObj = new jsonObject(numChildren, ctx);
 			if (ctx.parent.parent.parent.parent != null) {
-				if (objects.get(ctx.parent.parent.parent.parent.toString()) != null) {
-					objects.get(ctx.parent.parent.parent.parent.toString()).addChildObj(currentObj);
+				if (objects.get(ctx.parent.parent.toString()) != null) {
+					objects.get(ctx.parent.parent.toString()).addChildObj(currentObj);
 				}
 			}
 			objects.put(ctx.toString(), currentObj);

@@ -8,15 +8,15 @@ public class jsonRun {
 	public static void main(String[] args) {
 		System.out.print(args[0]);
 		try {
-			if(args.length == 0) 
+			if (args.length == 0)
 				throw new jsonException();
-			
+
 			CommonTokenStream tokens = lex(args[0]);
 			ParseTree tree = parse(tokens);
 			describe(tokens, tree);
-		}catch(jsonException x) {
+		} catch (jsonException x) {
 			System.out.println("Check input");
-		}catch(Exception x) {
+		} catch (Exception x) {
 			x.printStackTrace();
 		}
 
@@ -31,7 +31,7 @@ public class jsonRun {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return null;
 	}
 
@@ -45,11 +45,11 @@ public class jsonRun {
 		System.out.println("\nStructural description: ");
 		jsonDescriptorVisitor<?> descriptor = new jsonDescriptorVisitor<Object>();
 		descriptor.visit(tree);
-		System.out.println(jsonDescriptorVisitor.objects);
 		for (jsonObject object : jsonDescriptorVisitor.objects.values()) {
-			  System.out.println(object.objDescription());
-			}		
+			if (!object.objDescription().equals("")) {
+				System.out.println(object.objDescription());
+			}
+		}
 	}
-	
-	
-}	
+
+}
