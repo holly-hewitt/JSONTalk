@@ -133,5 +133,10 @@
 ### 11 Nov 2022
 * *3 hours* Experiment with code to deal with arrays of objects and describe them
 
+### 13 Nov 2022
+* *2.5 hours* Refactor methods within jsonObject class and write code to deal with structural description of arrays
+
+## Week 8
+
 
 
