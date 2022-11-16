@@ -1,6 +1,6 @@
 {
   "items" : {
-    "item" : [ "holly", {
+    "item" : [ {
       "id" : "0001",
       "type" : "donut",
       "name" : "Cake",

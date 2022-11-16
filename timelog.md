@@ -138,5 +138,13 @@
 
 ## Week 8
 
+### 15 Nov 2022
+* *2 hours* Refactor methods within jsonObject class to use singular / plural syntax depending on inline conditionals
+
+### 16 Nov 2022
+* *1 hour* prepare for meeting with supervisor
+* *0.5 hour* Meeting with supervisor
+* *2 hours* Trace methods to fix bug in code
+* *0.5 hour* Source further JSON examples
 
 
