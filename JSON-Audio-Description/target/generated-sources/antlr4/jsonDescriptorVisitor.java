@@ -54,6 +54,13 @@ public class jsonDescriptorVisitor<T> extends AbstractParseTreeVisitor<T> implem
 		numChildren -= 2;
 		// account for ,
 		numChildren -= (numChildren / 2);
+		
+//		for (ParseTree i : ctx.children) {
+//			System.out.print(i.getChildCount());
+//			if(i.getChildCount()>0) {
+//				System.out.println(i.getChild(0));
+//			}
+//		}
 
 		String objectName = ctx.parent.parent.getChild(0).toString();
 
@@ -114,6 +121,8 @@ public class jsonDescriptorVisitor<T> extends AbstractParseTreeVisitor<T> implem
 		numChildren -= 2;
 		// account for ,
 		numChildren -= (numChildren / 2);
+		
+		
 		jsonObject currentObj = new jsonObject(numChildren, arrayName, ctx);
 		if (ctx.parent.parent.parent != null) {
 			if (objects.get(ctx.parent.parent.parent.toString()) != null) {
