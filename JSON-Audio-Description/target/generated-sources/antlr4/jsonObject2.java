@@ -1,4 +1,8 @@
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Set;
+
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 import org.antlr.v4.runtime.tree.ParseTree;
 
@@ -123,8 +127,14 @@ public class jsonObject2 {
 			}
 		}else {
 			if (objects.size() > 0) {
+				HashMap<Integer, Integer> fieldNoObjNo = new HashMap<Integer, Integer>();
 				for (jsonObject2 child : objects) {
-					description += String.format("an object with %d fields, ", child.getFieldNo());
+					int count = fieldNoObjNo.containsKey(child.getFieldNo()) ? fieldNoObjNo.get(child.getFieldNo()) : 0;
+					fieldNoObjNo.put(child.getFieldNo(), count + 1);
+				}
+				for(Integer fieldNum : fieldNoObjNo.keySet()) {
+					Integer objNum = fieldNoObjNo.get(fieldNum);
+					description += String.format("%d object%s %d field%s. ", objNum, (objNum==1?" has":"s have"), fieldNum, (fieldNum==1?"":"s"));
 				}
 				description = description.substring(0, description.length() - 2);
 			}
