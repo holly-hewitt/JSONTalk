@@ -90,14 +90,14 @@ public class jsonObject {
 		if (fieldNo != obj1.getFieldNo()) {
 			return false;
 		}
-		int n=0;
+		int n = 0;
 		for (ParseTree i : ctx.children) {
 			ParseTree j = obj1.getCtx().getChild(n);
-			if(i.getChildCount()!=j.getChildCount()) {
+			if (i.getChildCount() != j.getChildCount()) {
 				return false;
 			}
-			if(i.getChildCount()>0) {
-				if(!i.getChild(0).toString().equals(j.getChild(0).toString())) {
+			if (i.getChildCount() > 0) {
+				if (!i.getChild(0).toString().equals(j.getChild(0).toString())) {
 					return false;
 				}
 			}
@@ -113,83 +113,102 @@ public class jsonObject {
 		if (!object) {
 			objectOrArr = "array";
 		}
-		
-		
 
 		if (objectOrArrList.size() > 0) {
-			
-			
 
 			int listSize = objectOrArrList.size();
+			// "x fields are objects" / "x fields are arrays"
 			description += String.format("%d field%s %s%s. ", listSize, (listSize == 1 ? " is an" : "s are"),
 					objectOrArr, (listSize == 1 ? "" : "s"));
+
 			if (ctx2 == null) {
-				description += String.format("The %s name%s: ", objectOrArr, (listSize == 1 ? " is" : "s are"));
+				description += nameDescription(objectOrArrList, objectOrArr);
+			} else {
+//				if (objectOrArrList.size() > 0) {
+//					// traverse list of child objects to
+//					// create map of {"field number" : "number of objects with field number"}
+//					HashMap<Integer, Integer> fieldNoObjNo = new HashMap<Integer, Integer>();
+//					for (jsonObject child : objectOrArrList) {
+//						int count = fieldNoObjNo.containsKey(child.getFieldNo()) ? fieldNoObjNo.get(child.getFieldNo())
+//								: 0;
+//						fieldNoObjNo.put(child.getFieldNo(), count + 1);
+//					}
+//					// "x objects have y fields"
+//					for (Integer fieldNum : fieldNoObjNo.keySet()) {
+//						Integer objNum = fieldNoObjNo.get(fieldNum);
+//						description += String.format("%d object%s %d field%s. ", objNum,
+//								(objNum == 1 ? " has" : "s have"), fieldNum, (fieldNum == 1 ? "" : "s"));
+//					}
+//				}
 			}
-			
+
+			// create nested list of objects with same field number & field names
+			// groupedObjs = [ [list1: objects with fieldNo and field names], [list2:
+			// objects with fieldNo and field names], ...]
 			ArrayList<jsonObject> objList = new ArrayList<jsonObject>(objectOrArrList);
 			ArrayList<ArrayList<jsonObject>> groupedObjs = groupSimilarObjects(objList);
 			for (ArrayList<jsonObject> list : groupedObjs) {
 				int numOfSimObj = list.size();
 				int sharedFieldNo = list.get(0).getFieldNo();
-				if(list.size()==1) {
-					description += String.format("1 object contains %d field%s. ", sharedFieldNo, (sharedFieldNo==1 ? "" : "s"));
-				}else {
-					description += String.format("%d objects with %d fields are of the same structure. ", numOfSimObj, sharedFieldNo);
+				if (list.size() == 1) {
+					// "1 object contains x fields"
+					description += String.format("1 object contains %d field%s. ", sharedFieldNo,
+							(sharedFieldNo == 1 ? "" : "s"));
+				} else {
+					// "x objects with y fields are of the same structure"
+					description += String.format("%d objects with %d fields are of the same structure. ", numOfSimObj,
+							sharedFieldNo);
 				}
-				
-			}
 
-			// List names of objects or number of fields of each object if it is an array of
-			// objects
-			if (ctx2 == null) {
-				for (jsonObject child : objectOrArrList) {
-					description += child.getName() + ", ";
-				}
-				description = description.substring(0, description.length() - 2);
-				description += ".";
-			}else {
-				if (objectOrArrList.size() > 0) {
-					HashMap<Integer, Integer> fieldNoObjNo = new HashMap<Integer, Integer>();
-					for (jsonObject child : objectOrArrList) {
-						int count = fieldNoObjNo.containsKey(child.getFieldNo()) ? fieldNoObjNo.get(child.getFieldNo()) : 0;
-						fieldNoObjNo.put(child.getFieldNo(), count + 1);
-					}
-					for(Integer fieldNum : fieldNoObjNo.keySet()) {
-						Integer objNum = fieldNoObjNo.get(fieldNum);
-						description += String.format("%d object%s %d field%s. ", objNum, (objNum==1?" has":"s have"), fieldNum, (fieldNum==1?"":"s"));
-					}
-				}
-			}			
+			}
 		}
 		return description;
 	}
-	
-	
+
+	private String nameDescription(ArrayList<jsonObject> objectOrArrList, String objectOrArr) {
+		// List names of objects or number of fields of each object if it is an array of
+		// objects
+		// "the object names are : " / "the array names are : "
+		String description = "";
+		int listSize = objectOrArrList.size();
+		if (ctx2 == null) {
+			description += ("named ");
+			//description += String.format("The %s name%s: ", objectOrArr, (listSize == 1 ? " is" : "s are"));
+			// "name1, name2, name3, ..."
+			for (jsonObject child : objectOrArrList) {
+				description += child.getName() + ", ";
+			}
+			description = description.substring(0, description.length() - 2);
+			description += ".";
+		}
+		return description;
+	}
+
 	/**
 	 * @param objList: Takes a list of objects
-	 * @return Returns a list of object lists, where objects are grouped into the same lists if they have the same structure
+	 * @return Returns a list of object lists, where objects are grouped into the
+	 *         same lists if they have the same structure
 	 */
 	private ArrayList<ArrayList<jsonObject>> groupSimilarObjects(ArrayList<jsonObject> objList) {
 		ArrayList<ArrayList<jsonObject>> groupedObjects = new ArrayList<ArrayList<jsonObject>>();
-		while(!objList.isEmpty()) {
+		while (!objList.isEmpty()) {
 			jsonObject child1 = objList.get(0);
 			objList.remove(0);
 			ArrayList<jsonObject> simList = new ArrayList<jsonObject>();
 			simList.add(child1);
-			
+
 			java.util.Iterator<jsonObject> iter = objList.iterator();
-			
-			while(iter.hasNext()) {
+
+			while (iter.hasNext()) {
 				jsonObject child2 = iter.next();
-				if(child2.sameFields(child1)) {
+				if (child2.sameFields(child1)) {
 					simList.add(child2);
 					iter.remove();
 				}
 			}
-			
+
 			groupedObjects.add(simList);
-		
+
 		}
 		return groupedObjects;
 	}

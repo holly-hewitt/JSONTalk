@@ -1,0 +1,11 @@
+{
+	"name" : "name1",
+	"array" : [
+		"object1" : {"name" : "arrayObject1",
+					"fields" : 2},
+		"object2" : {"name" : "arrayObject2",
+					"fields" : 2},
+		"object3" : {"name" : "arrayObject3",
+					"message" : "I am different to the other 2 objects"}
+	]
+}
