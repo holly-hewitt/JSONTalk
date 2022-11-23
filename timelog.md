@@ -147,4 +147,12 @@
 * *2 hours* Trace methods to fix bug in code
 * *0.5 hour* Source further JSON examples
 
+## Week 9
 
+### 21 Nov 2022
+* *1 hour* Write more specific test cases and research JUnit testing
+* *1 hour* Code refactoring: method extraction
+
+### 22 Nov 2022
+* *1 hour* Consider clearer textual format to represent file structure
+* *1 hour* Code refactoring: method extraction and adding comments
