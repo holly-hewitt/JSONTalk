@@ -45,7 +45,7 @@ public class jsonRun {
 		System.out.println("\nStructural description: ");
 		jsonDescriptorVisitor<?> descriptor = new jsonDescriptorVisitor<Object>();
 		descriptor.visit(tree);
-		for (jsonObject object : jsonDescriptorVisitor.objects.values()) {
+		for (jsonObjectOrArray object : jsonDescriptorVisitor.objects.values()) {
 			if (!object.objDescription().equals("")) {
 				System.out.println(object.objDescription());
 			}

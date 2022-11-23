@@ -18,17 +18,10 @@ public class jsonObject2 {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public int getFieldNo() {
 		return fieldNo;
 	}
 
-	public void setFieldNo(int fieldNo) {
-		this.fieldNo = fieldNo;
-	}
 
 	public ArrayList<jsonObject2> getObjects() {
 		return objects;
@@ -36,14 +29,6 @@ public class jsonObject2 {
 
 	public void setObjects(ArrayList<jsonObject2> objects) {
 		this.objects = objects;
-	}
-
-	public jsonParser.ObjContext getCtx() {
-		return ctx;
-	}
-
-	public void setCtx(jsonParser.ObjContext ctx) {
-		this.ctx = ctx;
 	}
 
 	public jsonObject2(int fieldNo, String name, jsonParser.ObjContext ctx) {

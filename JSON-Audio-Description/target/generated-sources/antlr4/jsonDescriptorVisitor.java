@@ -19,8 +19,8 @@ import org.antlr.v4.runtime.tree.ParseTree;
 @SuppressWarnings("CheckReturnValue")
 public class jsonDescriptorVisitor<T> extends AbstractParseTreeVisitor<T> implements jsonVisitor<T> {
 
-	public static LinkedHashMap<String, jsonObject> objects;
-	public static ArrayList<jsonObject> objects1;
+	public static LinkedHashMap<String, jsonObjectOrArray> objects;
+	public static ArrayList<jsonObjectOrArray> objects1;
 
 	/**
 	 * {@inheritDoc}
@@ -32,8 +32,8 @@ public class jsonDescriptorVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 */
 	@Override
 	public T visitJson(jsonParser.JsonContext ctx) {
-		objects = new LinkedHashMap<String, jsonObject>();
-		objects1 = new ArrayList<jsonObject>();
+		objects = new LinkedHashMap<String, jsonObjectOrArray>();
+		objects1 = new ArrayList<jsonObjectOrArray>();
 		return visitChildren(ctx);
 	}
 
@@ -66,7 +66,7 @@ public class jsonDescriptorVisitor<T> extends AbstractParseTreeVisitor<T> implem
 
 		// discard objects within array
 		if (!objectName.equals("[")) {
-			jsonObject currentObj = new jsonObject(numChildren, objectName, ctx);
+			jsonObjectOrArray currentObj = new jsonObjectOrArray(numChildren, objectName, ctx);
 
 			if (ctx.parent.parent.parent != null) {
 				if (objects.get(ctx.parent.parent.parent.toString()) != null) {
@@ -79,7 +79,7 @@ public class jsonDescriptorVisitor<T> extends AbstractParseTreeVisitor<T> implem
 
 		} else {
 
-			jsonObject currentObj = new jsonObject(numChildren, ctx);
+			jsonObjectOrArray currentObj = new jsonObjectOrArray(numChildren, ctx);
 			if (ctx.parent.parent.parent.parent != null) {
 				if (objects.get(ctx.parent.parent.toString()) != null) {
 					objects.get(ctx.parent.parent.toString()).addChildObj(currentObj);
@@ -123,7 +123,7 @@ public class jsonDescriptorVisitor<T> extends AbstractParseTreeVisitor<T> implem
 		numChildren -= (numChildren / 2);
 		
 		
-		jsonObject currentObj = new jsonObject(numChildren, arrayName, ctx);
+		jsonObjectOrArray currentObj = new jsonObjectOrArray(numChildren, arrayName, ctx);
 		if (ctx.parent.parent.parent != null) {
 			if (objects.get(ctx.parent.parent.parent.toString()) != null) {
 				objects.get(ctx.parent.parent.parent.toString()).addChildArr(currentObj);

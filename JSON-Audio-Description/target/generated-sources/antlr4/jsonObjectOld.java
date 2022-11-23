@@ -5,8 +5,8 @@ import org.antlr.v4.runtime.tree.ParseTree;
 public class jsonObjectOld {
 	private String name;
 	public int fieldNo;
-	public ArrayList<jsonObject> objects;
-	public ArrayList<jsonObject> arrays;
+	public ArrayList<jsonObjectOrArray> objects;
+	public ArrayList<jsonObjectOrArray> arrays;
 	jsonParser.ObjContext ctx;
 	jsonParser.ArrContext ctx2;
 
@@ -26,11 +26,11 @@ public class jsonObjectOld {
 		this.fieldNo = fieldNo;
 	}
 
-	public ArrayList<jsonObject> getObjects() {
+	public ArrayList<jsonObjectOrArray> getObjects() {
 		return objects;
 	}
 
-	public void setObjects(ArrayList<jsonObject> objects) {
+	public void setObjects(ArrayList<jsonObjectOrArray> objects) {
 		this.objects = objects;
 	}
 
@@ -47,8 +47,8 @@ public class jsonObjectOld {
 		this.fieldNo = fieldNo;
 		this.name = name;
 		this.ctx = ctx;
-		this.objects = new ArrayList<jsonObject>();
-		this.arrays = new ArrayList<jsonObject>();
+		this.objects = new ArrayList<jsonObjectOrArray>();
+		this.arrays = new ArrayList<jsonObjectOrArray>();
 	}
 
 	public jsonObjectOld(int fieldNo, jsonParser.ObjContext ctx) {
@@ -56,8 +56,8 @@ public class jsonObjectOld {
 		this.fieldNo = fieldNo;
 		this.name = "";
 		this.ctx = ctx;
-		this.objects = new ArrayList<jsonObject>();
-		this.arrays = new ArrayList<jsonObject>();
+		this.objects = new ArrayList<jsonObjectOrArray>();
+		this.arrays = new ArrayList<jsonObjectOrArray>();
 	}
 
 	public jsonObjectOld(int fieldNo, String name, jsonParser.ArrContext ctx2) {
@@ -65,15 +65,15 @@ public class jsonObjectOld {
 		this.fieldNo = fieldNo;
 		this.name = name + " is an array which";
 		this.ctx2 = ctx2;
-		this.objects = new ArrayList<jsonObject>();
-		this.arrays = new ArrayList<jsonObject>();
+		this.objects = new ArrayList<jsonObjectOrArray>();
+		this.arrays = new ArrayList<jsonObjectOrArray>();
 	}
 
-	public void addChildObj(jsonObject object) {
+	public void addChildObj(jsonObjectOrArray object) {
 		objects.add(object);
 	}
 
-	public void addChildArr(jsonObject object) {
+	public void addChildArr(jsonObjectOrArray object) {
 		arrays.add(object);
 	}
 
@@ -98,7 +98,7 @@ public class jsonObjectOld {
 					descriptionPart2 = (String.format(", %d fields are objects. The objects names are: ",
 							objects.size()));
 				}
-				for (jsonObject child : objects) {
+				for (jsonObjectOrArray child : objects) {
 					descriptionPart3 += child.getName() + ", ";
 				}
 				
@@ -117,7 +117,7 @@ public class jsonObjectOld {
 					descriptionPart2 = (String.format(", %d fields are objects.", objects.size()));
 				}
 
-				for (jsonObject child : objects) {
+				for (jsonObjectOrArray child : objects) {
 					descriptionPart3 += (child.getFieldNo() + " fields ");
 				}
 				return description + descriptionPart2 + descriptionPart3.substring(0, descriptionPart3.length() - 2);
