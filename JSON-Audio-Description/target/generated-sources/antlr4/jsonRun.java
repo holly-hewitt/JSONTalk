@@ -1,5 +1,6 @@
 
 import org.antlr.v4.runtime.*;
+
 import org.antlr.v4.runtime.tree.*;
 import java.io.*;
 
@@ -45,11 +46,15 @@ public class jsonRun {
 		System.out.println("\nStructural description: ");
 		jsonDescriptorVisitor<?> descriptor = new jsonDescriptorVisitor<Object>();
 		descriptor.visit(tree);
+		String finalDescription = "";
 		for (jsonObjectOrArray object : jsonDescriptorVisitor.objects.values()) {
 			if (!object.objDescription().equals("")) {
 				System.out.println(object.objDescription());
+				finalDescription += object.objDescription();
+				
 			}
 		}
+		TextToSpeech.SpeakString(finalDescription);
 	}
 
 }
