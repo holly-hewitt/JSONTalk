@@ -201,7 +201,6 @@ public class jsonObjectOrArray {
 			}
 
 		}
-		System.out.println("sim obj desc: " + description);
 		return description;
 	}
 
@@ -225,7 +224,6 @@ public class jsonObjectOrArray {
 			description = description.substring(0, description.length() - 2);
 		}
 		description += ". ";
-		System.out.println("name desc: "+ description);
 		return description;
 	}
 
