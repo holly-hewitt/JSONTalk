@@ -9,10 +9,8 @@ public class jsonElement {
 	 * this is not null the jsonObject is an object ctx2: if this is not null the
 	 * jsonObject is an array
 	 */
-	protected String name;
-	
-	private jsonParser.ValueContext ctx;
-	private String typeName;
+	protected String name;	
+	protected String typeName;
 	
 	
 	
@@ -22,10 +20,9 @@ public class jsonElement {
 	 * @param ctx
 	 * @param typeName
 	 */
-	public jsonElement(String name, jsonParser.ValueContext ctx) {
+	public jsonElement(String name) {
 		super();
 		this.name = name;
-		this.ctx = ctx;
 	}
 
 	
@@ -33,9 +30,8 @@ public class jsonElement {
 	 * @param ctx
 	 * @param typeName
 	 */
-	public jsonElement(jsonParser.ValueContext ctx) {
+	public jsonElement() {
 		super();
-		this.ctx = ctx;
 		this.name = "";
 	}
 
@@ -54,13 +50,6 @@ public class jsonElement {
 		this.name = name;
 	}
 
-
-	/**
-	 * @return the ctx
-	 */
-	public jsonParser.ValueContext getCtx() {
-		return ctx;
-	}
 
 	/**
 	 * @param typeName the typeName to set

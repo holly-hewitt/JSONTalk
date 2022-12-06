@@ -1,12 +1,13 @@
 import java.util.ArrayList;
+import java.util.Set;
 
-public class jsonObject extends jsonComplexElement{
-	
-	private ArrayList<jsonObject> childObjs;
-	private ArrayList<jsonArray> childArrs;
+public class jsonObject extends jsonComplexElement {
 
-	public jsonObject(int fieldNo, jsonParser.ValueContext ctx) {
-		super(ctx, fieldNo);
+	// private ArrayList<jsonObject> childObjs;
+	// private ArrayList<jsonArray> childArrs;
+
+	public jsonObject(int fieldNo) {
+		super(fieldNo);
 		setTypeName("object");
 		// TODO Auto-generated constructor stub
 	}
@@ -18,8 +19,8 @@ public class jsonObject extends jsonComplexElement{
 	 * @param childObjs
 	 * @param childArrs
 	 */
-	public jsonObject(String name, jsonParser.ValueContext ctx, int fieldNo) {
-		super(name, ctx, fieldNo);
+	public jsonObject(String name, int fieldNo) {
+		super(name, fieldNo);
 		if (name.equals("[10]")) {
 			this.name = "This json file";
 		} else {
@@ -27,8 +28,34 @@ public class jsonObject extends jsonComplexElement{
 		}
 		setTypeName("object");
 	}
-	
-	
-	
+
+	private String listAllChildren() {
+
+		String description = "";
+
+		Set<String> types = children.keySet();
+		for (String type : types) {
+			int numOfType = children.get(type).size();
+			if (numOfType == 1) {
+				description += String.format("1 field is a %s value", type);
+			} else {
+				description += String.format("%d fields are %s values", numOfType, type);
+			}
+			
+			String names = "";
+			for (jsonElement child : children.get(type)) {
+				if (!child.getName().equals("")) {
+					names += child.getName() + ", ";
+				}
+			}
+			if (!names.equals("")) {
+				description += ", named: " + names;
+				description = description.substring(0, description.length() - 2);
+			}
+			description += ". ";
+		}
+
+		return description;
+	}
 
 }

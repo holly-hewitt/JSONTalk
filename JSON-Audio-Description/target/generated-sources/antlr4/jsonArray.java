@@ -1,29 +1,27 @@
 
 public class jsonArray extends jsonComplexElement {
 
-	public jsonArray(int fieldNo, jsonParser.ValueContext ctx) {
-		super(ctx, fieldNo);
+	public jsonArray(int fieldNo) {
+		super(fieldNo);
 		setTypeName("Array");
 		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @param name
-	 * @param fieldNo
+	 * @param numChildren
+	 * @param arrayName
 	 * @param ctx
 	 */
-	public jsonArray(String name, int fieldNo, jsonParser.ValueContext ctx) {
-		super(name, ctx, fieldNo);
-		// TODO Auto-generated constructor stub
-		if (name.equals("[")) {
-			setName("");
-			//super.name = name;
-		}else {
-			setName(name);
+	public jsonArray(int fieldNo, String arrayName) {
+		super(arrayName, fieldNo);
+
+		if (arrayName.equals("[")) {
+			this.name = "";
+
+		} else {
+			this.name = arrayName;
 		}
 		setTypeName("Array");
 	}
-	
-	
 
 }

@@ -44,13 +44,13 @@ public class jsonRun {
 
 	private static void describe(CommonTokenStream tokens, ParseTree tree) {
 		System.out.println("\nStructural description: ");
-		jsonDescriptorVisitor<?> descriptor = new jsonDescriptorVisitor<Object>();
+		jsonDescriptorVisitor3<?> descriptor = new jsonDescriptorVisitor3<Object>();
 		descriptor.visit(tree);
 		String finalDescription = "";
-		for (jsonObjectOrArray object : jsonDescriptorVisitor.objects.values()) {
-			if (!object.objDescription().equals("")) {
-				System.out.println(object.objDescription());
-				finalDescription += object.objDescription();
+		for (jsonComplexElement object : jsonDescriptorVisitor3.objects.values()) {
+			if (!object.elementDescription(true).equals("")) {
+				System.out.println(object.elementDescription(true));
+				finalDescription += object.elementDescription(true);
 				
 			}
 		}
