@@ -24,6 +24,12 @@ public class jsonElement {
 		super();
 		this.name = name;
 	}
+	
+	public jsonElement(String name, String typename) {
+		super();
+		this.name = name;
+		this.typeName=typename;
+	}
 
 	
 	/**
@@ -56,6 +62,10 @@ public class jsonElement {
 	 */
 	public void setTypeName(String typeName) {
 		this.typeName = typeName;
+	}
+	
+	public String getTypeName() {
+		return typeName;
 	}
 	
 	public String elemDescription() {

@@ -49,12 +49,16 @@ public class jsonRun {
 		String finalDescription = "";
 		for (jsonComplexElement object : jsonDescriptorVisitor3.objects.values()) {
 			if (!object.elementDescription(true).equals("")) {
+				if (object.getTypeName().equals("object")) {
+					jsonObject ActualObject = (jsonObject) object;
+					System.out.println("desc as obj: " + ActualObject.elementDescription(true));
+				}
 				System.out.println(object.elementDescription(true));
 				finalDescription += object.elementDescription(true);
 				
 			}
 		}
-		TextToSpeech.SpeakString(finalDescription);
+		//TextToSpeech.SpeakString(finalDescription);
 	}
 
 }

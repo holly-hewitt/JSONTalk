@@ -29,30 +29,33 @@ public class jsonObject extends jsonComplexElement {
 		setTypeName("object");
 	}
 
-	private String listAllChildren() {
+	public String listAllChildren() {
 
 		String description = "";
 
 		Set<String> types = children.keySet();
 		for (String type : types) {
 			int numOfType = children.get(type).size();
-			if (numOfType == 1) {
-				description += String.format("1 field is a %s value", type);
-			} else {
-				description += String.format("%d fields are %s values", numOfType, type);
+			if (numOfType > 0) {
+				if (numOfType == 1) {
+					description += String.format("1 field is a %s value", type);
+				} else{
+					description += String.format("%d fields are %s values", numOfType, type);
+				}
+				
+				String names = "";
+				for (jsonElement child : children.get(type)) {
+					if (!child.getName().equals("")) {
+						names += child.getName() + ", ";
+					}
+				}
+				if (!names.equals("")) {
+					description += ", named: " + names;
+					description = description.substring(0, description.length() - 2);
+				}
+				description += ". ";
 			}
 			
-			String names = "";
-			for (jsonElement child : children.get(type)) {
-				if (!child.getName().equals("")) {
-					names += child.getName() + ", ";
-				}
-			}
-			if (!names.equals("")) {
-				description += ", named: " + names;
-				description = description.substring(0, description.length() - 2);
-			}
-			description += ". ";
 		}
 
 		return description;

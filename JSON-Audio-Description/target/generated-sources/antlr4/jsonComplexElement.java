@@ -59,30 +59,25 @@ public class jsonComplexElement extends jsonElement {
 
 	public void addChildObj(jsonObject childObj) {
 		childObjs.add(childObj);
-		children.get("object").add(childObj);
-		System.out.println(children);
-		
+		children.get("object").add(childObj);		
 	}
 
 	public void addChildArr(jsonArray childArr) {
 		childArrs.add(childArr);
+		children.get("array").add(childArr);	
 	}
 	
+	public void addChildElement(jsonElement child) {
+		children.get(child.typeName).add(child);
+	}
 	
 
 	// description methods
 
 	public String elemDescription() {
-		if (name.equals("")) {
-			return "";
-		}
+		
 		String description = String.format("%s is an %s which contains %d field", name, typeName, fieldNo);
-		if (childObjs.size() > 0) {
-			description += listChildObjects();
-		}
-		if (childArrs.size() > 0) {
-			description += listChildArrs();
-		}
+		description+= fieldNo == 1 ? ". " : "s. ";
 		return description;
 	}
 
@@ -98,13 +93,13 @@ public class jsonComplexElement extends jsonElement {
 	private String listChildObjects() {
 		// TODO Auto-generated method stub
 		if (childObjs.size() > 0) {
-			return String.format("%d field%s", childArrs.size(),
+			return String.format("%d field%s", childObjs.size(),
 					(childObjs.size() == 1 ? " is an object, " : "s are objects, "));
 		}
 		return null;
 	}
 
-	private String listAllChildren() {
+	public String listAllChildren() {
 
 		String description = "";
 		if (children != null) {
@@ -113,7 +108,7 @@ public class jsonComplexElement extends jsonElement {
 				int numOfType = children.get(type).size();
 				if (numOfType == 1) {
 					description += String.format("1 field is a %s value. ", type);
-				} else {
+				} else if (numOfType > 1){
 					description += String.format("%d fields are %s values. ", numOfType, type);
 				}
 			}
@@ -126,11 +121,18 @@ public class jsonComplexElement extends jsonElement {
 
 	public String elementDescription(boolean describeTypes) {
 		String description = elemDescription();
+		if (name.equals("")) {
+			return "";
+		}
 		if (describeTypes) {
 			description += listAllChildren();
 		}else {
-			description += listChildObjects();
-			description += listChildArrs();
+			if (childObjs.size() > 0) {
+				description += listChildObjects();
+			}
+			if (childArrs.size() > 0) {
+				description += listChildArrs();
+			}
 		}
 		return description;
 	}
