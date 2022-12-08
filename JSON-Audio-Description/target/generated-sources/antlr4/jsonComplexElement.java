@@ -1,11 +1,14 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Set;
 
+import org.antlr.v4.runtime.tree.ParseTree;
+
 public class jsonComplexElement extends jsonElement {
 
-	private int fieldNo;
+	protected int fieldNo;
 	private ArrayList<jsonObject> childObjs;
 	private ArrayList<jsonArray> childArrs;
 	protected HashMap<String, ArrayList<jsonElement>> children;
@@ -48,6 +51,13 @@ public class jsonComplexElement extends jsonElement {
 	 */
 	public ArrayList<jsonObject> getChildObjs() {
 		return childObjs;
+	}
+
+	/**
+	 * @return the fieldNo
+	 */
+	public int getFieldNo() {
+		return fieldNo;
 	}
 
 	/**
@@ -98,7 +108,56 @@ public class jsonComplexElement extends jsonElement {
 		}
 		return null;
 	}
+	
+	// describe objects with identical structure
+	
 
+
+	/**
+	 * @param objList: Takes a list of objects
+	 * @return groupedObjects: a list of object lists, where objects are grouped
+	 *         into the same lists if they have the same structure
+	 */
+	private ArrayList<ArrayList<jsonElement>> groupSimilarObjects(ArrayList<jsonElement> objList) {
+		ArrayList<ArrayList<jsonElement>> groupedObjects = new ArrayList<ArrayList<jsonElement>>();
+		while (!objList.isEmpty()) {
+			jsonObject child1 = (jsonObject) objList.get(0);
+			objList.remove(0);
+			ArrayList<jsonElement> simList = new ArrayList<jsonElement>();
+			simList.add(child1);
+
+			Iterator<jsonElement> iter = objList.iterator();
+			while (iter.hasNext()) {
+				jsonObject child2 = (jsonObject) iter.next();
+				if (child2.sameFields(child1)) {
+					simList.add(child2);
+					iter.remove();
+				}
+			}
+			groupedObjects.add(simList);
+		}
+		return groupedObjects;
+	}
+	
+	private String describeSimObjects(ArrayList<ArrayList<jsonElement>> groupedObjs) {
+		String description = "";
+		for (ArrayList<jsonElement> objectList : groupedObjs) {
+			if (objectList.size()==1) {
+				String name = objectList.get(0).getName();
+				description += "1 object has a unique structure. ";
+				//if(!name.equals("")) {
+				//	description += " named " + name + ".";
+				//}else {
+				//	description += ".";
+				//}
+			}else {
+				description += String.format("%d objects are of the same structure. ", objectList.size());
+				
+			}
+		}
+		return description;
+	}
+	
 	public String listAllChildren() {
 
 		String description = "";
@@ -111,10 +170,15 @@ public class jsonComplexElement extends jsonElement {
 				} else if (numOfType > 1){
 					description += String.format("%d fields are %s values. ", numOfType, type);
 				}
+				
+				if (type.equals("object")) {
+					ArrayList<jsonElement> objList = new ArrayList<jsonElement>(children.get(type));
+					
+					ArrayList<ArrayList<jsonElement>> SimilarObjects = groupSimilarObjects(objList);
+					description += describeSimObjects(SimilarObjects);
+				}
 			}
-		}
-
-		
+		}	
 
 		return description;
 	}

@@ -65,7 +65,7 @@ public class jsonDescriptorVisitor3<T> extends AbstractParseTreeVisitor<T> imple
 		// discard objects within array
 		if (!objectName.equals("[")) {
 			//jsonObjectOrArray currentObj = new jsonObjectOrArray(numChildren, objectName, ctx);
-			jsonObject currentObj = new jsonObject(objectName, numChildren);
+			jsonObject currentObj = new jsonObject(objectName, numChildren, ctx);
 
 			if (ctx.parent.parent.parent != null) {
 				if (objects.get(ctx.parent.parent.parent.toString()) != null) {
@@ -78,7 +78,7 @@ public class jsonDescriptorVisitor3<T> extends AbstractParseTreeVisitor<T> imple
 
 		} else {
 
-			jsonObject currentObj = new jsonObject(numChildren);
+			jsonObject currentObj = new jsonObject(numChildren, ctx);
 			if (ctx.parent.parent.parent.parent != null) {
 				if (objects.get(ctx.parent.parent.toString()) != null) {
 					objects.get(ctx.parent.parent.toString()).addChildObj(currentObj);
@@ -144,10 +144,7 @@ public class jsonDescriptorVisitor3<T> extends AbstractParseTreeVisitor<T> imple
 	 */
 	@Override
 	public T visitValue(jsonParser.ValueContext ctx) {
-		System.out.println("str: " + ctx.STRING());
-		System.out.println("Int: "+ctx.NUMBER());
-		System.out.println("child: "+ ctx.getChild(0));
-		System.out.println("---------------------");
+		
 		
 		
 		String typename = null;
