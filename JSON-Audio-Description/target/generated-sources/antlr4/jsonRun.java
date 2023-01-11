@@ -11,7 +11,7 @@ import picocli.CommandLine.Parameters;
 
 public class jsonRun {
 
-	public static void main(String[] args) {
+	public static void jsonRunMain(String[] args) {
 		System.out.print(args[0]);
 		try {
 			if (args.length == 0)
@@ -28,7 +28,7 @@ public class jsonRun {
 
 	}
 
-	private static CommonTokenStream lex(String filename) {
+	static CommonTokenStream lex(String filename) {
 		try {
 			jsonLexer lexer = new jsonLexer(CharStreams.fromFileName(filename));
 			CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -41,13 +41,13 @@ public class jsonRun {
 		return null;
 	}
 
-	private static ParseTree parse(CommonTokenStream tokens) {
+	static ParseTree parse(CommonTokenStream tokens) {
 		jsonParser parser = new jsonParser(tokens);
 		ParseTree tree = parser.json();
 		return tree;
 	}
 
-	private static void describe(CommonTokenStream tokens, ParseTree tree) {
+	static void describe(CommonTokenStream tokens, ParseTree tree) {
 		System.out.println("\nStructural description: ");
 		jsonDescriptorVisitor3<?> descriptor = new jsonDescriptorVisitor3<Object>();
 		descriptor.visit(tree);
@@ -63,3 +63,6 @@ public class jsonRun {
 	}
 
 }
+
+
+
