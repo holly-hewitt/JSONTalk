@@ -9,19 +9,19 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
-@Command(name = "mycli", mixinStandardHelpOptions = true, version = "mycli 1.0")
+@Command(name = "jsonCLI", mixinStandardHelpOptions = true)
 public class jsonCLI implements Runnable {
 
-    @Option(names = {"--tl"}, description = "Top level description of JSON file")
+    @Option(names = {"-tl", "--Toplevel"}, description = "Top level description of JSON file")
     private boolean topLevel;
 
-    @Option(names = {"--o"}, description = "Description of object fields within JSON file")
+    @Option(names = {"-o", "--objects"}, description = "Description of object fields within JSON file")
     private boolean objects;
 
-    @Option(names = {"--option3"}, description = "Option 3")
+    @Option(names = {"-a", "--array"}, description = "Description of array fields within JSON file")
     private boolean array;
 
-    @Parameters(arity = "l", description = "File name")
+    @Parameters(paramLabel = "Filename", description = "File name")
     private String filename;
 
     public void run() {
