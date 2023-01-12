@@ -19,7 +19,7 @@ public class jsonRun {
 
 			CommonTokenStream tokens = lex(args[0]);
 			ParseTree tree = parse(tokens);
-			describe(tokens, tree);
+			describe(tokens, tree, false, false, false, false);
 		} catch (jsonException x) {
 			System.out.println("Check input");
 		} catch (Exception x) {
@@ -47,15 +47,15 @@ public class jsonRun {
 		return tree;
 	}
 
-	static void describe(CommonTokenStream tokens, ParseTree tree) {
+	static void describe(CommonTokenStream tokens, ParseTree tree, boolean topLevel, boolean objects, boolean arrays, boolean full) {
 		System.out.println("\nStructural description: ");
 		jsonDescriptorVisitor3<?> descriptor = new jsonDescriptorVisitor3<Object>();
 		descriptor.visit(tree);
 		String finalDescription = "";
 		for (jsonComplexElement object : jsonDescriptorVisitor3.objects.values()) {
-			if (!object.elementDescription(true).equals("")) {
-				System.out.println(object.elementDescription(true));
-				finalDescription += object.elementDescription(true);
+			if (!object.elementDescription(full).equals("")) {
+				System.out.println(object.elementDescription(full));
+				finalDescription += object.elementDescription(full);
 				
 			}
 		}

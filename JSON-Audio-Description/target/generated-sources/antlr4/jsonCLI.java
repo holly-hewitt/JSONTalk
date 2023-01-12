@@ -20,8 +20,11 @@ public class jsonCLI implements Runnable {
 
     @Option(names = {"-a", "--array"}, description = "Description of array fields within JSON file")
     private boolean array;
+    
+    @Option(names = {"-f", "--full"}, description = "Full description of JSON file")
+    private boolean full;
 
-    @Parameters(paramLabel = "Filename", description = "File name")
+    @Parameters(paramLabel = "filename", description = "File name")
     private String filename;
 
     public void run() {
@@ -36,7 +39,7 @@ public class jsonCLI implements Runnable {
 
 			CommonTokenStream tokens = jsonRun.lex(filename);
 			ParseTree tree = jsonRun.parse(tokens);
-			jsonRun.describe(tokens, tree);
+			jsonRun.describe(tokens, tree, topLevel, objects, array, full);
         } catch (jsonException x) {
 			System.out.println("Check input");
 		} catch (Exception x) {
@@ -45,8 +48,8 @@ public class jsonCLI implements Runnable {
         
     }
 
-    @SuppressWarnings("deprecation")
-	public static void main(String[] args) {
-        CommandLine.run(new jsonCLI(), args);
+    public static void main(String[] args) {
+    	System.exit(new CommandLine(new jsonCLI()).execute(args));
+        //CommandLine.execute(new jsonCLI(), args);
     }
 }
