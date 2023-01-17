@@ -47,22 +47,41 @@ public class jsonRun {
 		return tree;
 	}
 
-	static void describe(CommonTokenStream tokens, ParseTree tree, boolean topLevel, boolean objects, boolean arrays, boolean full) {
+	static void describe(CommonTokenStream tokens, ParseTree tree, boolean topLevel, boolean objects, boolean arrays,
+			boolean full) {
 		System.out.println("\nStructural description: ");
 		jsonDescriptorVisitor3<?> descriptor = new jsonDescriptorVisitor3<Object>();
 		descriptor.visit(tree);
 		String finalDescription = "";
 		for (jsonComplexElement object : jsonDescriptorVisitor3.objects.values()) {
-			if (!object.elementDescription(full).equals("")) {
-				System.out.println(object.elementDescription(full));
-				finalDescription += object.elementDescription(full);
-				
+			if (!object.elementDescription(false, false).equals("")) {
+				System.out.println(object.elementDescription(false, false));
+				finalDescription += object.elementDescription(true, false);
+
 			}
 		}
-		//TextToSpeech.SpeakString(finalDescription);
+		// TextToSpeech.SpeakString(finalDescription);
+	}
+
+	// elementDescription(true) !!!!!!!!!!!!FULL
+	// = This json file is an object which contains 6 fields. 1 field is a boolean
+	// value, named: "married". 1 field is a string value, named: "name". 1 field is
+	// a null value, named: "dietary_requirements". 1 field is a array value, named:
+	// "siblings". 1 field is a integer value, named: "age". 1 field is a object
+	// value, named: "address".
+	// "address" is an object which contains 2 fields. 2 fields are string values,
+	// named: "town", "postcode".
+	// "siblings" is an Array which contains 2 fields. 2 fields are object values. 2
+	// objects are of the same structure.
+
+	// elementDescription(false)!!!!!!!!!! describes object and array structures within
+	// = This json file is an object which contains 6 fields. 1 field is an object,
+	// 1 field is an array,
+	// "address" is an object which contains 2 fields.
+	// "siblings" is an Array which contains 2 fields. 2 fields are objects,
+
+	static void TopLevelDescription(CommonTokenStream tokens, ParseTree tree) {
+
 	}
 
 }
-
-
-

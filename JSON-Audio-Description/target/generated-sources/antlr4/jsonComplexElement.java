@@ -85,8 +85,12 @@ public class jsonComplexElement extends jsonElement {
 	// description methods
 
 	public String elemDescription() {
-		
-		String description = String.format("%s is an %s which contains %d field", name, typeName, fieldNo);
+		String description = "";
+		if (name.equals("This json file")){
+			description = String.format("%s contains %d field", name, fieldNo);
+		}else {
+			description = String.format("%s is an %s which contains %d field", name, typeName, fieldNo);
+		}		
 		description+= fieldNo == 1 ? ". " : "s. ";
 		return description;
 	}
@@ -183,14 +187,14 @@ public class jsonComplexElement extends jsonElement {
 		return description;
 	}
 
-	public String elementDescription(boolean describeTypes) {
+	public String elementDescription(boolean describeTypes, boolean describeObjectsAndArrays) {
 		String description = elemDescription();
 		if (name.equals("")) {
 			return "";
 		}
 		if (describeTypes) {
 			description += listAllChildren();
-		}else {
+		}else if (describeObjectsAndArrays){
 			if (childObjs.size() > 0) {
 				description += listChildObjects();
 			}

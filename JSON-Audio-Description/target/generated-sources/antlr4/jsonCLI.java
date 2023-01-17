@@ -23,6 +23,9 @@ public class jsonCLI implements Runnable {
     
     @Option(names = {"-f", "--full"}, description = "Full description of JSON file")
     private boolean full;
+    
+    @Option(names = {"-d", "--depth"}, description = "Depth of nesting described")
+    private int depth;
 
     @Parameters(paramLabel = "filename", description = "File name")
     private String filename;
