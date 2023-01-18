@@ -3,6 +3,8 @@ import org.antlr.v4.runtime.*;
 
 import org.antlr.v4.runtime.tree.*;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
@@ -19,7 +21,7 @@ public class jsonRun {
 
 			CommonTokenStream tokens = lex(args[0]);
 			ParseTree tree = parse(tokens);
-			describe(tokens, tree, false, false, false, false, 4);
+			describe(tokens, tree, false,  false, false, 4);
 		} catch (jsonException x) {
 			System.out.println("Check input");
 		} catch (Exception x) {
@@ -47,75 +49,59 @@ public class jsonRun {
 		return tree;
 	}
 
-	static void describe(CommonTokenStream tokens, ParseTree tree, boolean topLevel, boolean objects, 
+	static String describe(CommonTokenStream tokens, ParseTree tree, boolean topLevel, boolean objects, 
 			boolean full,int depth) {
 		System.out.println("\nStructural description: ");
 		jsonDescriptorVisitor3<?> descriptor = new jsonDescriptorVisitor3<Object>();
 		descriptor.visit(tree);
 		String finalDescription = "";
+		Collection<jsonComplexElement> elements = jsonDescriptorVisitor3.objects.values();
+		
+		boolean[] topLevelOptions = {true, false};
+		boolean[] objectsOptions = {true, false};
+		boolean[] fullOptions = {true, true};
+		
+		
 		if (topLevel) {
-			System.out.println("Top level description: ");
-			for (jsonComplexElement object : jsonDescriptorVisitor3.objects.values()) {
-				if (!object.elementDescription(true, false).equals("")) {
-					if(object.getDepth()<= depth) {
-						System.out.println(object.elementDescription(true, false));
-						finalDescription += object.elementDescription(true, false);
-						break;
-					}
-					
-				}
-			}
-		}if (objects) {
-			System.out.println("Description including object and array details: ");
-			for (jsonComplexElement object : jsonDescriptorVisitor3.objects.values()) {
-				if (!object.elementDescription(true, false).equals("")) {
-					if (object.getDepth()<= depth) {
-						System.out.println(object.elementDescription(true, false));
-						finalDescription += object.elementDescription(true, false);
-					}
-					
-				}
-			}
-		}if(full) {
-			System.out.println("Full description: ");
-			for (jsonComplexElement object : jsonDescriptorVisitor3.objects.values()) {
-				if (!object.elementDescription(true, false).equals("")) {
-					System.out.println("Depth: " + depth + " Object depth: " + object.getDepth());
-					System.out.println("name" + object.getName());
-					
-					if (object.getDepth()<= depth) {
-						System.out.println(object.elementDescription(true, true));
-						finalDescription += object.elementDescription(true, true);
-					}
-				
-				}
-			}
+			System.out.println("\nTop level description: \n");
+			finalDescription += "Top level description: ";
+			finalDescription += generateDescription(topLevelOptions[0], topLevelOptions[1], elements, depth, true);
 		}
+		
+		if(objects) {
+			System.out.println("\nDescription including object and array details: \n");
+			finalDescription += "Description including object and array details: ";
+			finalDescription += generateDescription(objectsOptions[0], objectsOptions[1], elements, depth, false);
+		}
+		
+		if(full) {
+			System.out.println("\nFull description: \n");
+			finalDescription += "Full description: ";
+			finalDescription += generateDescription(fullOptions[0], fullOptions[1], elements, depth, false);
+		}
+		
+		return finalDescription;
 		
 		// TextToSpeech.SpeakString(finalDescription);
 	}
-
-	// elementDescription(true, true) or (true, false) !!!!!!!!!!!!FULL
-	// = This json file is an object which contains 6 fields. 1 field is a boolean
-	// value, named: "married". 1 field is a string value, named: "name". 1 field is
-	// a null value, named: "dietary_requirements". 1 field is a array value, named:
-	// "siblings". 1 field is a integer value, named: "age". 1 field is a object
-	// value, named: "address".
-	// "address" is an object which contains 2 fields. 2 fields are string values,
-	// named: "town", "postcode".
-	// "siblings" is an Array which contains 2 fields. 2 fields are object values. 2
-	// objects are of the same structure.
-
-	// elementDescription(false, true)!!!!!!!!!! describes object and array structures within
-	// = This json file is an object which contains 6 fields. 1 field is an object,
-	// 1 field is an array,
-	// "address" is an object which contains 2 fields.
-	// "siblings" is an Array which contains 2 fields. 2 fields are objects,
-
-	static void TopLevelDescription(CommonTokenStream tokens, ParseTree tree) {
-		jsonDescriptorVisitor3<?> descriptor = new jsonDescriptorVisitor3<Object>();
-		descriptor.visit(tree);
-		String finalDescription = "";
+	
+	private static String generateDescription(boolean a, boolean b, Collection<jsonComplexElement> x, int depth, boolean toplevel) {
+		String description = "";
+		for (jsonComplexElement object : x) {
+			if (!object.elementDescription(a, b).equals("")) {				
+				if (object.getDepth()<= depth) {
+					System.out.println(object.elementDescription(a, b));
+					description += object.elementDescription(a, b);
+				}
+			
+			}
+			if (toplevel) {
+				break;
+			}
+		}
+		return description;
 	}
+
+	
 
 }

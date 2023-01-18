@@ -1,6 +1,10 @@
 
 
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 
@@ -31,30 +35,31 @@ public class jsonCLI implements Runnable {
     private String filename;
 
     public void run() {
-        // code to execute when the command is called goes here
-        System.out.println("Option 1: " + topLevel);
-        System.out.println("Option 2: " + objects);
-        System.out.println("Option 3: " + array);
-        System.out.println("File name: " + filename);
         try {
         	if (filename==null)
 				throw new jsonException();
-
 			CommonTokenStream tokens = jsonRun.lex(filename);
 			ParseTree tree = jsonRun.parse(tokens);
-			jsonRun.describe(tokens, tree, topLevel, objects, array, full, depth);
-			//JSONDescriptor visitor = new JSONDescriptor();
-	        //String description = visitor.visit(tree);
-
-	        // Print the description to the console
-	        //System.out.println("new description: ");
-	        //System.out.println(description);
+			String description = jsonRun.describe(tokens, tree, topLevel, objects, full, depth);
+			
+			if (outputFile != null) {
+				writeDescriptionToFile(description, outputFile);
+			}
         } catch (jsonException x) {
 			System.out.println("Check input");
 		} catch (Exception x) {
 			x.printStackTrace();
 		}
         
+    }
+    
+    static void writeDescriptionToFile(String finalDescription, String outputFile) throws IOException {
+        File file = new File(outputFile);
+        FileWriter writer = new FileWriter(file);
+        writer.write(finalDescription);
+        writer.close();
+        System.out.println("file path: " + file.getAbsolutePath());
+        System.out.println("Description written to " + outputFile);
     }
 
     public static void main(String[] args) {
