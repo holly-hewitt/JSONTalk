@@ -19,7 +19,7 @@ public class jsonRun {
 
 			CommonTokenStream tokens = lex(args[0]);
 			ParseTree tree = parse(tokens);
-			describe(tokens, tree, false, false, false, false);
+			describe(tokens, tree, false, false, false, false, 4);
 		} catch (jsonException x) {
 			System.out.println("Check input");
 		} catch (Exception x) {
@@ -47,32 +47,47 @@ public class jsonRun {
 		return tree;
 	}
 
-	static void describe(CommonTokenStream tokens, ParseTree tree, boolean topLevel, boolean objects, boolean arrays,
-			boolean full) {
+	static void describe(CommonTokenStream tokens, ParseTree tree, boolean topLevel, boolean objects, 
+			boolean full,int depth) {
 		System.out.println("\nStructural description: ");
 		jsonDescriptorVisitor3<?> descriptor = new jsonDescriptorVisitor3<Object>();
 		descriptor.visit(tree);
 		String finalDescription = "";
 		if (topLevel) {
+			System.out.println("Top level description: ");
 			for (jsonComplexElement object : jsonDescriptorVisitor3.objects.values()) {
 				if (!object.elementDescription(true, false).equals("")) {
-					System.out.println(object.elementDescription(true, false));
-					finalDescription += object.elementDescription(true, false);
-					break;
+					if(object.getDepth()<= depth) {
+						System.out.println(object.elementDescription(true, false));
+						finalDescription += object.elementDescription(true, false);
+						break;
+					}
+					
 				}
 			}
-		}if (objects || arrays) {
+		}if (objects) {
+			System.out.println("Description including object and array details: ");
 			for (jsonComplexElement object : jsonDescriptorVisitor3.objects.values()) {
 				if (!object.elementDescription(true, false).equals("")) {
-					System.out.println(object.elementDescription(true, false));
-					finalDescription += object.elementDescription(true, false);
+					if (object.getDepth()<= depth) {
+						System.out.println(object.elementDescription(true, false));
+						finalDescription += object.elementDescription(true, false);
+					}
+					
 				}
 			}
 		}if(full) {
+			System.out.println("Full description: ");
 			for (jsonComplexElement object : jsonDescriptorVisitor3.objects.values()) {
 				if (!object.elementDescription(true, false).equals("")) {
-					System.out.println(object.elementDescription(true, true));
-					finalDescription += object.elementDescription(true, true);
+					System.out.println("Depth: " + depth + " Object depth: " + object.getDepth());
+					System.out.println("name" + object.getName());
+					
+					if (object.getDepth()<= depth) {
+						System.out.println(object.elementDescription(true, true));
+						finalDescription += object.elementDescription(true, true);
+					}
+				
 				}
 			}
 		}

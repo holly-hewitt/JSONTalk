@@ -15,17 +15,17 @@ public class jsonCLI implements Runnable {
     @Option(names = {"-tl", "--Toplevel"}, description = "Top level description of JSON file")
     private boolean topLevel;
 
-    @Option(names = {"-o", "--objects"}, description = "Description of object fields within JSON file")
+    @Option(names = {"-oa", "--objectsAndArrays"}, description = "Description of object and array fields within JSON file")
     private boolean objects;
-
-    @Option(names = {"-a", "--array"}, description = "Description of array fields within JSON file")
-    private boolean array;
     
     @Option(names = {"-f", "--full"}, description = "Full description of JSON file")
     private boolean full;
     
     @Option(names = {"-d", "--depth"}, description = "Depth of nesting described")
     private int depth;
+    
+    @Option(names = {"-o", "--outputFile"}, description = "File to write description to")
+	private String outputFile;
 
     @Parameters(paramLabel = "filename", description = "File name")
     private String filename;
@@ -42,7 +42,7 @@ public class jsonCLI implements Runnable {
 
 			CommonTokenStream tokens = jsonRun.lex(filename);
 			ParseTree tree = jsonRun.parse(tokens);
-			jsonRun.describe(tokens, tree, topLevel, objects, array, full);
+			jsonRun.describe(tokens, tree, topLevel, objects, array, full, depth);
 			//JSONDescriptor visitor = new JSONDescriptor();
 	        //String description = visitor.visit(tree);
 

@@ -55,7 +55,7 @@ public class jsonDescriptorVisitor3<T> extends AbstractParseTreeVisitor<T> imple
 		
 
 		String objectName = ctx.parent.parent.getChild(0).toString();
-		
+		//System.out.println(ctx.depth()/3);
 		
 
 
@@ -99,7 +99,7 @@ public class jsonDescriptorVisitor3<T> extends AbstractParseTreeVisitor<T> imple
 	@Override
 	public T visitPair(jsonParser.PairContext ctx) {
 		String key = ctx.STRING().getText();
-		System.out.println("key: " + key + ctx.value().depth()/3);
+		//System.out.println("key: " + key + ctx.value().depth()/3);
 		//System.out.println(ctx.value().STRING().getText());
 		ctx.value().depth();
 		return visitChildren(ctx);
@@ -115,6 +115,7 @@ public class jsonDescriptorVisitor3<T> extends AbstractParseTreeVisitor<T> imple
 	 */
 	@Override
 	public T visitArr(jsonParser.ArrContext ctx) {
+		//System.out.println("Array Depth: " + ctx.depth());
 		String arrayName = ctx.parent.parent.getChild(0).toString();
 		int numChildren = ctx.getChildCount();
 		// account for {}

@@ -12,7 +12,6 @@ public class jsonComplexElement extends jsonElement {
 	private ArrayList<jsonObject> childObjs;
 	private ArrayList<jsonArray> childArrs;
 	protected HashMap<String, ArrayList<jsonElement>> children;
-	protected int depth;
 
 	/**
 	 * @param name
@@ -52,6 +51,20 @@ public class jsonComplexElement extends jsonElement {
 	 */
 	public ArrayList<jsonObject> getChildObjs() {
 		return childObjs;
+	}
+
+	/**
+	 * @return the depth
+	 */
+	public int getDepth() {
+		return depth;
+	}
+
+	/**
+	 * @param depth the depth to set
+	 */
+	public void setDepth(int depth) {
+		this.depth = depth;
 	}
 
 	/**
