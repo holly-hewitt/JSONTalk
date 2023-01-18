@@ -12,14 +12,15 @@ public class jsonComplexElement extends jsonElement {
 	private ArrayList<jsonObject> childObjs;
 	private ArrayList<jsonArray> childArrs;
 	protected HashMap<String, ArrayList<jsonElement>> children;
+	protected int depth;
 
 	/**
 	 * @param name
 	 * @param ctx
 	 * @param fieldNo
 	 */
-	public jsonComplexElement(String name, int fieldNo) {
-		super(name);
+	public jsonComplexElement(String name, int fieldNo, int depth) {
+		super(name, depth);
 		this.fieldNo = fieldNo;
 		this.childObjs = new ArrayList<jsonObject>();
 		this.childArrs = new ArrayList<jsonArray>();
@@ -32,8 +33,8 @@ public class jsonComplexElement extends jsonElement {
 		this.children.put("null", new ArrayList<jsonElement>());
 	}
 
-	public jsonComplexElement(int fieldNo) {
-		super();
+	public jsonComplexElement(int fieldNo, int depth) {
+		super(depth);
 		this.fieldNo = fieldNo;
 		this.childObjs = new ArrayList<jsonObject>();
 		this.childArrs = new ArrayList<jsonArray>();

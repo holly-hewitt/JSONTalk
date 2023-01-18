@@ -1,8 +1,8 @@
 
 public class jsonArray extends jsonComplexElement {
 
-	public jsonArray(int fieldNo) {
-		super(fieldNo);
+	public jsonArray(int fieldNo, int depth) {
+		super(fieldNo, depth);
 		setTypeName("Array");
 		// TODO Auto-generated constructor stub
 	}
@@ -12,8 +12,8 @@ public class jsonArray extends jsonComplexElement {
 	 * @param arrayName
 	 * @param ctx
 	 */
-	public jsonArray(int fieldNo, String arrayName) {
-		super(arrayName, fieldNo);
+	public jsonArray(int fieldNo, String arrayName, int depth) {
+		super(arrayName, fieldNo, depth);
 
 		if (arrayName.equals("[")) {
 			this.name = "";

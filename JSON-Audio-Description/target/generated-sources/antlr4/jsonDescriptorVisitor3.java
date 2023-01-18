@@ -62,7 +62,7 @@ public class jsonDescriptorVisitor3<T> extends AbstractParseTreeVisitor<T> imple
 		// if object is not anonymous, create named jsonObject
 		if (!objectName.equals("[")) {
 
-			jsonObject currentObj = new jsonObject(objectName, numChildren, ctx);
+			jsonObject currentObj = new jsonObject(objectName, numChildren, ctx, ctx.depth()/3);
 
 			if (ctx.parent.parent.parent != null) {
 				if (objects.get(ctx.parent.parent.parent.toString()) != null) {
@@ -76,7 +76,7 @@ public class jsonDescriptorVisitor3<T> extends AbstractParseTreeVisitor<T> imple
 		} // if object is anonymous create, unnamed jsonObject
 		else {
 
-			jsonObject currentObj = new jsonObject(numChildren, ctx);
+			jsonObject currentObj = new jsonObject(numChildren, ctx, ctx.depth()/3);
 			if (ctx.parent.parent.parent.parent != null) {
 				if (objects.get(ctx.parent.parent.toString()) != null) {
 					objects.get(ctx.parent.parent.toString()).addChildObj(currentObj);
@@ -99,8 +99,8 @@ public class jsonDescriptorVisitor3<T> extends AbstractParseTreeVisitor<T> imple
 	@Override
 	public T visitPair(jsonParser.PairContext ctx) {
 		String key = ctx.STRING().getText();
-		System.out.println("key: " + key + ctx.value().depth());
-		System.out.println(ctx.value().STRING().getText());
+		System.out.println("key: " + key + ctx.value().depth()/3);
+		//System.out.println(ctx.value().STRING().getText());
 		ctx.value().depth();
 		return visitChildren(ctx);
 	}
@@ -122,7 +122,7 @@ public class jsonDescriptorVisitor3<T> extends AbstractParseTreeVisitor<T> imple
 		// account for ,
 		numChildren -= (numChildren / 2);
 
-		jsonArray currentArr = new jsonArray(numChildren, arrayName);
+		jsonArray currentArr = new jsonArray(numChildren, arrayName, ctx.depth()/3);
 		if (ctx.parent.parent.parent != null) {
 			if (objects.get(ctx.parent.parent.parent.toString()) != null) {
 				objects.get(ctx.parent.parent.parent.toString()).addChildArr(currentArr);
@@ -164,7 +164,7 @@ public class jsonDescriptorVisitor3<T> extends AbstractParseTreeVisitor<T> imple
 		}
 		
 		if (typename != null) {
-			jsonElement elem = new jsonElement(ctx.getParent().getChild(0).toString(), typename);
+			jsonElement elem = new jsonElement(ctx.getParent().getChild(0).toString(), typename, ctx.depth()/3);
 			if (ctx.parent.parent.parent.parent != null) {
 				if (objects.get(ctx.parent.parent.toString()) != null) {
 					objects.get(ctx.parent.parent.toString()).addChildElement(elem);

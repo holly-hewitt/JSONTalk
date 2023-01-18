@@ -10,8 +10,8 @@ public class jsonObject extends jsonComplexElement {
 	// private ArrayList<jsonObject> childObjs;
 	// private ArrayList<jsonArray> childArrs;
 
-	public jsonObject(int fieldNo, jsonParser.ObjContext ctx) {
-		super(fieldNo);
+	public jsonObject(int fieldNo, jsonParser.ObjContext ctx, int depth) {
+		super(fieldNo, depth);
 		this.ctx = ctx;
 		setTypeName("object");
 		// TODO Auto-generated constructor stub
@@ -24,8 +24,8 @@ public class jsonObject extends jsonComplexElement {
 	 * @param childObjs
 	 * @param childArrs
 	 */
-	public jsonObject(String name, int fieldNo, jsonParser.ObjContext ctx) {
-		super(name, fieldNo);
+	public jsonObject(String name, int fieldNo, jsonParser.ObjContext ctx, int depth) {
+		super(name, fieldNo, depth);
 		if (name.equals("[10]")) {
 			this.name = "This json file";
 		} else {

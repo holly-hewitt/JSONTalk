@@ -11,6 +11,7 @@ public class jsonElement {
 	 */
 	protected String name;	
 	protected String typeName;
+	protected int depth;
 	
 	
 	
@@ -20,15 +21,17 @@ public class jsonElement {
 	 * @param ctx
 	 * @param typeName
 	 */
-	public jsonElement(String name) {
+	public jsonElement(String name, int depth) {
 		super();
 		this.name = name;
+		this.depth = depth;
 	}
 	
-	public jsonElement(String name, String typename) {
+	public jsonElement(String name, String typename, int depth) {
 		super();
 		this.name = name;
 		this.typeName=typename;
+		this.depth = depth;
 	}
 
 	
@@ -36,8 +39,9 @@ public class jsonElement {
 	 * @param ctx
 	 * @param typeName
 	 */
-	public jsonElement() {
+	public jsonElement(int depth) {
 		super();
+		this.depth = depth;
 		this.name = "";
 	}
 
