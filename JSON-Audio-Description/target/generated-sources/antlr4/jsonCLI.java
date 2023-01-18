@@ -43,6 +43,12 @@ public class jsonCLI implements Runnable {
 			CommonTokenStream tokens = jsonRun.lex(filename);
 			ParseTree tree = jsonRun.parse(tokens);
 			jsonRun.describe(tokens, tree, topLevel, objects, array, full);
+			//JSONDescriptor visitor = new JSONDescriptor();
+	        //String description = visitor.visit(tree);
+
+	        // Print the description to the console
+	        //System.out.println("new description: ");
+	        //System.out.println(description);
         } catch (jsonException x) {
 			System.out.println("Check input");
 		} catch (Exception x) {
@@ -54,5 +60,6 @@ public class jsonCLI implements Runnable {
     public static void main(String[] args) {
     	System.exit(new CommandLine(new jsonCLI()).execute(args));
         //CommandLine.execute(new jsonCLI(), args);
+    	
     }
 }

@@ -53,17 +53,34 @@ public class jsonRun {
 		jsonDescriptorVisitor3<?> descriptor = new jsonDescriptorVisitor3<Object>();
 		descriptor.visit(tree);
 		String finalDescription = "";
-		for (jsonComplexElement object : jsonDescriptorVisitor3.objects.values()) {
-			if (!object.elementDescription(false, false).equals("")) {
-				System.out.println(object.elementDescription(false, false));
-				finalDescription += object.elementDescription(true, false);
-
+		if (topLevel) {
+			for (jsonComplexElement object : jsonDescriptorVisitor3.objects.values()) {
+				if (!object.elementDescription(true, false).equals("")) {
+					System.out.println(object.elementDescription(true, false));
+					finalDescription += object.elementDescription(true, false);
+					break;
+				}
+			}
+		}if (objects || arrays) {
+			for (jsonComplexElement object : jsonDescriptorVisitor3.objects.values()) {
+				if (!object.elementDescription(true, false).equals("")) {
+					System.out.println(object.elementDescription(true, false));
+					finalDescription += object.elementDescription(true, false);
+				}
+			}
+		}if(full) {
+			for (jsonComplexElement object : jsonDescriptorVisitor3.objects.values()) {
+				if (!object.elementDescription(true, false).equals("")) {
+					System.out.println(object.elementDescription(true, true));
+					finalDescription += object.elementDescription(true, true);
+				}
 			}
 		}
+		
 		// TextToSpeech.SpeakString(finalDescription);
 	}
 
-	// elementDescription(true) !!!!!!!!!!!!FULL
+	// elementDescription(true, true) or (true, false) !!!!!!!!!!!!FULL
 	// = This json file is an object which contains 6 fields. 1 field is a boolean
 	// value, named: "married". 1 field is a string value, named: "name". 1 field is
 	// a null value, named: "dietary_requirements". 1 field is a array value, named:
@@ -74,14 +91,16 @@ public class jsonRun {
 	// "siblings" is an Array which contains 2 fields. 2 fields are object values. 2
 	// objects are of the same structure.
 
-	// elementDescription(false)!!!!!!!!!! describes object and array structures within
+	// elementDescription(false, true)!!!!!!!!!! describes object and array structures within
 	// = This json file is an object which contains 6 fields. 1 field is an object,
 	// 1 field is an array,
 	// "address" is an object which contains 2 fields.
 	// "siblings" is an Array which contains 2 fields. 2 fields are objects,
 
 	static void TopLevelDescription(CommonTokenStream tokens, ParseTree tree) {
-
+		jsonDescriptorVisitor3<?> descriptor = new jsonDescriptorVisitor3<Object>();
+		descriptor.visit(tree);
+		String finalDescription = "";
 	}
 
 }

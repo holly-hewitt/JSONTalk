@@ -45,7 +45,6 @@ public class jsonDescriptorVisitor3<T> extends AbstractParseTreeVisitor<T> imple
 	 */
 	@Override
 	public T visitObj(jsonParser.ObjContext ctx) {
-		
 
 		int numChildren = ctx.getChildCount();
 		// account for {}
@@ -53,18 +52,16 @@ public class jsonDescriptorVisitor3<T> extends AbstractParseTreeVisitor<T> imple
 		// account for ,
 		numChildren -= (numChildren / 2);
 		
-//		for (ParseTree i : ctx.children) {
-//			System.out.print(i.getChildCount());
-//			if(i.getChildCount()>0) {
-//				System.out.println(i.getChild(0));
-//			}
-//		}
+		
 
 		String objectName = ctx.parent.parent.getChild(0).toString();
+		
+		
 
-		// discard objects within array
+
+		// if object is not anonymous, create named jsonObject
 		if (!objectName.equals("[")) {
-			//jsonObjectOrArray currentObj = new jsonObjectOrArray(numChildren, objectName, ctx);
+
 			jsonObject currentObj = new jsonObject(objectName, numChildren, ctx);
 
 			if (ctx.parent.parent.parent != null) {
@@ -76,7 +73,8 @@ public class jsonDescriptorVisitor3<T> extends AbstractParseTreeVisitor<T> imple
 			// add object to hashmap
 			objects.put(ctx.toString(), currentObj);
 
-		} else {
+		} // if object is anonymous create, unnamed jsonObject
+		else {
 
 			jsonObject currentObj = new jsonObject(numChildren, ctx);
 			if (ctx.parent.parent.parent.parent != null) {
@@ -87,7 +85,6 @@ public class jsonDescriptorVisitor3<T> extends AbstractParseTreeVisitor<T> imple
 			objects.put(ctx.toString(), currentObj);
 
 		}
-
 		return visitChildren(ctx);
 	}
 
@@ -101,6 +98,10 @@ public class jsonDescriptorVisitor3<T> extends AbstractParseTreeVisitor<T> imple
 	 */
 	@Override
 	public T visitPair(jsonParser.PairContext ctx) {
+		String key = ctx.STRING().getText();
+		System.out.println("key: " + key + ctx.value().depth());
+		System.out.println(ctx.value().STRING().getText());
+		ctx.value().depth();
 		return visitChildren(ctx);
 	}
 
@@ -120,8 +121,7 @@ public class jsonDescriptorVisitor3<T> extends AbstractParseTreeVisitor<T> imple
 		numChildren -= 2;
 		// account for ,
 		numChildren -= (numChildren / 2);
-		
-		
+
 		jsonArray currentArr = new jsonArray(numChildren, arrayName);
 		if (ctx.parent.parent.parent != null) {
 			if (objects.get(ctx.parent.parent.parent.toString()) != null) {
@@ -144,31 +144,25 @@ public class jsonDescriptorVisitor3<T> extends AbstractParseTreeVisitor<T> imple
 	 */
 	@Override
 	public T visitValue(jsonParser.ValueContext ctx) {
-		
-		
-		
+
 		String typename = null;
 
-		
-		if(ctx.STRING()!=null) {
-			//jsonElement elem = new jsonElement(ctx.getParent().getChild(0).toString(), "String");
-			//System.out.println(elem.name);
+		if (ctx.STRING() != null) {
 			typename = "string";
-			
 		}
-		
-		
-		if(ctx.NUMBER()!=null) {
-			//jsonElement elem = new jsonElement(ctx.getParent().getChild(0).toString(), "Integer");
+
+		if (ctx.NUMBER() != null) {
 			typename = "integer";
 		}
-		if(ctx.getChild(0).toString().equals("true") || ctx.getChild(0).toString().equals("false")) {
-			//jsonElement elem = new jsonElement(ctx.getParent().getChild(0).toString(), "Boolean");
+		
+		if (ctx.getChild(0).toString().equals("true") || ctx.getChild(0).toString().equals("false")) {
 			typename = "boolean";
 		}
+		
 		if (ctx.getChild(0).toString().equals("null")) {
 			typename = "null";
 		}
+		
 		if (typename != null) {
 			jsonElement elem = new jsonElement(ctx.getParent().getChild(0).toString(), typename);
 			if (ctx.parent.parent.parent.parent != null) {
@@ -176,7 +170,7 @@ public class jsonDescriptorVisitor3<T> extends AbstractParseTreeVisitor<T> imple
 					objects.get(ctx.parent.parent.toString()).addChildElement(elem);
 				}
 			}
-			
+
 		}
 		return visitChildren(ctx);
 	}
