@@ -51,7 +51,6 @@ public class jsonRun {
 
 	static String describe(CommonTokenStream tokens, ParseTree tree, boolean topLevel, boolean objects, 
 			boolean full,int depth) {
-		System.out.println("\nStructural description: ");
 		jsonDescriptorVisitor3<?> descriptor = new jsonDescriptorVisitor3<Object>();
 		descriptor.visit(tree);
 		String finalDescription = "";

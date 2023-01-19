@@ -58,8 +58,7 @@ public class jsonCLI implements Runnable {
         FileWriter writer = new FileWriter(file);
         writer.write(finalDescription);
         writer.close();
-        System.out.println("file path: " + file.getAbsolutePath());
-        System.out.println("Description written to " + outputFile);
+        System.out.println("\nDescription written to " + outputFile + " at location: \n" + file.getAbsolutePath());
     }
 
     public static void main(String[] args) {
