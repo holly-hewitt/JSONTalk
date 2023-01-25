@@ -30,6 +30,9 @@ public class jsonCLI implements Runnable {
     
     @Option(names = {"-o", "--outputFile"}, description = "File to write description to")
 	private String outputFile;
+    
+    @Option(names = {"-r", "--readAloud"}, description = "Read description aloud")
+    private boolean readAloud;
 
     @Parameters(paramLabel = "filename", description = "File name")
     private String filename;
@@ -44,6 +47,9 @@ public class jsonCLI implements Runnable {
 			
 			if (outputFile != null) {
 				writeDescriptionToFile(description, outputFile);
+			}
+			if (readAloud) {
+				TextToSpeech.SpeakString(description);
 			}
         } catch (jsonException x) {
 			System.out.println("Check input");
