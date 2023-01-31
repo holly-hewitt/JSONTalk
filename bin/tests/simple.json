@@ -1,0 +1,11 @@
+{
+	"name" : "Holly",
+	"age" : 22,
+	"address" : {
+			"town" : "Glasgow",
+			"postcode" : "G4 9AP"
+	},
+	"married" : false,
+	"siblings" : ["eve"],
+	"dietary_requirements" : null
+}

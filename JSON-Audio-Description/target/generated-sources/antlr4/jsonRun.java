@@ -56,27 +56,27 @@ public class jsonRun {
 		String finalDescription = "";
 		Collection<jsonComplexElement> elements = jsonDescriptorVisitor3.objects.values();
 		
-		boolean[] topLevelOptions = {true, false};
-		boolean[] objectsOptions = {true, false};
-		boolean[] fullOptions = {true, true};
+		boolean[] topLevelOptions = {true, false, false};
+		boolean[] objectsOptions = {true, false, false};
+		boolean[] fullOptions = {true, true, true};
 		
 		
 		if (topLevel) {
 			System.out.println("\nTop level description: \n");
 			finalDescription += "Top level description: ";
-			finalDescription += generateDescription(topLevelOptions[0], topLevelOptions[1], elements, depth, true);
+			finalDescription += generateDescription(topLevelOptions[0], topLevelOptions[1], topLevelOptions[2], elements, depth, true);
 		}
 		
 		if(objects) {
 			System.out.println("\nDescription including object and array details: \n");
 			finalDescription += "Description including object and array details: ";
-			finalDescription += generateDescription(objectsOptions[0], objectsOptions[1], elements, depth, false);
+			finalDescription += generateDescription(objectsOptions[0], objectsOptions[1], objectsOptions[2], elements, depth, false);
 		}
 		
 		if(full) {
 			System.out.println("\nFull description: \n");
 			finalDescription += "Full description: ";
-			finalDescription += generateDescription(fullOptions[0], fullOptions[1], elements, depth, false);
+			finalDescription += generateDescription(fullOptions[0], fullOptions[1], fullOptions[2], elements, depth, false);
 		}
 		
 		return finalDescription;
@@ -84,13 +84,13 @@ public class jsonRun {
 		// TextToSpeech.SpeakString(finalDescription);
 	}
 	
-	private static String generateDescription(boolean a, boolean b, Collection<jsonComplexElement> x, int depth, boolean toplevel) {
+	private static String generateDescription(boolean a, boolean b, boolean c, Collection<jsonComplexElement> x, int depth, boolean toplevel) {
 		String description = "";
 		for (jsonComplexElement object : x) {
-			if (!object.elementDescription(a, b).equals("")) {				
+			if (!object.elementDescription(a, b, c).equals("")) {				
 				if (object.getDepth()<= depth) {
-					System.out.println(object.elementDescription(a, b));
-					description += object.elementDescription(a, b);
+					System.out.println(object.elementDescription(a, b, c));
+					description += object.elementDescription(a, b, c);
 				}
 			
 			}

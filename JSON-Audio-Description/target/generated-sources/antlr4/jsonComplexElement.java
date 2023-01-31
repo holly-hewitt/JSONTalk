@@ -108,6 +108,100 @@ public class jsonComplexElement extends jsonElement {
 		description+= fieldNo == 1 ? ". " : "s. ";
 		return description;
 	}
+	
+	public String fullElementDescription() {
+		String description = elemDescription();
+		if (name.equals("")) {
+			return "";
+		}
+		description += listAllChildren();
+		return description;
+	}
+	
+	public String elementDescription(boolean describeTypes, boolean describeObjectsAndArrays, boolean full) {
+		String description = elemDescription();
+		if (name.equals("")) {
+			return "";
+		}
+		if (describeTypes) {
+			description += listAllChildren();
+		}else if (describeObjectsAndArrays){
+			if (childObjs.size() > 0) {
+				description += listChildObjects();
+			}
+			if (childArrs.size() > 0) {
+				description += listChildArrs();
+			}
+		}else if (full) {
+			description += listNamedChildren();
+		}
+		return description;
+	}
+
+	public String listAllChildren() {
+	
+		String description = "";
+		if (children != null) {
+			Set<String> types = children.keySet();
+			for (String type : types) {
+				int numOfType = children.get(type).size();
+				if (numOfType == 1) {
+					description += String.format("1 field is a %s value. ", type);
+				} else if (numOfType > 1){
+					description += String.format("%d fields are %s values. ", numOfType, type);
+				}
+				
+				if (type.equals("object")) {
+					ArrayList<jsonElement> objList = new ArrayList<jsonElement>(children.get(type));
+					
+					ArrayList<ArrayList<jsonElement>> SimilarObjects = groupSimilarObjects(objList);
+					description += describeSimObjects(SimilarObjects);
+				}
+			}
+		}	
+	
+		return description;
+	}
+	
+	public String listNamedChildren() {
+		String description = "";
+		
+		if (children != null) {
+			Set<String> types = children.keySet();
+			for (String type : types) {
+				int numOfType = children.get(type).size();
+				if (numOfType == 1) {
+					description += String.format("1 field is a %s value, ", type);
+				} else if (numOfType > 1){
+					description += String.format("%d fields are %s values, ", numOfType, type);
+				}
+				
+				if (type.equals("object")) {
+					ArrayList<jsonElement> objList = new ArrayList<jsonElement>(children.get(type));
+					
+					ArrayList<ArrayList<jsonElement>> SimilarObjects = groupSimilarObjects(objList);
+					description += describeSimObjects(SimilarObjects);
+				}
+				description += "with field names: ";
+				int anonChildCount = 0;
+				for (jsonElement i:children.get(type)) {
+					
+					if (i.getName().equals("")){
+						anonChildCount += 1;
+					}else {
+						description+= i.getName()+", ";
+					}
+					 
+				}
+				description = description.substring(0, -2);
+				if (anonChildCount >0) {
+					description += String.format(". There are %d anonymous fields of type %t. ", anonChildCount, type);
+				}
+			}
+		}	
+		
+		return description;
+	}
 
 	private String listChildArrs() {
 		if (childArrs.size() > 0) {
@@ -171,49 +265,6 @@ public class jsonComplexElement extends jsonElement {
 			}else {
 				description += String.format("%d objects are of the same structure. ", objectList.size());
 				
-			}
-		}
-		return description;
-	}
-	
-	public String listAllChildren() {
-
-		String description = "";
-		if (children != null) {
-			Set<String> types = children.keySet();
-			for (String type : types) {
-				int numOfType = children.get(type).size();
-				if (numOfType == 1) {
-					description += String.format("1 field is a %s value. ", type);
-				} else if (numOfType > 1){
-					description += String.format("%d fields are %s values. ", numOfType, type);
-				}
-				
-				if (type.equals("object")) {
-					ArrayList<jsonElement> objList = new ArrayList<jsonElement>(children.get(type));
-					
-					ArrayList<ArrayList<jsonElement>> SimilarObjects = groupSimilarObjects(objList);
-					description += describeSimObjects(SimilarObjects);
-				}
-			}
-		}	
-
-		return description;
-	}
-
-	public String elementDescription(boolean describeTypes, boolean describeObjectsAndArrays) {
-		String description = elemDescription();
-		if (name.equals("")) {
-			return "";
-		}
-		if (describeTypes) {
-			description += listAllChildren();
-		}else if (describeObjectsAndArrays){
-			if (childObjs.size() > 0) {
-				description += listChildObjects();
-			}
-			if (childArrs.size() > 0) {
-				description += listChildArrs();
 			}
 		}
 		return description;
