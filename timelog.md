@@ -248,6 +248,8 @@
 ### 26 Jan
 * *1 hour* Explore option of recruiting visually impaired programmers for evaluation vs using sighted programmers
 
+## Week 4
+
 ### 31 Jan
 * *2 hours* Evaluation method planning
 * *1 hour* Exploring "full description" option of CLI and considering what to include
