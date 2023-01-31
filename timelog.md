@@ -12,6 +12,8 @@
 * This timelog should be filled out honestly, regularly (daily) and accurately. It is for *your* benefit.
 * Follow the structure provided, grouping time by weeks.  Quantise time to the half hour.
 
+# Semester 1
+
 ## Week 1
 
 ### 30 Sep 2022
@@ -156,3 +158,96 @@
 ### 22 Nov 2022
 * *1 hour* Consider clearer textual format to represent file structure
 * *1 hour* Code refactoring: method extraction and adding comments
+
+### 23 Nov 2023
+* *0.5 hour* Meeting with supervisor
+
+### 24 Nov 2024
+* *3 hour* Research text to speech methods and technologies
+
+## Week 9
+
+### 28 Nov 2022
+* *2 hour* Text to speech planning
+
+### 29 Nov 2022
+* *2 hour* Text to speech integration coding
+
+### 30 Nov 2022
+* *2 hour* Code refactoring: extracting methods and classes
+
+### 1 Dec 2022
+* *2 hour* Code refactoring: Adding comments, removing redundant code
+
+## Week 10
+
+### 5 Dec 2022
+* *3 hour* Implement further type description methods
+
+### 6 Dec
+* *2 hour* Code cleanup & debugging
+
+### 7 Dec
+* *1 hour* New class system established, making use of inheritance
+
+### 8 Dec
+* *3 hour* Transplant old methods and variables to new hierarchical class structure
+
+## Week 11: Week off
+
+## Week 12
+
+### 22 Dec
+* *1 hour* Write project status report
+
+# Semester 2
+
+## Week 0
+
+### 2 Jan
+* *3 hours* Research command line interface building
+* *1 hour* Add picocli package to project and experiment with it
+
+## Week 1
+
+### 9 Jan
+* *2 hours* Plan for command line tool: Decide on options and parameters
+
+### 10 Jan
+* *2 hours* Command line tool implementation
+
+### 11 Jan
+* *3 hours* Debugging
+
+### 12 Jan
+* *0.5 hour* Meeting with supervisor
+* *1 hour* Bug fixes
+
+## Week 2
+
+### 17 Jan
+* *2 hours* Plan for depth option implementation
+
+### 18 Jan
+* *2 hours* Depth option implemented
+* *1 hour* Dump to file option implemented
+
+### 19 Jan
+* *0.5 hour* Code clean-up
+* *0.5 hour* Meeting with supervisor
+
+## Week 3
+
+### 24 Jan
+* *1 hour* Explore evaluation options
+
+### 25 Jan
+* *0.5 hour* Add readaloud option to CLI
+* *2 hours* Plan for evaluation
+
+### 26 Jan
+* *1 hour* Explore option of recruiting visually impaired programmers for evaluation vs using sighted programmers
+
+### 31 Jan
+* *2 hours* Evaluation method planning
+* *1 hour* Exploring "full description" option of CLI and considering what to include
