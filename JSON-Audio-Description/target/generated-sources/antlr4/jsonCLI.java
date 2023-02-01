@@ -26,7 +26,7 @@ public class jsonCLI implements Runnable {
     private boolean full;
     
     @Option(names = {"-d", "--depth"}, description = "Depth of nesting described")
-    private int depth;
+    private int depth = 0;
     
     @Option(names = {"-o", "--outputFile"}, description = "File to write description to")
 	private String outputFile;
@@ -39,7 +39,7 @@ public class jsonCLI implements Runnable {
 
     public void run() {
         try {
-        	if (filename==null)
+        	if (filename==null || depth==0)
 				throw new jsonException();
 			CommonTokenStream tokens = jsonRun.lex(filename);
 			ParseTree tree = jsonRun.parse(tokens);

@@ -53,12 +53,14 @@ public class jsonObject extends jsonComplexElement {
 				for (jsonElement child : children.get(type)) {
 					if (!child.getName().equals("")) {
 						names += child.getName() + ", ";
+						
 					}
 				}
 				if (!names.equals("")) {
 					description += ", named: " + names;
 					description = description.substring(0, description.length() - 2);
 				}
+				
 				description += ". ";
 			}
 			

@@ -138,7 +138,7 @@ public class jsonComplexElement extends jsonElement {
 		return description;
 	}
 
-	public String listAllChildren() {
+	public String listAllChildren(boolean full) {
 	
 		String description = "";
 		if (children != null) {
@@ -156,6 +156,8 @@ public class jsonComplexElement extends jsonElement {
 					
 					ArrayList<ArrayList<jsonElement>> SimilarObjects = groupSimilarObjects(objList);
 					description += describeSimObjects(SimilarObjects);
+				}else {
+					
 				}
 			}
 		}	
