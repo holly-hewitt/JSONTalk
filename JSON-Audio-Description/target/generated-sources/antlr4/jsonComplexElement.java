@@ -118,6 +118,29 @@ public class jsonComplexElement extends jsonElement {
 		return description;
 	}
 	
+	public String elementDescription1(descriptionLevel l) {
+		String description = elemDescription();
+		if (name.equals("")) {
+			return "";
+		}
+		if (l==descriptionLevel.TOPLEVEL) {
+			description += listAllChildren();
+		}
+		
+		if (l == descriptionLevel.COMPLEXELEMENTS) {
+			if (childObjs.size() > 0) {
+				description += listChildObjects();
+			}
+			if (childArrs.size() > 0) {
+				description += listChildArrs();
+			}
+		}
+		if (l == descriptionLevel.FULL) {
+			description += fullListAllChildren();
+		}
+		return description;
+	}
+	
 	public String elementDescription(boolean describeTypes, boolean describeObjectsAndArrays, boolean full) {
 		String description = elemDescription();
 		if (name.equals("")) {
@@ -133,12 +156,12 @@ public class jsonComplexElement extends jsonElement {
 				description += listChildArrs();
 			}
 		}else if (full) {
-			description += listNamedChildren();
+			description += fullListAllChildren();
 		}
 		return description;
 	}
 
-	public String listAllChildren(boolean full) {
+	public String listAllChildren() {
 	
 		String description = "";
 		if (children != null) {
@@ -203,6 +226,11 @@ public class jsonComplexElement extends jsonElement {
 		}	
 		
 		return description;
+	}
+	
+	//to be overrode by jsonArray and object
+	public String fullListAllChildren() {
+		return null;
 	}
 
 	private String listChildArrs() {

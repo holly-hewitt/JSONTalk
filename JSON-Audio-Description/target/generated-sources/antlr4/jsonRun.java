@@ -58,25 +58,25 @@ public class jsonRun {
 		
 		boolean[] topLevelOptions = {true, false, false};
 		boolean[] objectsOptions = {true, false, false};
-		boolean[] fullOptions = {true, true, true};
+		boolean[] fullOptions = {false, false, true};
 		
 		
 		if (topLevel) {
 			System.out.println("\nTop level description: \n");
 			finalDescription += "Top level description: ";
-			finalDescription += generateDescription(topLevelOptions[0], topLevelOptions[1], topLevelOptions[2], elements, depth, true);
+			finalDescription += generateDescription1(descriptionLevel.TOPLEVEL, elements, depth, true);
 		}
 		
 		if(objects) {
 			System.out.println("\nDescription including object and array details: \n");
 			finalDescription += "Description including object and array details: ";
-			finalDescription += generateDescription(objectsOptions[0], objectsOptions[1], objectsOptions[2], elements, depth, false);
+			finalDescription += generateDescription1(descriptionLevel.COMPLEXELEMENTS, elements, depth, false);
 		}
 		
 		if(full) {
 			System.out.println("\nFull description: \n");
 			finalDescription += "Full description: ";
-			finalDescription += generateDescription(fullOptions[0], fullOptions[1], fullOptions[2], elements, depth, false);
+			finalDescription += generateDescription1(descriptionLevel.FULL, elements, depth, false);
 		}
 		
 		return finalDescription;
@@ -100,7 +100,22 @@ public class jsonRun {
 		}
 		return description;
 	}
-
+	private static String generateDescription1(descriptionLevel l, Collection<jsonComplexElement> x, int depth, boolean toplevel) {
+		String description = "";
+		for (jsonComplexElement object : x) {
+			if (!object.elementDescription1(l).equals("")) {				
+				if (object.getDepth()<= depth) {
+					System.out.println(object.elementDescription1(l));
+					description += object.elementDescription1(l);
+				}
+			
+			}
+			if (toplevel) {
+				break;
+			}
+		}
+		return description;
+	}
 	
 
 }

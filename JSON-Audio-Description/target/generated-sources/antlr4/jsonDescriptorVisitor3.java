@@ -163,7 +163,6 @@ public class jsonDescriptorVisitor3<T> extends AbstractParseTreeVisitor<T> imple
 		if (ctx.getChild(0).toString().equals("null")) {
 			typename = "null";
 		}
-		System.out.print(ctx.getText().toString());
 		if (typename != null) {
 			jsonElement elem = new jsonElement(ctx.getParent().getChild(0).toString(), typename, ctx.depth()/3);
 			if (ctx.parent.parent.parent.parent != null) {
@@ -171,6 +170,7 @@ public class jsonDescriptorVisitor3<T> extends AbstractParseTreeVisitor<T> imple
 					objects.get(ctx.parent.parent.toString()).addChildElement(elem);
 				}
 			}
+			elem.setValue(ctx.getText().toString());
 
 		}
 		return visitChildren(ctx);

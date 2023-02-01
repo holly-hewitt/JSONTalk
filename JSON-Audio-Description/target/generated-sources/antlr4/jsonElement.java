@@ -12,6 +12,8 @@ public class jsonElement {
 	protected String name;	
 	protected String typeName;
 	protected int depth;
+	protected String value;
+	
 	
 	
 	
@@ -58,6 +60,14 @@ public class jsonElement {
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public void setValue(String value) {
+		this.value=value;
+	}
+	
+	public String getValue() {
+		return value;
 	}
 
 

@@ -69,6 +69,41 @@ public class jsonObject extends jsonComplexElement {
 		return description;
 	}
 	
+	public String fullListAllChildren() {
+
+		String description = "";
+
+		Set<String> types = children.keySet();
+		for (String type : types) {
+			int numOfType = children.get(type).size();
+			if (numOfType > 0) {
+				if (numOfType == 1) {
+					description += String.format("1 field is a %s value", type);
+				} else{
+					description += String.format("%d fields are %s values", numOfType, type);
+				}
+				description += " named: ";
+				
+				for (jsonElement child : children.get(type)) {
+					if (!child.getName().equals("")) {
+						description += child.getName();
+						if (!child.getValue().equals("")) {
+							description +=" with value " + child.getValue();
+						}
+						description += ", ";
+						
+					}
+				}
+				description = description.substring(0, description.length() - 2);
+				
+				description += ". ";
+			}
+			
+		}
+
+		return description;
+	}
+	
 	/**
 	 * Method to check whether two objects are of the same structure Checks for 2
 	 * things 1. Do objects have same field number 2. Do objects have same field
