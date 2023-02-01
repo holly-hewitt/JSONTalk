@@ -87,9 +87,9 @@ public class jsonObject extends jsonComplexElement {
 				for (jsonElement child : children.get(type)) {
 					if (!child.getName().equals("")) {
 						description += child.getName();
-						if (!child.getValue().equals("")) {
+						//if (!child.getValue().equals("")) {
 							description +=" with value " + child.getValue();
-						}
+						//}
 						description += ", ";
 						
 					}

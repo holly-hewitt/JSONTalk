@@ -120,6 +120,7 @@ public class jsonComplexElement extends jsonElement {
 	
 	public String elementDescription1(descriptionLevel l) {
 		String description = elemDescription();
+		description += "description level:" + l.toString();
 		if (name.equals("")) {
 			return "";
 		}
@@ -230,7 +231,37 @@ public class jsonComplexElement extends jsonElement {
 	
 	//to be overrode by jsonArray and object
 	public String fullListAllChildren() {
-		return null;
+		String description = "";
+
+		Set<String> types = children.keySet();
+		for (String type : types) {
+			int numOfType = children.get(type).size();
+			if (numOfType > 0) {
+				if (numOfType == 1) {
+					description += String.format("1 field is a %s value", type);
+				} else{
+					description += String.format("%d fields are %s values", numOfType, type);
+				}
+				description += " named: ";
+				
+				for (jsonElement child : children.get(type)) {
+					if (!child.getName().equals("")) {
+						description += child.getName();
+						//if (!child.getValue().equals("")) {
+							description +=" with value " + child.getValue();
+						//}
+						description += ", ";
+						
+					}
+				}
+				description = description.substring(0, description.length() - 2);
+				
+				description += ". ";
+			}
+			
+		}
+
+		return description;
 	}
 
 	private String listChildArrs() {
