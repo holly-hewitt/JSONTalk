@@ -23,13 +23,7 @@ public class jsonComplexElement extends jsonElement {
 		this.fieldNo = fieldNo;
 		this.childObjs = new ArrayList<jsonObject>();
 		this.childArrs = new ArrayList<jsonArray>();
-		this.children = new HashMap<String, ArrayList<jsonElement>>();
-		this.children.put("object", new ArrayList<jsonElement>());
-		this.children.put("array", new ArrayList<jsonElement>());
-		this.children.put("string", new ArrayList<jsonElement>());
-		this.children.put("integer", new ArrayList<jsonElement>());
-		this.children.put("boolean", new ArrayList<jsonElement>());
-		this.children.put("null", new ArrayList<jsonElement>());
+		initialiseChildrenArray();
 	}
 
 	public jsonComplexElement(int fieldNo, int depth) {
@@ -37,6 +31,10 @@ public class jsonComplexElement extends jsonElement {
 		this.fieldNo = fieldNo;
 		this.childObjs = new ArrayList<jsonObject>();
 		this.childArrs = new ArrayList<jsonArray>();
+		initialiseChildrenArray();
+	}
+	
+	private void initialiseChildrenArray() {
 		this.children = new HashMap<String, ArrayList<jsonElement>>();
 		this.children.put("object", new ArrayList<jsonElement>());
 		this.children.put("array", new ArrayList<jsonElement>());
@@ -83,35 +81,35 @@ public class jsonComplexElement extends jsonElement {
 
 	public void addChildObj(jsonObject childObj) {
 		childObjs.add(childObj);
-		children.get("object").add(childObj);		
+		children.get("object").add(childObj);
 	}
 
 	public void addChildArr(jsonArray childArr) {
 		childArrs.add(childArr);
-		children.get("array").add(childArr);	
+		children.get("array").add(childArr);
 	}
-	
+
 	public void addChildElement(jsonElement child) {
 		children.get(child.typeName).add(child);
 	}
-	
 
 	// description methods
 
 	public String elemDescription() {
 		String description = "";
-		if (name.equals("This json file")){
+		if (name.equals("This json file")) {
 			description = String.format("%s contains %d field", name, fieldNo);
-		}else {
+		} else {
 			description = String.format("%s is an %s which contains %d field", name, typeName, fieldNo);
 		}
-		if(name.equals("")) {
-			description= String.format("There is an anonymous %s, belonging to %s, which contains %d field", typeName, parent.getName(), fieldNo);
+		if (name.equals("")) {
+			description = String.format("There is an anonymous %s, belonging to %s, which contains %d field", typeName,
+					parent.getName(), fieldNo);
 		}
-		description+= fieldNo == 1 ? ". " : "s. ";
+		description += fieldNo == 1 ? "" : "s";
 		return description;
 	}
-	
+
 	public String fullElementDescription() {
 		String description = elemDescription();
 		if (name.equals("")) {
@@ -120,16 +118,16 @@ public class jsonComplexElement extends jsonElement {
 		description += listAllChildren();
 		return description;
 	}
-	
+
 	public String elementDescription1(descriptionLevel l) {
 		String description = elemDescription();
-		////if (name.equals("")) {
-		//	return "";
-		//}
-		if (l==descriptionLevel.TOPLEVEL) {
+		//// if (name.equals("")) {
+		// return "";
+		// }
+		if (l == descriptionLevel.TOPLEVEL) {
 			description += listAllChildren();
 		}
-		
+
 		if (l == descriptionLevel.COMPLEXELEMENTS) {
 			if (childObjs.size() > 0) {
 				description += listChildObjects();
@@ -143,7 +141,7 @@ public class jsonComplexElement extends jsonElement {
 		}
 		return description;
 	}
-	
+
 	public String elementDescription(boolean describeTypes, boolean describeObjectsAndArrays, boolean full) {
 		String description = elemDescription();
 		if (name.equals("")) {
@@ -151,87 +149,85 @@ public class jsonComplexElement extends jsonElement {
 		}
 		if (describeTypes) {
 			description += listAllChildren();
-		}else if (describeObjectsAndArrays){
+		} else if (describeObjectsAndArrays) {
 			if (childObjs.size() > 0) {
 				description += listChildObjects();
 			}
 			if (childArrs.size() > 0) {
 				description += listChildArrs();
 			}
-		}else if (full) {
+		} else if (full) {
 			description += fullListAllChildren();
 		}
 		return description;
 	}
 
 	public String listAllChildren() {
-	
+
 		String description = "";
 		if (children != null) {
 			Set<String> types = children.keySet();
 			for (String type : types) {
 				int numOfType = children.get(type).size();
-				if (numOfType == 1) {
-					description += String.format("1 field is a %s value. ", type);
-				} else if (numOfType > 1){
-					description += String.format("%d fields are %s values. ", numOfType, type);
+				if (numOfType==fieldNo && description.length()>3) {
+					description = description.substring(0,-2);
 				}
-				
+				description += listFields(numOfType, type);
+
 				if (type.equals("object")) {
 					ArrayList<jsonElement> objList = new ArrayList<jsonElement>(children.get(type));
-					
+
 					ArrayList<ArrayList<jsonElement>> SimilarObjects = groupSimilarObjects(objList);
 					description += describeSimObjects(SimilarObjects);
-				}else {
-					
+				} else {
+
 				}
 			}
-		}	
-	
+		}
+
 		return description;
 	}
-	
+
 	public String listNamedChildren() {
 		String description = "";
-		
+
 		if (children != null) {
 			Set<String> types = children.keySet();
 			for (String type : types) {
 				int numOfType = children.get(type).size();
-				if (numOfType == 1) {
-					description += String.format("1 field is a %s value, ", type);
-				} else if (numOfType > 1){
-					description += String.format("%d fields are %s values, ", numOfType, type);
+				if (numOfType==fieldNo && description.length()>3) {
+					description = description.substring(0,-2);
 				}
-				
+				description += listFields(numOfType, type);
+
 				if (type.equals("object")) {
 					ArrayList<jsonElement> objList = new ArrayList<jsonElement>(children.get(type));
-					
+
 					ArrayList<ArrayList<jsonElement>> SimilarObjects = groupSimilarObjects(objList);
 					description += describeSimObjects(SimilarObjects);
 				}
 				description += "with field names: ";
 				int anonChildCount = 0;
-				for (jsonElement i:children.get(type)) {
-					
-					if (i.getName().equals("")){
+				for (jsonElement i : children.get(type)) {
+
+					if (i.getName().equals("")) {
 						anonChildCount += 1;
-					}else {
-						description+= i.getName()+", ";
+					} else {
+						description += i.getName() + ", ";
 					}
-					 
+
 				}
 				description = description.substring(0, -2);
-				if (anonChildCount >0) {
+				if (anonChildCount > 0) {
 					description += String.format(". There are %d anonymous fields of type %t. ", anonChildCount, type);
 				}
 			}
-		}	
-		
+		}
+
 		return description;
 	}
-	
-	//to be overrode by jsonArray and object
+
+	// to be overrode by jsonArray and object
 	public String fullListAllChildren() {
 		String description = "";
 
@@ -239,30 +235,48 @@ public class jsonComplexElement extends jsonElement {
 		for (String type : types) {
 			int numOfType = children.get(type).size();
 			if (numOfType > 0) {
-				if (numOfType == 1) {
-					description += String.format("1 field is a %s value", type);
-				} else{
-					description += String.format("%d fields are %s values", numOfType, type);
+				if (numOfType==fieldNo && description.length()>3) {
+					description = description.substring(0,-2);
 				}
+				description += listFields(numOfType, type);
 				description += " named: ";
-				
+
 				for (jsonElement child : children.get(type)) {
 					if (!child.getName().equals("")) {
 						description += child.getName();
-						//if (!child.getValue().equals("")) {
-							description +=" with value " + child.getValue();
-						//}
+						// if (!child.getValue().equals("")) {
+						description += " with value " + child.getValue();
+						// }
 						description += ", ";
-						
+
 					}
 				}
 				description = description.substring(0, description.length() - 2);
-				
+
 				description += ". ";
 			}
-			
+
 		}
 
+		return description;
+	}
+
+	public String listFields(int numOfType, String type) {
+		String description = "";
+		if (numOfType != fieldNo) {
+			if (numOfType == 1) {
+				description += String.format(". 1 field is a %s value", type);
+			} else if (numOfType > 1) {
+				description += String.format(". %d fields are %s values", numOfType, type);
+			}
+		} else {
+
+			if (numOfType == 1) {
+				description += String.format(", which is a %s value", type);
+			} else if (numOfType > 1) {
+				description += String.format(", which are all %s values", type);
+			}
+		}
 		return description;
 	}
 
@@ -283,10 +297,8 @@ public class jsonComplexElement extends jsonElement {
 		}
 		return null;
 	}
-	
-	// describe objects with identical structure
-	
 
+	// describe objects with identical structure
 
 	/**
 	 * @param objList: Takes a list of objects
@@ -313,21 +325,21 @@ public class jsonComplexElement extends jsonElement {
 		}
 		return groupedObjects;
 	}
-	
+
 	private String describeSimObjects(ArrayList<ArrayList<jsonElement>> groupedObjs) {
 		String description = "";
 		for (ArrayList<jsonElement> objectList : groupedObjs) {
-			if (objectList.size()==1) {
+			if (objectList.size() == 1) {
 				String name = objectList.get(0).getName();
 				description += "1 object has a unique structure. ";
-				//if(!name.equals("")) {
-				//	description += " named " + name + ".";
-				//}else {
-				//	description += ".";
-				//}
-			}else {
+				// if(!name.equals("")) {
+				// description += " named " + name + ".";
+				// }else {
+				// description += ".";
+				// }
+			} else {
 				description += String.format("%d objects are of the same structure. ", objectList.size());
-				
+
 			}
 		}
 		return description;

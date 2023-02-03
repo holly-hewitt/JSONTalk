@@ -3,7 +3,7 @@ public class jsonArray extends jsonComplexElement {
 
 	public jsonArray(int fieldNo, int depth) {
 		super(fieldNo, depth);
-		setTypeName("Array");
+		setTypeName("array");
 		// TODO Auto-generated constructor stub
 	}
 
@@ -21,7 +21,7 @@ public class jsonArray extends jsonComplexElement {
 		} else {
 			this.name = arrayName;
 		}
-		setTypeName("Array");
+		setTypeName("array");
 	}
 
 }

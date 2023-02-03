@@ -43,11 +43,11 @@ public class jsonObject extends jsonComplexElement {
 		for (String type : types) {
 			int numOfType = children.get(type).size();
 			if (numOfType > 0) {
-				if (numOfType == 1) {
-					description += String.format("1 field is a %s value", type);
-				} else{
-					description += String.format("%d fields are %s values", numOfType, type);
+				if (numOfType==fieldNo && description.length()>3) {
+					description = description.substring(0,-2);
 				}
+				description += listFields(numOfType, type);
+
 				
 				String names = "";
 				for (jsonElement child : children.get(type)) {
@@ -77,11 +77,11 @@ public class jsonObject extends jsonComplexElement {
 		for (String type : types) {
 			int numOfType = children.get(type).size();
 			if (numOfType > 0) {
-				if (numOfType == 1) {
-					description += String.format("1 field is a %s value", type);
-				} else{
-					description += String.format("%d fields are %s values", numOfType, type);
+				if (numOfType==fieldNo && description.length()>3) {
+					description = description.substring(0,-2);
 				}
+				description += listFields(numOfType, type);
+
 				description += " named: ";
 				
 				for (jsonElement child : children.get(type)) {
