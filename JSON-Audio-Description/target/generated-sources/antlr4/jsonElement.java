@@ -13,8 +13,7 @@ public class jsonElement {
 	protected String typeName;
 	protected int depth;
 	protected String value;
-	
-	
+	protected jsonComplexElement parent;
 	
 	
 
@@ -60,6 +59,10 @@ public class jsonElement {
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public void setParent(jsonComplexElement parent) {
+		this.parent = parent;
 	}
 	
 	public void setValue(String value) {

@@ -104,7 +104,10 @@ public class jsonComplexElement extends jsonElement {
 			description = String.format("%s contains %d field", name, fieldNo);
 		}else {
 			description = String.format("%s is an %s which contains %d field", name, typeName, fieldNo);
-		}		
+		}
+		if(name.equals("")) {
+			description= String.format("There is an anonymous %s, belonging to %s, which contains %d field", typeName, parent.getName(), fieldNo);
+		}
 		description+= fieldNo == 1 ? ". " : "s. ";
 		return description;
 	}
@@ -120,10 +123,9 @@ public class jsonComplexElement extends jsonElement {
 	
 	public String elementDescription1(descriptionLevel l) {
 		String description = elemDescription();
-		description += "description level:" + l.toString();
-		if (name.equals("")) {
-			return "";
-		}
+		////if (name.equals("")) {
+		//	return "";
+		//}
 		if (l==descriptionLevel.TOPLEVEL) {
 			description += listAllChildren();
 		}

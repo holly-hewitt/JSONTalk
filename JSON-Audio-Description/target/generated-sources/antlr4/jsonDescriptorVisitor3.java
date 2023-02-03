@@ -80,6 +80,7 @@ public class jsonDescriptorVisitor3<T> extends AbstractParseTreeVisitor<T> imple
 			if (ctx.parent.parent.parent.parent != null) {
 				if (objects.get(ctx.parent.parent.toString()) != null) {
 					objects.get(ctx.parent.parent.toString()).addChildObj(currentObj);
+					currentObj.setParent(objects.get(ctx.parent.parent.toString()));
 				}
 			}
 			objects.put(ctx.toString(), currentObj);
@@ -171,6 +172,7 @@ public class jsonDescriptorVisitor3<T> extends AbstractParseTreeVisitor<T> imple
 				}
 			}
 			elem.setValue(ctx.getText().toString());
+			System.out.println(ctx.getText().toString());
 
 		}
 		return visitChildren(ctx);
