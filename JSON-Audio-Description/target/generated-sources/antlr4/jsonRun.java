@@ -82,7 +82,6 @@ public class jsonRun {
 
 	private static String generateDescription1(descriptionLevel l, Collection<jsonComplexElement> x, int depth) {
 		String description = "";
-		System.out.print("hey hey hey");
 		for (jsonComplexElement object : x) {
 			if (!object.elementDescription1(l).equals("")) {				
 				if (object.getDepth()<= depth) {

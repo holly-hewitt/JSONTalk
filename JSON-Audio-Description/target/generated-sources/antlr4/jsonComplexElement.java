@@ -156,6 +156,10 @@ public class jsonComplexElement extends jsonElement {
 			if (childArrs.size() > 0) {
 				description += listChildArrs();
 			}
+			if (childArrs.size() > 0 || childObjs.size()>0) {
+				description = description.substring(0,-2);
+				description += ". ";
+			}
 		} else if (full) {
 			description += fullListAllChildren();
 		}
@@ -188,44 +192,7 @@ public class jsonComplexElement extends jsonElement {
 		return description;
 	}
 
-	public String listNamedChildren() {
-		String description = "";
-
-		if (children != null) {
-			Set<String> types = children.keySet();
-			for (String type : types) {
-				int numOfType = children.get(type).size();
-				if (numOfType==fieldNo && description.length()>3) {
-					description = description.substring(0,-2);
-				}
-				description += listFields(numOfType, type);
-
-				if (type.equals("object")) {
-					ArrayList<jsonElement> objList = new ArrayList<jsonElement>(children.get(type));
-
-					ArrayList<ArrayList<jsonElement>> SimilarObjects = groupSimilarObjects(objList);
-					description += describeSimObjects(SimilarObjects);
-				}
-				description += "with field names: ";
-				int anonChildCount = 0;
-				for (jsonElement i : children.get(type)) {
-
-					if (i.getName().equals("")) {
-						anonChildCount += 1;
-					} else {
-						description += i.getName() + ", ";
-					}
-
-				}
-				description = description.substring(0, -2);
-				if (anonChildCount > 0) {
-					description += String.format(". There are %d anonymous fields of type %t. ", anonChildCount, type);
-				}
-			}
-		}
-
-		return description;
-	}
+	
 
 	// to be overrode by jsonArray and object
 	public String fullListAllChildren() {
@@ -240,16 +207,23 @@ public class jsonComplexElement extends jsonElement {
 				}
 				description += listFields(numOfType, type);
 				description += " named: ";
+				
 
 				for (jsonElement child : children.get(type)) {
-					if (!child.getName().equals("")) {
-						description += child.getName();
-						// if (!child.getValue().equals("")) {
-						description += " with value " + child.getValue();
-						// }
-						description += ", ";
-
+					if(!(type.equals("object") || type.equals("array"))) {
+						if (!child.getName().equals("")) {
+							description += child.getName();
+							// if (!child.getValue().equals("")) {
+							description += " with value " + child.getValue();
+							// }
+							description += ", ";						}
+					}else {
+						if (!child.getName().equals("")){
+							description += child.getName();
+							description += ", ";
+						}
 					}
+					
 				}
 				description = description.substring(0, description.length() - 2);
 

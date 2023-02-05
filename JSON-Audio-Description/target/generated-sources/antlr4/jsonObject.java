@@ -85,13 +85,19 @@ public class jsonObject extends jsonComplexElement {
 				description += " named: ";
 				
 				for (jsonElement child : children.get(type)) {
-					if (!child.getName().equals("")) {
-						description += child.getName();
-						//if (!child.getValue().equals("")) {
-							description +=" with value " + child.getValue();
-						//}
-						description += ", ";
-						
+					if(!(type.equals("object") || type.equals("array"))) {
+						if (!child.getName().equals("")) {
+							description += child.getName();
+							// if (!child.getValue().equals("")) {
+							description += " with value " + child.getValue();
+							// }
+							description += ", ";
+						}
+					}else {
+						if (!child.getName().equals("")){
+							description += child.getName();
+							description += ", ";
+						}
 					}
 				}
 				description = description.substring(0, description.length() - 2);
