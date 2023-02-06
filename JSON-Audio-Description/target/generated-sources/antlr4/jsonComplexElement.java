@@ -1,10 +1,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.Set;
-
-import org.antlr.v4.runtime.tree.ParseTree;
 
 public class jsonComplexElement extends jsonElement {
 
@@ -124,6 +121,8 @@ public class jsonComplexElement extends jsonElement {
 		//// if (name.equals("")) {
 		// return "";
 		// }
+		System.out.println(children);
+		System.out.println();
 		if (l == descriptionLevel.TOPLEVEL) {
 			description += listAllChildren();
 		}
@@ -206,7 +205,9 @@ public class jsonComplexElement extends jsonElement {
 					description = description.substring(0,-2);
 				}
 				description += listFields(numOfType, type);
-				description += " named: ";
+				if(!typeName.equals("array")) {
+					description += " named: ";
+				}
 				
 
 				for (jsonElement child : children.get(type)) {
@@ -225,9 +226,19 @@ public class jsonComplexElement extends jsonElement {
 					}
 					
 				}
-				description = description.substring(0, description.length() - 2);
+				if(description.charAt(description.length()-2)==','){
+					description = description.substring(0, description.length() - 2);
 
+				}
 				description += ". ";
+				if (type.equals("object")) {
+					ArrayList<jsonElement> objList = new ArrayList<jsonElement>(children.get(type));
+
+					ArrayList<ArrayList<jsonElement>> SimilarObjects = groupSimilarObjects(objList);
+					description += describeSimObjects(SimilarObjects);
+				}
+
+				
 			}
 
 		}
@@ -304,7 +315,6 @@ public class jsonComplexElement extends jsonElement {
 		String description = "";
 		for (ArrayList<jsonElement> objectList : groupedObjs) {
 			if (objectList.size() == 1) {
-				String name = objectList.get(0).getName();
 				description += "1 object has a unique structure. ";
 				// if(!name.equals("")) {
 				// description += " named " + name + ".";

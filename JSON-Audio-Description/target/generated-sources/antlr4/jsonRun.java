@@ -3,13 +3,7 @@ import org.antlr.v4.runtime.*;
 
 import org.antlr.v4.runtime.tree.*;
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Collection;
-
-import picocli.CommandLine;
-import picocli.CommandLine.Command;
-import picocli.CommandLine.Option;
-import picocli.CommandLine.Parameters;
 
 public class jsonRun {
 
@@ -56,6 +50,7 @@ public class jsonRun {
 		String finalDescription = "";
 		Collection<jsonComplexElement> elements = jsonDescriptorVisitor3.objects.values();		
 		
+		
 		if (topLevel) {
 			System.out.println("\nTop level description: \n");
 			finalDescription += "Top level description: ";
@@ -96,6 +91,7 @@ public class jsonRun {
 		}
 		return description;
 	}
+	
 	
 
 }

@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Set;
 
 import org.antlr.v4.runtime.tree.ParseTree;

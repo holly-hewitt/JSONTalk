@@ -1,12 +1,7 @@
 
-// Generated from java-escape by ANTLR 4.11.1
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-import org.antlr.v4.runtime.RuleContext;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
-import org.antlr.v4.runtime.tree.ParseTree;
 
 /**
  * This class provides an empty implementation of {@link jsonVisitor}, which can
@@ -16,7 +11,6 @@ import org.antlr.v4.runtime.tree.ParseTree;
  * @param <T> The return type of the visit operation. Use {@link Void} for
  *            operations with no return type.
  */
-@SuppressWarnings("CheckReturnValue")
 public class jsonDescriptorVisitor3<T> extends AbstractParseTreeVisitor<T> implements jsonVisitor<T> {
 
 	public static LinkedHashMap<String, jsonComplexElement> objects;
@@ -99,7 +93,6 @@ public class jsonDescriptorVisitor3<T> extends AbstractParseTreeVisitor<T> imple
 	 */
 	@Override
 	public T visitPair(jsonParser.PairContext ctx) {
-		String key = ctx.STRING().getText();
 		//System.out.println("key: " + key + ctx.value().depth()/3);
 		//System.out.println(ctx.value().STRING().getText());
 		ctx.value().depth();
