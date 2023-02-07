@@ -1,7 +1,7 @@
 
 
 public class jsonElement {
-	
+
 	/**
 	 * name: name of object/array fieldNo: no. of fields in object/array objects:
 	 * no. of child objects of object/array arrays: no. of child arrays in
@@ -9,13 +9,13 @@ public class jsonElement {
 	 * this is not null the jsonObject is an object ctx2: if this is not null the
 	 * jsonObject is an array
 	 */
-	protected String name;	
+	protected String name;
 	protected String typeName;
 	protected int depth;
 	protected String value;
 	protected jsonComplexElement parent;
-	
-	
+
+
 
 	/**
 	 * @param name
@@ -27,7 +27,7 @@ public class jsonElement {
 		this.name = name;
 		this.depth = depth;
 	}
-	
+
 	public jsonElement(String name, String typename, int depth) {
 		super();
 		this.name = name;
@@ -35,7 +35,7 @@ public class jsonElement {
 		this.depth = depth;
 	}
 
-	
+
 	/**
 	 * @param ctx
 	 * @param typeName
@@ -60,15 +60,15 @@ public class jsonElement {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public void setParent(jsonComplexElement parent) {
 		this.parent = parent;
 	}
-	
+
 	public void setValue(String value) {
 		this.value=value;
 	}
-	
+
 	public String getValue() {
 		return value;
 	}
@@ -80,15 +80,15 @@ public class jsonElement {
 	public void setTypeName(String typeName) {
 		this.typeName = typeName;
 	}
-	
+
 	public String getTypeName() {
 		return typeName;
 	}
-	
+
 	public String elemDescription() {
 		String description = String.format("%s is a %s value", name, typeName);
 		return description;
 	}
-	
+
 
 }

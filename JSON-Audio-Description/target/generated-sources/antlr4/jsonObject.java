@@ -3,7 +3,7 @@ import java.util.Set;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 public class jsonObject extends jsonComplexElement {
-	
+
 	jsonParser.ObjContext ctx;
 
 	// private ArrayList<jsonObject> childObjs;
@@ -34,6 +34,7 @@ public class jsonObject extends jsonComplexElement {
 		setTypeName("object");
 	}
 
+	@Override
 	public String listAllChildren() {
 
 		String description = "";
@@ -45,29 +46,35 @@ public class jsonObject extends jsonComplexElement {
 				if (numOfType==fieldNo && description.length()>3) {
 					description = description.substring(0,-2);
 				}
+				if (description.length() > 3) {
+					if (description.charAt(description.length() - 2) == ',' || description.charAt(description.length()-1) == '.') {
+						description = description.substring(0, description.length() - 2);
+					}
+				}
 				description += listFields(numOfType, type);
 
-				
+
 				String names = "";
 				for (jsonElement child : children.get(type)) {
 					if (!child.getName().equals("")) {
 						names += child.getName() + ", ";
-						
+
 					}
 				}
 				if (!names.equals("")) {
 					description += ", named: " + names;
 					description = description.substring(0, description.length() - 2);
 				}
-				
+
 				description += ". ";
 			}
-			
+
 		}
 
 		return description;
 	}
-	
+
+	@Override
 	public String fullListAllChildren() {
 
 		String description = "";
@@ -82,7 +89,7 @@ public class jsonObject extends jsonComplexElement {
 				description += listFields(numOfType, type);
 
 				description += " named: ";
-				
+
 				for (jsonElement child : children.get(type)) {
 					if(!(type.equals("object") || type.equals("array"))) {
 						if (!child.getName().equals("")) {
@@ -100,20 +107,27 @@ public class jsonObject extends jsonComplexElement {
 					}
 				}
 				description = description.substring(0, description.length() - 2);
-				
-				description += ". ";
+				//description += "#### hello from line 103 ####";
+
+
+
 			}
-			
+
+		}
+		char char1 = description.charAt(description.length()-1);
+		char char2 = description.charAt(description.length()-2);
+		if (char1 != '.' && char2 != '.') {
+			description += ". ";
 		}
 
 		return description;
 	}
-	
+
 	/**
 	 * Method to check whether two objects are of the same structure Checks for 2
 	 * things 1. Do objects have same field number 2. Do objects have same field
 	 * names
-	 * 
+	 *
 	 * @param obj1: the object we are comparing this objectOrArr to
 	 * @return true if objects are same structure else false
 	 */

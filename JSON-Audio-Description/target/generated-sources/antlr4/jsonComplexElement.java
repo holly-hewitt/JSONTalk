@@ -9,7 +9,7 @@ public class jsonComplexElement extends jsonElement {
 	private ArrayList<jsonObject> childObjs;
 	private ArrayList<jsonArray> childArrs;
 	protected HashMap<String, ArrayList<jsonElement>> children;
-	
+
 
 	/**
 	 * @param name
@@ -19,21 +19,21 @@ public class jsonComplexElement extends jsonElement {
 	public jsonComplexElement(String name, int fieldNo, int depth) {
 		super(name, depth);
 		this.fieldNo = fieldNo;
-		this.childObjs = new ArrayList<jsonObject>();
-		this.childArrs = new ArrayList<jsonArray>();
+		this.childObjs = new ArrayList<>();
+		this.childArrs = new ArrayList<>();
 		initialiseChildrenArray();
 	}
 
 	public jsonComplexElement(int fieldNo, int depth) {
 		super(depth);
 		this.fieldNo = fieldNo;
-		this.childObjs = new ArrayList<jsonObject>();
-		this.childArrs = new ArrayList<jsonArray>();
+		this.childObjs = new ArrayList<>();
+		this.childArrs = new ArrayList<>();
 		initialiseChildrenArray();
 	}
 
 	private void initialiseChildrenArray() {
-		this.children = new HashMap<String, ArrayList<jsonElement>>();
+		this.children = new HashMap<>();
 		this.children.put("object", new ArrayList<jsonElement>());
 		this.children.put("array", new ArrayList<jsonElement>());
 		this.children.put("string", new ArrayList<jsonElement>());
@@ -93,6 +93,7 @@ public class jsonComplexElement extends jsonElement {
 
 	// description methods
 
+	@Override
 	public String elemDescription() {
 		String description = "";
 		if (name.equals("This json file")) {
@@ -182,7 +183,7 @@ public class jsonComplexElement extends jsonElement {
 				description += listFields(numOfType, type);
 
 				if (type.equals("object")) {
-					ArrayList<jsonElement> objList = new ArrayList<jsonElement>(children.get(type));
+					ArrayList<jsonElement> objList = new ArrayList<>(children.get(type));
 
 					ArrayList<ArrayList<jsonElement>> SimilarObjects = groupSimilarObjects(objList);
 					description += describeSimObjects(SimilarObjects);
@@ -206,6 +207,12 @@ public class jsonComplexElement extends jsonElement {
 				if (numOfType == fieldNo && description.length() > 3) {
 					description = description.substring(0, -2);
 				}
+				if (description.length() > 3) {
+					if (description.charAt(description.length() - 2) == ',' || description.charAt(description.length()-1) == '.') {
+						description = description.substring(0, description.length() - 2);
+					}
+				}
+
 				description += listFields(numOfType, type);
 				if (!typeName.equals("array")) {
 					description += " named: ";
@@ -234,7 +241,7 @@ public class jsonComplexElement extends jsonElement {
 				}
 				description += ". ";
 				if (type.equals("object")) {
-					ArrayList<jsonElement> objList = new ArrayList<jsonElement>(children.get(type));
+					ArrayList<jsonElement> objList = new ArrayList<>(children.get(type));
 
 					ArrayList<ArrayList<jsonElement>> SimilarObjects = groupSimilarObjects(objList);
 					description += describeSimObjects(SimilarObjects);
@@ -292,11 +299,11 @@ public class jsonComplexElement extends jsonElement {
 	 *         into the same lists if they have the same structure
 	 */
 	private ArrayList<ArrayList<jsonElement>> groupSimilarObjects(ArrayList<jsonElement> objList) {
-		ArrayList<ArrayList<jsonElement>> groupedObjects = new ArrayList<ArrayList<jsonElement>>();
+		ArrayList<ArrayList<jsonElement>> groupedObjects = new ArrayList<>();
 		while (!objList.isEmpty()) {
 			jsonObject child1 = (jsonObject) objList.get(0);
 			objList.remove(0);
-			ArrayList<jsonElement> simList = new ArrayList<jsonElement>();
+			ArrayList<jsonElement> simList = new ArrayList<>();
 			simList.add(child1);
 
 			Iterator<jsonElement> iter = objList.iterator();
