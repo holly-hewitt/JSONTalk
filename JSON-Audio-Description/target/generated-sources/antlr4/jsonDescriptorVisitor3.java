@@ -1,6 +1,8 @@
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
+import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**
@@ -13,7 +15,10 @@ import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
  */
 public class jsonDescriptorVisitor3<T> extends AbstractParseTreeVisitor<T> implements jsonVisitor<T> {
 
-	public static LinkedHashMap<String, jsonComplexElement> objects;
+	public static LinkedHashMap<ParserRuleContext, jsonComplexElement> ctxElems;
+	public static LinkedHashMap<String, ArrayList<jsonComplexElement>> objects;
+	public static ArrayList<jsonComplexElement> visited;
+	//public static LinkedHashMap<ParserRuleContext, jsonComplexElement> ctxElems;
 
 	/**
 	 * {@inheritDoc}
@@ -25,7 +30,9 @@ public class jsonDescriptorVisitor3<T> extends AbstractParseTreeVisitor<T> imple
 	 */
 	@Override
 	public T visitJson(jsonParser.JsonContext ctx) {
-		objects = new LinkedHashMap<String, jsonComplexElement>();
+		ctxElems = new LinkedHashMap<ParserRuleContext, jsonComplexElement>();
+		objects = new LinkedHashMap<String, ArrayList<jsonComplexElement>>();
+		visited = new ArrayList<jsonComplexElement>();
 		return visitChildren(ctx);
 	}
 
@@ -52,33 +59,38 @@ public class jsonDescriptorVisitor3<T> extends AbstractParseTreeVisitor<T> imple
 		//System.out.println(ctx.depth()/3);
 		
 
-
 		// if object is not anonymous, create named jsonObject
 		if (!objectName.equals("[")) {
 
 			jsonObject currentObj = new jsonObject(objectName, numChildren, ctx, ctx.depth()/3);
 
 			if (ctx.parent.parent.parent != null) {
-				if (objects.get(ctx.parent.parent.parent.toString()) != null) {
-					objects.get(ctx.parent.parent.parent.toString()).addChildObj(currentObj);
-					currentObj.setParent(objects.get(ctx.parent.parent.parent.toString()));
+				if (ctxElems.get(ctx.parent.parent.parent) != null) {
+					ctxElems.get(ctx.parent.parent.parent).addChildObj(currentObj);
+					currentObj.setParent(ctxElems.get(ctx.parent.parent.parent));
+					
+					
+					
 				}
 			}
 
 			// add object to hashmap
-			objects.put(ctx.toString(), currentObj);
+			ctxElems.put(ctx, currentObj);
 
 		} // if object is anonymous create, unnamed jsonObject
 		else {
+			
 
 			jsonObject currentObj = new jsonObject(numChildren, ctx, ctx.depth()/3);
 			if (ctx.parent.parent.parent.parent != null) {
-				if (objects.get(ctx.parent.parent.toString()) != null) {
-					objects.get(ctx.parent.parent.toString()).addChildObj(currentObj);
-					currentObj.setParent(objects.get(ctx.parent.parent.toString()));
+				if (ctxElems.get(ctx.parent.parent) != null) {
+					ctxElems.get(ctx.parent.parent).addChildObj(currentObj);
+					currentObj.setParent(ctxElems.get(ctx.parent.parent));
 				}
 			}
-			objects.put(ctx.toString(), currentObj);
+			ctxElems.put(ctx, currentObj);
+			
+
 
 		}
 		return visitChildren(ctx);
@@ -120,13 +132,13 @@ public class jsonDescriptorVisitor3<T> extends AbstractParseTreeVisitor<T> imple
 
 		jsonArray currentArr = new jsonArray(numChildren, arrayName, ctx.depth()/3);
 		if (ctx.parent.parent.parent != null) {
-			if (objects.get(ctx.parent.parent.parent.toString()) != null) {
-				objects.get(ctx.parent.parent.parent.toString()).addChildArr(currentArr);
+			if (ctxElems.get(ctx.parent.parent.parent) != null) {
+				ctxElems.get(ctx.parent.parent.parent).addChildArr(currentArr);
 			}
 		}
 
 		// add object to hashmap
-		objects.put(ctx.toString(), currentArr);
+		ctxElems.put(ctx, currentArr);
 		return visitChildren(ctx);
 	}
 
@@ -161,12 +173,11 @@ public class jsonDescriptorVisitor3<T> extends AbstractParseTreeVisitor<T> imple
 		if (typename != null) {
 			jsonElement elem = new jsonElement(ctx.getParent().getChild(0).toString(), typename, ctx.depth()/3);
 			if (ctx.parent.parent.parent.parent != null) {
-				if (objects.get(ctx.parent.parent.toString()) != null) {
-					objects.get(ctx.parent.parent.toString()).addChildElement(elem);
+				if (ctxElems.get(ctx.parent.parent) != null) {
+					ctxElems.get(ctx.parent.parent).addChildElement(elem);
 				}
 			}
 			elem.setValue(ctx.getText().toString());
-			System.out.println(ctx.getText().toString());
 
 		}
 		return visitChildren(ctx);

@@ -48,8 +48,9 @@ public class jsonRun {
 		jsonDescriptorVisitor3<?> descriptor = new jsonDescriptorVisitor3<Object>();
 		descriptor.visit(tree);
 		String finalDescription = "";
-		Collection<jsonComplexElement> elements = jsonDescriptorVisitor3.objects.values();		
+		Collection<jsonComplexElement> elements = jsonDescriptorVisitor3.ctxElems.values();		
 		
+		System.out.println(elements);
 		
 		if (topLevel) {
 			System.out.println("\nTop level description: \n");

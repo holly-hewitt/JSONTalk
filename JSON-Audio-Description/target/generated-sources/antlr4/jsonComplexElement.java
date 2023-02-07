@@ -9,6 +9,7 @@ public class jsonComplexElement extends jsonElement {
 	private ArrayList<jsonObject> childObjs;
 	private ArrayList<jsonArray> childArrs;
 	protected HashMap<String, ArrayList<jsonElement>> children;
+	
 
 	/**
 	 * @param name
