@@ -61,6 +61,7 @@ public class jsonDescriptorVisitor3<T> extends AbstractParseTreeVisitor<T> imple
 			if (ctx.parent.parent.parent != null) {
 				if (objects.get(ctx.parent.parent.parent.toString()) != null) {
 					objects.get(ctx.parent.parent.parent.toString()).addChildObj(currentObj);
+					currentObj.setParent(objects.get(ctx.parent.parent.parent.toString()));
 				}
 			}
 

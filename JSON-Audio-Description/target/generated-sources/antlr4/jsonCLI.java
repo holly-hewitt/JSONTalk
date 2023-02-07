@@ -16,28 +16,25 @@ import picocli.CommandLine.Parameters;
 @Command(name = "jsonCLI", mixinStandardHelpOptions = true)
 public class jsonCLI implements Runnable {
 
-    @Option(names = {"-tl", "--Toplevel"}, description = "Top level description of JSON file")
+    @Option(names = {"-tl", "--Toplevel"}, description = "Generate top level description of JSON file")
     private boolean topLevel;
 
-    @Option(names = {"-oa", "--objectsAndArrays"}, description = "Description of object and array fields within JSON file")
+    @Option(names = {"-oa", "--objectsAndArrays"}, description = "Generate description of object and array fields within JSON file")
     private boolean objects;
     
-    @Option(names = {"-f", "--full"}, description = "Full description of JSON file")
+    @Option(names = {"-f", "--full"}, description = "Generate full description of JSON file")
     private boolean full;
     
-    @Option(names = {"-d", "--depth"}, description = "Depth of nesting described")
+    @Option(names = {"-d", "--depth"}, description = "Specify depth of nesting that description covers")
     private int depth = 0;
     
-    @Option(names = {"-l", "--listDepths"}, description = "Show depth for each value")
-    private boolean listDepth;
-    
-    @Option(names = {"-o", "--outputFile"}, description = "File to write description to")
+    @Option(names = {"-o", "--outputFile"}, description = "Write description to output file")
 	private String outputFile;
     
     @Option(names = {"-r", "--readAloud"}, description = "Read description aloud")
     private boolean readAloud;
 
-    @Parameters(paramLabel = "filename", description = "File name")
+    @Parameters(paramLabel = "filename", description = "Input JSON file name")
     private String filename;
 
     public void run() {
