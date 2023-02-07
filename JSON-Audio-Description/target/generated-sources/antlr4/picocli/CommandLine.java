@@ -9882,7 +9882,8 @@ public class CommandLine {
                  * @see Option#mapFallbackValue()
                  * @see Parameters#mapFallbackValue()
                  * @since 4.6 */
-                public Builder mapFallbackValue(String fallbackValue) { this.mapFallbackValue = fallbackValue; return self(); }
+                @SuppressWarnings("rawtypes")
+				public Builder mapFallbackValue(String fallbackValue) { this.mapFallbackValue = fallbackValue; return self(); }
 
                 /** Sets the default value of this option or positional parameter to the specified value, and returns this builder.
                  * Before parsing the command line, the result of {@linkplain #splitRegex() splitting} and {@linkplain #converters() type converting}
@@ -10858,8 +10859,10 @@ public class CommandLine {
                 private final List<IAnnotatedElement> specElements = new ArrayList<IAnnotatedElement>();
 
                 // for topological sorting; private only
-                private Boolean topologicalSortDone;
-                private final List<Builder> compositesReferencingMe = new ArrayList<Builder>();
+                @SuppressWarnings("unused")
+				private Boolean topologicalSortDone;
+                @SuppressWarnings("unused")
+				private final List<Builder> compositesReferencingMe = new ArrayList<Builder>();
 
                 Builder() { }
                 Builder(IAnnotatedElement source) {
@@ -11076,7 +11079,8 @@ public class CommandLine {
             final String name;
             int position;
 
-            public MethodParam(Method method, int paramIndex) {
+            @SuppressWarnings("deprecation")
+			public MethodParam(Method method, int paramIndex) {
                 this.method = method;
                 this.paramIndex = paramIndex;
                 String tmp = "arg" + paramIndex;
@@ -11232,7 +11236,8 @@ public class CommandLine {
                 return new Class<?>[] {propertyType}; // not a multi-value field
             }
 
-            static Class<?>[] extractTypeParameters(ParameterizedType genericType) {
+            @SuppressWarnings("rawtypes")
+			static Class<?>[] extractTypeParameters(ParameterizedType genericType) {
                 Type[] paramTypes = genericType.getActualTypeArguments(); // e.g. ? extends Number
                 List<Class<?>> result = new ArrayList<Class<?>>();
                 for (int i = 0; i < paramTypes.length; i++) {
@@ -14014,7 +14019,8 @@ public class CommandLine {
                         parseResultBuilder.nowProcessing.set(parseResultBuilder.nowProcessing.size() - 1, argSpec); // replace
                     }
                     int argCount = args.size();
-                    int consumed = applyOption(argSpec, false, lookBehind, alreadyUnquoted, arity, args, initialized, argDescription);
+                    @SuppressWarnings("unused")
+					int consumed = applyOption(argSpec, false, lookBehind, alreadyUnquoted, arity, args, initialized, argDescription);
                     // if cluster was consumed as a parameter or if this field was the last in the cluster we're done; otherwise continue do-while loop
                     if (empty(cluster) || args.isEmpty() || args.size() < argCount) {
                         return;
@@ -14748,7 +14754,8 @@ public class CommandLine {
         @SuppressWarnings("unchecked")
         private Collection<Object> createCollection(Class<?> collectionClass, Class<?>[] elementType) throws Exception {
             if (EnumSet.class.isAssignableFrom(collectionClass) && Enum.class.isAssignableFrom(elementType[0])) {
-                Object enumSet = EnumSet.noneOf((Class<Enum>) elementType[0]);
+                @SuppressWarnings("rawtypes")
+				Object enumSet = EnumSet.noneOf((Class<Enum>) elementType[0]);
                 return (Collection<Object>) enumSet;
             }
             // custom Collection implementation class must have default constructor
@@ -14787,7 +14794,7 @@ public class CommandLine {
 
         private ITypeConverter<Object> getEnumTypeConverter(final Class<?> type) {
             return new ITypeConverter<Object>() {
-                @SuppressWarnings("unchecked")
+                @SuppressWarnings({ "unchecked", "rawtypes" })
                 public Object convert(String value) throws Exception {
                     try { return Enum.valueOf((Class<Enum>) type, value); }
                     catch (IllegalArgumentException ex) {
@@ -15267,9 +15274,11 @@ public class CommandLine {
 
         private CommandLine self;
         private PrintStream out;
-        private PrintStream err;
+        @SuppressWarnings("unused")
+		private PrintStream err;
         private PrintWriter outWriter;
-        private PrintWriter errWriter;
+        @SuppressWarnings("unused")
+		private PrintWriter errWriter;
         private Help.Ansi ansi; // for backwards compatibility with pre-4.0
         private Help.ColorScheme colorScheme;
 
