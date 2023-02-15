@@ -26,7 +26,7 @@ public class jsonCLI implements Runnable {
     private boolean full;
     
     @Option(names = {"-d", "--depth"}, description = "Specify depth of nesting that description covers")
-    private int depth = 0;
+    private int depth = 1000;
     
     @Option(names = {"-o", "--outputFile"}, description = "Write description to output file")
 	private String outputFile;
