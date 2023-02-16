@@ -3,6 +3,8 @@ public enum descriptionLevel {
 	
 		TOPLEVEL,
 		COMPLEXELEMENTS,
-		FULL		
+		FULL,
+		NESTING,
+		NO_NESTING
 	
 }

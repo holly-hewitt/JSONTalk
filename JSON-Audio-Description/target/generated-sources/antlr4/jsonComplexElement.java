@@ -122,22 +122,31 @@ public class jsonComplexElement extends jsonElement {
 		description += listAllChildren();
 		return description;
 	}
+	
 
-	public String elementDescription1(descriptionLevel l) {
-		String description = elemDescription();
-		//// if (name.equals("")) {
-		// return "";
-		// }
+	public String elementDescription1(descriptionLevel l, descriptionLevel n) {
+		String description = "";
+		if (n== descriptionLevel.NESTING) {
+			description += "At depth " + depth + ": ";
+		}
+		description += elemDescription();
 		if (l == descriptionLevel.TOPLEVEL) {
 			description += listAllChildren();
 		}
 
 		if (l == descriptionLevel.COMPLEXELEMENTS) {
+			description += ". ";
 			if (childObjs.size() > 0) {
 				description += listChildObjects();
 			}
 			if (childArrs.size() > 0) {
 				description += listChildArrs();
+			}
+			if (description.charAt(description.length() - 2) == ',') {
+				description = description.substring(0, description.length() - 2) + ".";
+				
+			}else if (description.charAt(description.length() - 1) == ',') {
+				description = description.substring(0, description.length() - 1) + ".";
 			}
 		}
 		if (l == descriptionLevel.FULL) {
@@ -181,6 +190,7 @@ public class jsonComplexElement extends jsonElement {
 					description = description.substring(0, -2);
 				}
 				description += listFields(numOfType, type);
+				description += ". ";
 
 				if (type.equals("object")) {
 					ArrayList<jsonElement> objList = new ArrayList<>(children.get(type));

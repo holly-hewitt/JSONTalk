@@ -33,17 +33,21 @@ public class jsonCLI implements Runnable {
     
     @Option(names = {"-r", "--readAloud"}, description = "Read description aloud")
     private boolean readAloud;
+    
+    @Option(names = {"-n", "--nesting"}, description = "Specify nesting for each value described")
+	private boolean nesting;
 
-    @Parameters(paramLabel = "filename", description = "Input JSON file name")
+    @Parameters(paramLabel = "filepath", description = "Input JSON file. Absolute file path")
     private String filename;
 
     public void run() {
         try {
         	if (filename==null || depth==0)
 				throw new jsonException();
-			CommonTokenStream tokens = jsonRun.lex(filename);
+        	
+            CommonTokenStream tokens = jsonRun.lex(filename);
 			ParseTree tree = jsonRun.parse(tokens);
-			String description = jsonRun.describe(tokens, tree, topLevel, objects, full, depth);
+			String description = jsonRun.describe(tokens, tree, topLevel, objects, full, depth, nesting);
 			
 			if (outputFile != null) {
 				writeDescriptionToFile(description, outputFile);
