@@ -5,6 +5,7 @@ import javax.speech.Central;
 import javax.speech.synthesis.Synthesizer;
 import javax.speech.synthesis.SynthesizerModeDesc;
 
+
 public class TextToSpeech {
 	
 		  
@@ -17,7 +18,7 @@ public class TextToSpeech {
 	                "freetts.voices",
 	                "com.sun.speech.freetts.en.us"
 	                    + ".cmu_us_kal.KevinVoiceDirectory");
-	  
+	           	  
 	            // Register Engine
 	            Central.registerEngineCentral(
 	                "com.sun.speech.freetts"
@@ -49,6 +50,7 @@ public class TextToSpeech {
 	            e.printStackTrace();
 	        }
 	    }
+	    
 	}
 
 

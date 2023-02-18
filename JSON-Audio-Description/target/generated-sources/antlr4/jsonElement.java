@@ -25,14 +25,14 @@ public class jsonElement {
 	public jsonElement(String name, int depth) {
 		super();
 		this.name = name;
-		this.depth = depth;
+		this.depth = depth-1;
 	}
 
 	public jsonElement(String name, String typename, int depth) {
 		super();
 		this.name = name;
 		this.typeName=typename;
-		this.depth = depth;
+		this.depth = depth-1;
 	}
 
 
@@ -42,7 +42,7 @@ public class jsonElement {
 	 */
 	public jsonElement(int depth) {
 		super();
-		this.depth = depth;
+		this.depth = depth-1;
 		this.name = "";
 	}
 

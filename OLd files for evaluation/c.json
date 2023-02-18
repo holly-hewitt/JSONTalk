@@ -1,0 +1,61 @@
+{
+    "person": {
+        "name": {
+            "first": "John",
+            "last": "Doe"
+        },
+        "age": 35,
+        "email": "john.doe@example.com",
+        "address": {
+            "street": "456 Elm St",
+            "city": "Smallville",
+            "state": "KS",
+            "zip": "67890",
+            "location": {
+                "latitude": 37.7749,
+                "longitude": -122.4194,
+                "weather": {
+                    "current": {
+                        "temperature": 72,
+                        "humidity": 0.65
+                    },
+                    "forecast": {
+                        "high": 75,
+                        "low": 68,
+                        "chanceOfRain": 0.10
+                    }
+                }
+            }
+        },
+        "phoneNumbers": [
+            {
+                "type": "home",
+                "number": "555-555-1234",
+                "extension": 123
+            },
+            {
+                "type": "work",
+                "number": "555-555-5678",
+                "extension": 456
+            }
+        ],
+        "hobbies": [
+            "reading",
+            {
+                "outdoor": [
+                    "hiking",
+                    "camping",
+                    {
+                        "equipment": [
+                            "tent",
+                            "sleeping bag",
+                            "backpack"
+                        ]
+                    }
+                ]
+            },
+            "cooking"
+        ],
+        "isMarried": true
+    }
+}

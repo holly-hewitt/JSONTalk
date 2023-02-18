@@ -1,61 +1,21 @@
 {
-    "person": {
-        "name": {
-            "first": "John",
-            "last": "Doe"
-        },
-        "age": 35,
-        "email": "john.doe@example.com",
-        "address": {
-            "street": "456 Elm St",
-            "city": "Smallville",
-            "state": "KS",
-            "zip": "67890",
-            "location": {
-                "latitude": 37.7749,
-                "longitude": -122.4194,
-                "weather": {
-                    "current": {
-                        "temperature": 72,
-                        "humidity": 0.65
-                    },
-                    "forecast": {
-                        "high": 75,
-                        "low": 68,
-                        "chanceOfRain": 0.10
-                    }
-                }
-            }
-        },
-        "phoneNumbers": [
-            {
-                "type": "home",
-                "number": "555-555-1234",
-                "extension": 123
-            },
-            {
-                "type": "work",
-                "number": "555-555-5678",
-                "extension": 456
-            }
-        ],
-        "hobbies": [
-            "reading",
-            {
-                "outdoor": [
-                    "hiking",
-                    "camping",
-                    {
-                        "equipment": [
-                            "tent",
-                            "sleeping bag",
-                            "backpack"
-                        ]
-                    }
-                ]
-            },
-            "cooking"
-        ],
-        "isMarried": true
+  "title": "Example JSON File",
+  "description": "This is an example JSON file that demonstrates how JAWS screen reader might read it out.",
+  "items": [
+    {
+      "name": "item1",
+      "quantity": 3,
+      "price": 10.99
+    },
+    {
+      "name": "item2",
+      "quantity": 1,
+      "price": 5.99
+    },
+    {
+      "name": "item3",
+      "quantity": 2,
+      "price": 7.99
     }
+  ]
 }

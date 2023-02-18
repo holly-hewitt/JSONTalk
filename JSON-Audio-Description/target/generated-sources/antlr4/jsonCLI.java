@@ -45,7 +45,7 @@ public class jsonCLI implements Runnable {
         	if (filename==null || depth==0)
 				throw new jsonException();
         	
-            CommonTokenStream tokens = jsonRun.lex(filename);
+        	CommonTokenStream tokens = jsonRun.lex(filename);
 			ParseTree tree = jsonRun.parse(tokens);
 			String description = jsonRun.describe(tokens, tree, topLevel, objects, full, depth, nesting);
 			
