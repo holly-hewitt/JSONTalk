@@ -13,6 +13,10 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 
+/**
+ * This class is responsible for parsing the command line options and arguments and producing the required description(s)
+ *
+ */
 @Command(name = "jsonCLI", mixinStandardHelpOptions = true)
 public class jsonCLI implements Runnable {
 
@@ -40,6 +44,11 @@ public class jsonCLI implements Runnable {
     @Parameters(paramLabel = "filepath", description = "Input JSON file. Absolute file path")
     private String filename;
 
+    /**
+     * Passes the command line arguments to the jsonRun.describe method
+     * If an output file is specified, writes description to output file location
+     * If the readAloud option is enabled, the TextToSpeech.speakString() method is invoked
+     */
     public void run() {
         try {
         	if (filename==null || depth==0)
@@ -63,7 +72,13 @@ public class jsonCLI implements Runnable {
         
     }
     
-    static void writeDescriptionToFile(String finalDescription, String outputFile) throws IOException {
+    /**
+     * Writes finalDescription to outputFile location
+     * @param finalDescription
+     * @param outputFile
+     * @throws IOException
+     */
+    private static void writeDescriptionToFile(String finalDescription, String outputFile) throws IOException {
         File file = new File(outputFile);
         FileWriter writer = new FileWriter(file);
         writer.write(finalDescription);
@@ -71,9 +86,12 @@ public class jsonCLI implements Runnable {
         System.out.println("\nDescription written to " + outputFile + " at location: \n" + file.getAbsolutePath());
     }
 
+    /**
+     * Parses command line arguments and creates new command line object
+     * @param args
+     */
     public static void main(String[] args) {
     	System.exit(new CommandLine(new jsonCLI()).execute(args));
-        //CommandLine.execute(new jsonCLI(), args);
     	
     }
 }

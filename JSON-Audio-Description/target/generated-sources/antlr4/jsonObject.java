@@ -2,26 +2,36 @@ import java.util.Set;
 
 import org.antlr.v4.runtime.tree.ParseTree;
 
+/**
+ * jsonObject is used to hold information for json object elements. The class is
+ * required because of the objectContext ctx. The jsonComplexElement parent
+ * class allows both arrays and objects to make use of the same methods but be
+ * instantiated with the correct ctx type.
+ *
+ */
 public class jsonObject extends jsonComplexElement {
 
 	jsonParser.ObjContext ctx;
 
-	// private ArrayList<jsonObject> childObjs;
-	// private ArrayList<jsonArray> childArrs;
-
+	/**
+	 * Constructor for anonymous objects
+	 * @param fieldNo
+	 * @param ctx
+	 * @param depth
+	 */
 	public jsonObject(int fieldNo, jsonParser.ObjContext ctx, int depth) {
 		super(fieldNo, depth);
 		this.ctx = ctx;
 		setTypeName("object");
-		// TODO Auto-generated constructor stub
 	}
 
+	
 	/**
+	 * Constructor for named objects
 	 * @param name
-	 * @param ctx
 	 * @param fieldNo
-	 * @param childObjs
-	 * @param childArrs
+	 * @param ctx
+	 * @param depth
 	 */
 	public jsonObject(String name, int fieldNo, jsonParser.ObjContext ctx, int depth) {
 		super(name, fieldNo, depth);
@@ -43,16 +53,16 @@ public class jsonObject extends jsonComplexElement {
 		for (String type : types) {
 			int numOfType = children.get(type).size();
 			if (numOfType > 0) {
-				if (numOfType==fieldNo && description.length()>3) {
-					description = description.substring(0,-2);
+				if (numOfType == fieldNo && description.length() > 3) {
+					description = description.substring(0, -2);
 				}
 				if (description.length() > 3) {
-					if (description.charAt(description.length() - 2) == ',' || description.charAt(description.length()-1) == '.') {
+					if (description.charAt(description.length() - 2) == ','
+							|| description.charAt(description.length() - 1) == '.') {
 						description = description.substring(0, description.length() - 2);
 					}
 				}
 				description += listFields(numOfType, type);
-
 
 				String names = "";
 				for (jsonElement child : children.get(type)) {
@@ -75,7 +85,7 @@ public class jsonObject extends jsonComplexElement {
 	}
 
 	@Override
-	public String fullListAllChildren() {
+	public String listAllChildrenAndValues() {
 
 		String description = "";
 
@@ -83,15 +93,15 @@ public class jsonObject extends jsonComplexElement {
 		for (String type : types) {
 			int numOfType = children.get(type).size();
 			if (numOfType > 0) {
-				if (numOfType==fieldNo && description.length()>3) {
-					description = description.substring(0,-2);
+				if (numOfType == fieldNo && description.length() > 3) {
+					description = description.substring(0, -2);
 				}
 				description += listFields(numOfType, type);
 
 				description += " named: ";
 
 				for (jsonElement child : children.get(type)) {
-					if(!(type.equals("object") || type.equals("array"))) {
+					if (!(type.equals("object") || type.equals("array"))) {
 						if (!child.getName().equals("")) {
 							description += child.getName();
 							// if (!child.getValue().equals("")) {
@@ -99,23 +109,21 @@ public class jsonObject extends jsonComplexElement {
 							// }
 							description += ", ";
 						}
-					}else {
-						if (!child.getName().equals("")){
+					} else {
+						if (!child.getName().equals("")) {
 							description += child.getName();
 							description += ", ";
 						}
 					}
 				}
 				description = description.substring(0, description.length() - 2);
-				//description += "#### hello from line 103 ####";
-
-
+				// description += "#### hello from line 103 ####";
 
 			}
 
 		}
-		char char1 = description.charAt(description.length()-1);
-		char char2 = description.charAt(description.length()-2);
+		char char1 = description.charAt(description.length() - 1);
+		char char2 = description.charAt(description.length() - 2);
 		if (char1 != '.' && char2 != '.') {
 			description += ". ";
 		}
@@ -152,7 +160,8 @@ public class jsonObject extends jsonComplexElement {
 	}
 
 	/**
-	 * @return the ctx
+	 * ctx getter method
+	 * @return ctx
 	 */
 	public jsonParser.ObjContext getCtx() {
 		return ctx;

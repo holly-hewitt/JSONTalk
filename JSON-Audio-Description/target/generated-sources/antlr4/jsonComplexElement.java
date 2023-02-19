@@ -3,6 +3,12 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
 
+/**
+ * jsonComplexElement is used to hold information for the two different complex
+ * elements: array and object To hold necessary hierarchical information, each
+ * jsonComplexElement has a list children of each type
+ *
+ */
 public class jsonComplexElement extends jsonElement {
 
 	protected int fieldNo;
@@ -10,8 +16,9 @@ public class jsonComplexElement extends jsonElement {
 	private ArrayList<jsonArray> childArrs;
 	protected HashMap<String, ArrayList<jsonElement>> children;
 
-
 	/**
+	 * Constructor for named complex elements
+	 * 
 	 * @param name
 	 * @param ctx
 	 * @param fieldNo
@@ -24,6 +31,12 @@ public class jsonComplexElement extends jsonElement {
 		initialiseChildrenArray();
 	}
 
+	/**
+	 * Constructor for anonymous complex elements
+	 * 
+	 * @param fieldNo
+	 * @param depth
+	 */
 	public jsonComplexElement(int fieldNo, int depth) {
 		super(depth);
 		this.fieldNo = fieldNo;
@@ -77,24 +90,84 @@ public class jsonComplexElement extends jsonElement {
 		return childArrs;
 	}
 
+	/**
+	 * @param childObj
+	 */
 	public void addChildObj(jsonObject childObj) {
 		childObjs.add(childObj);
 		children.get("object").add(childObj);
 	}
 
+	/**
+	 * @param childArr
+	 */
 	public void addChildArr(jsonArray childArr) {
 		childArrs.add(childArr);
 		children.get("array").add(childArr);
 	}
 
+	/**
+	 * @param child
+	 */
 	public void addChildElement(jsonElement child) {
 		children.get(child.typeName).add(child);
 	}
 
-	// description methods
+	/** Description Methods **/
 
+	/**
+	 * This method creates a description for each complex element depending on which
+	 * command line options have been specified by the user
+	 * 
+	 * @param l: The description level required. Will either be toplevel, complex
+	 *           elements, or full. This parameter is dependent upon the input
+	 *           options specified by the user on the command line
+	 * @param n: If the nesting option is enabled by the user at the command line
+	 *           interface, parameter n will be set to n so that the nesting depth
+	 *           of each element will be explicitly specified before it is described
+	 * @return A description of the complex element
+	 */
+	public String elementDescription(descriptionLevel l, descriptionLevel n) {
+		String description = "";
+		if (n == descriptionLevel.NESTING) {
+			description += "At depth " + depth + ": ";
+		}
+		description += elemDescription();
+		if (l == descriptionLevel.TOPLEVEL) {
+			description += listAllChildren();
+		}
+
+		if (l == descriptionLevel.COMPLEXELEMENTS) {
+			description += ". ";
+			if (childObjs.size() > 0) {
+				description += listChildObjects();
+			}
+			if (childArrs.size() > 0) {
+				description += listChildArrs();
+			}
+			if (description.charAt(description.length() - 2) == ',') {
+				description = description.substring(0, description.length() - 2) + ".";
+
+			} else if (description.charAt(description.length() - 1) == ',') {
+				description = description.substring(0, description.length() - 1) + ".";
+			}
+		}
+		if (l == descriptionLevel.FULL) {
+			description += listAllChildrenAndValues();
+		}
+		return description;
+	}
+
+	/**
+	 * For each complex element a description is created with the following
+	 * information (1) Whether the element is named or anonymous (2) The type of the
+	 * complex element (array or object) (3) How many fields belong to the complex
+	 * element
+	 * 
+	 * @return A description of the basic properties of the complex element
+	 */
 	@Override
-	public String elemDescription() {
+	protected String elemDescription() {
 		String description = "";
 		if (name.equals("This json file")) {
 			description = String.format("%s contains %d field", name, fieldNo);
@@ -114,72 +187,16 @@ public class jsonComplexElement extends jsonElement {
 		return description;
 	}
 
-//	public String fullElementDescription() {
-//		String description = elemDescription();
-//		if (name.equals("")) {
-//			return "";
-//		}
-//		description += listAllChildren();
-//		return description;
-//	}
-	
-
-	public String elementDescription1(descriptionLevel l, descriptionLevel n) {
-		String description = "";
-		if (n== descriptionLevel.NESTING) {
-			description += "At depth " + depth + ": ";
-		}
-		description += elemDescription();
-		if (l == descriptionLevel.TOPLEVEL) {
-			description += listAllChildren();
-		}
-
-		if (l == descriptionLevel.COMPLEXELEMENTS) {
-			description += ". ";
-			if (childObjs.size() > 0) {
-				description += listChildObjects();
-			}
-			if (childArrs.size() > 0) {
-				description += listChildArrs();
-			}
-			if (description.charAt(description.length() - 2) == ',') {
-				description = description.substring(0, description.length() - 2) + ".";
-				
-			}else if (description.charAt(description.length() - 1) == ',') {
-				description = description.substring(0, description.length() - 1) + ".";
-			}
-		}
-		if (l == descriptionLevel.FULL) {
-			description += fullListAllChildren();
-		}
-		return description;
-	}
-
-//	public String elementDescription(boolean describeTypes, boolean describeObjectsAndArrays, boolean full) {
-//		String description = elemDescription();
-//		if (name.equals("")) {
-//			return "";
-//		}
-//		if (describeTypes) {
-//			description += listAllChildren();
-//		} else if (describeObjectsAndArrays) {
-//			if (childObjs.size() > 0) {
-//				description += listChildObjects();
-//			}
-//			if (childArrs.size() > 0) {
-//				description += listChildArrs();
-//			}
-//			if (childArrs.size() > 0 || childObjs.size() > 0) {
-//				description = description.substring(0, -2);
-//				description += ". ";
-//			}
-//		} else if (full) {
-//			description += fullListAllChildren();
-//		}
-//		return description;
-//	}
-
-	public String listAllChildren() {
+	/**
+	 * Generates a description string based on the child elements of the complex
+	 * element. listAllChildren() iterates through the children data structure and
+	 * lists all of the children the complex element has, categorised by type. Child
+	 * objects are passed to the groupSimilarObjects so that information about
+	 * objects with identical structure can be added to the description.
+	 * 
+	 * @return A description of all of the children belonging to the complex element
+	 */
+	protected String listAllChildren() {
 
 		String description = "";
 		if (children != null) {
@@ -197,8 +214,6 @@ public class jsonComplexElement extends jsonElement {
 
 					ArrayList<ArrayList<jsonElement>> SimilarObjects = groupSimilarObjects(objList);
 					description += describeSimObjects(SimilarObjects);
-				} else {
-
 				}
 			}
 		}
@@ -207,7 +222,14 @@ public class jsonComplexElement extends jsonElement {
 	}
 
 	// to be overrode by jsonArray and object
-	public String fullListAllChildren() {
+	/**
+	 * Similar to the listAllChildren() method. fullListAllChildren() lists the
+	 * child elements of the complex element and their values.
+	 * 
+	 * @return A list of all of the children of the complex element and their
+	 *         corresponding values.
+	 */
+	protected String listAllChildrenAndValues() {
 		String description = "";
 
 		Set<String> types = children.keySet();
@@ -218,7 +240,8 @@ public class jsonComplexElement extends jsonElement {
 					description = description.substring(0, -2);
 				}
 				if (description.length() > 3) {
-					if (description.charAt(description.length() - 2) == ',' || description.charAt(description.length()-1) == '.') {
+					if (description.charAt(description.length() - 2) == ','
+							|| description.charAt(description.length() - 1) == '.') {
 						description = description.substring(0, description.length() - 2);
 					}
 				}
@@ -232,9 +255,7 @@ public class jsonComplexElement extends jsonElement {
 					if (!(type.equals("object") || type.equals("array"))) {
 						if (!child.getName().equals("")) {
 							description += child.getName();
-							// if (!child.getValue().equals("")) {
 							description += " with value " + child.getValue();
-							// }
 							description += ", ";
 						}
 					} else {
@@ -264,7 +285,15 @@ public class jsonComplexElement extends jsonElement {
 		return description;
 	}
 
-	public String listFields(int numOfType, String type) {
+	/**
+	 * Helper method for the listAllChildren and listAllChildrenAndValues methods
+	 * 
+	 * @param numOfType
+	 * @param type
+	 * @return A string description in the form: "<numOfType> fields are/is a <type>
+	 *         value(s)"
+	 */
+	protected String listFields(int numOfType, String type) {
 		String description = "";
 		if (numOfType != fieldNo) {
 			if (numOfType == 1) {
@@ -283,6 +312,13 @@ public class jsonComplexElement extends jsonElement {
 		return description;
 	}
 
+	/**
+	 * Helper method for the elementDescription method. Will be called if the
+	 * objectsAndArrays option is enabled by the user on the command line. This
+	 * method lists how many child elements of the complex element are arrays.
+	 * 
+	 * @return Description of the form: "x fields are arrays"
+	 */
 	private String listChildArrs() {
 		if (childArrs.size() > 0) {
 			return String.format("%d field%s", childArrs.size(),
@@ -292,8 +328,14 @@ public class jsonComplexElement extends jsonElement {
 		}
 	}
 
+	/**
+	 * Helper method for the elementDescription method. Will be called if the
+	 * objectsAndArrays option is enabled by the user on the command line. This
+	 * method lists how many child elements of the complex element are objects.
+	 * 
+	 * @return Description of the form: "x fields are objects"
+	 */
 	private String listChildObjects() {
-		// TODO Auto-generated method stub
 		if (childObjs.size() > 0) {
 			return String.format("%d field%s", childObjs.size(),
 					(childObjs.size() == 1 ? " is an object, " : "s are objects, "));
@@ -301,9 +343,9 @@ public class jsonComplexElement extends jsonElement {
 		return null;
 	}
 
-	// describe objects with identical structure
-
 	/**
+	 * Helper method for the listAllChildren and listAllChildrenAndValues methods.
+	 * 
 	 * @param objList: Takes a list of objects
 	 * @return groupedObjects: a list of object lists, where objects are grouped
 	 *         into the same lists if they have the same structure
@@ -329,16 +371,20 @@ public class jsonComplexElement extends jsonElement {
 		return groupedObjects;
 	}
 
+	/**
+	 * Helper method for the listAllCHildren and listAllChildrenAndValues methods.
+	 * Uses the groupedObjs data structure produced by the groupSimilarObjects
+	 * method and produces a description which takes provides information about objects of the
+	 * same structure.
+	 * 
+	 * @param groupedObjs
+	 * @return Description in form: "x objects have unique structure, y objects are of the same structure"
+	 */
 	private String describeSimObjects(ArrayList<ArrayList<jsonElement>> groupedObjs) {
 		String description = "";
 		for (ArrayList<jsonElement> objectList : groupedObjs) {
 			if (objectList.size() == 1) {
 				description += "1 object has a unique structure. ";
-				// if(!name.equals("")) {
-				// description += " named " + name + ".";
-				// }else {
-				// description += ".";
-				// }
 			} else {
 				description += String.format("%d objects are of the same structure. ", objectList.size());
 

@@ -1,13 +1,22 @@
 
+/**
+ * Used to hold information for both anonymous and named arrays
+ *
+ */
 public class jsonArray extends jsonComplexElement {
 
+	/**
+	 * Constructor method for anonymous arrays
+	 * @param fieldNo
+	 * @param depth
+	 */
 	public jsonArray(int fieldNo, int depth) {
 		super(fieldNo, depth);
 		setTypeName("array");
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
+	 * Constructor method for named arrays
 	 * @param numChildren
 	 * @param arrayName
 	 * @param ctx

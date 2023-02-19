@@ -13,7 +13,7 @@ import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
  * @param <T> The return type of the visit operation. Use {@link Void} for
  *            operations with no return type.
  */
-public class jsonDescriptorVisitor3<T> extends AbstractParseTreeVisitor<T> implements jsonVisitor<T> {
+public class jsonDescriptorVisitor<T> extends AbstractParseTreeVisitor<T> implements jsonVisitor<T> {
 
 	public static LinkedHashMap<ParserRuleContext, jsonComplexElement> ctxElems;
 	public static LinkedHashMap<String, ArrayList<jsonComplexElement>> objects;

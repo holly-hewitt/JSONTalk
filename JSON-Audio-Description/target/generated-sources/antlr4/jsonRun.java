@@ -30,10 +30,10 @@ public class jsonRun {
 
 	static String describe(CommonTokenStream tokens, ParseTree tree, boolean topLevel, boolean objects, boolean full,
 			int depth, boolean nesting) {
-		jsonDescriptorVisitor3<?> descriptor = new jsonDescriptorVisitor3<>();
+		jsonDescriptorVisitor<?> descriptor = new jsonDescriptorVisitor<>();
 		descriptor.visit(tree);
 		String finalDescription = "";
-		Collection<jsonComplexElement> elements = jsonDescriptorVisitor3.ctxElems.values();
+		Collection<jsonComplexElement> elements = jsonDescriptorVisitor.ctxElems.values();
 		
 		descriptionLevel nestingOrNot;
 		
@@ -70,10 +70,10 @@ public class jsonRun {
 	private static String generateDescription1(descriptionLevel l, descriptionLevel n, Collection<jsonComplexElement> x, int depth) {
 		String description = "";
 		for (jsonComplexElement object : x) {
-			if (!object.elementDescription1(l, n).equals("")) {
+			if (!object.elementDescription(l, n).equals("")) {
 				if (object.getDepth() <= depth) {
-					System.out.println(object.elementDescription1(l, n));
-					description += "\n" + object.elementDescription1(l, n);
+					System.out.println(object.elementDescription(l, n));
+					description += "\n" + object.elementDescription(l, n);
 				}
 
 			}
