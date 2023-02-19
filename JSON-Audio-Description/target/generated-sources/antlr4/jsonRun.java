@@ -8,22 +8,6 @@ import org.antlr.v4.runtime.tree.ParseTree;
 
 public class jsonRun {
 
-	public static void jsonRunMain(String[] args) {
-		System.out.print(args[0]);
-		try {
-			if (args.length == 0)
-				throw new jsonException();
-
-			CommonTokenStream tokens = lex(args[0]);
-			ParseTree tree = parse(tokens);
-			describe(tokens, tree, false, false, false, 4, false);
-		} catch (jsonException x) {
-			System.out.println("Check input");
-		} catch (Exception x) {
-			x.printStackTrace();
-		}
-
-	}
 
 	static CommonTokenStream lex(String filename) {
 		try {

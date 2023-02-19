@@ -114,14 +114,14 @@ public class jsonComplexElement extends jsonElement {
 		return description;
 	}
 
-	public String fullElementDescription() {
-		String description = elemDescription();
-		if (name.equals("")) {
-			return "";
-		}
-		description += listAllChildren();
-		return description;
-	}
+//	public String fullElementDescription() {
+//		String description = elemDescription();
+//		if (name.equals("")) {
+//			return "";
+//		}
+//		description += listAllChildren();
+//		return description;
+//	}
 	
 
 	public String elementDescription1(descriptionLevel l, descriptionLevel n) {
@@ -155,29 +155,29 @@ public class jsonComplexElement extends jsonElement {
 		return description;
 	}
 
-	public String elementDescription(boolean describeTypes, boolean describeObjectsAndArrays, boolean full) {
-		String description = elemDescription();
-		if (name.equals("")) {
-			return "";
-		}
-		if (describeTypes) {
-			description += listAllChildren();
-		} else if (describeObjectsAndArrays) {
-			if (childObjs.size() > 0) {
-				description += listChildObjects();
-			}
-			if (childArrs.size() > 0) {
-				description += listChildArrs();
-			}
-			if (childArrs.size() > 0 || childObjs.size() > 0) {
-				description = description.substring(0, -2);
-				description += ". ";
-			}
-		} else if (full) {
-			description += fullListAllChildren();
-		}
-		return description;
-	}
+//	public String elementDescription(boolean describeTypes, boolean describeObjectsAndArrays, boolean full) {
+//		String description = elemDescription();
+//		if (name.equals("")) {
+//			return "";
+//		}
+//		if (describeTypes) {
+//			description += listAllChildren();
+//		} else if (describeObjectsAndArrays) {
+//			if (childObjs.size() > 0) {
+//				description += listChildObjects();
+//			}
+//			if (childArrs.size() > 0) {
+//				description += listChildArrs();
+//			}
+//			if (childArrs.size() > 0 || childObjs.size() > 0) {
+//				description = description.substring(0, -2);
+//				description += ". ";
+//			}
+//		} else if (full) {
+//			description += fullListAllChildren();
+//		}
+//		return description;
+//	}
 
 	public String listAllChildren() {
 

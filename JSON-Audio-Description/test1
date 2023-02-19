@@ -1,47 +1,17 @@
 
 Top level description: 
-At depth 1: This json file contains 1 field, which is a object value, named: "items". 
+At depth 0: This json file contains 7 fields. 1 field is a boolean value, named: "isMarried". . 2 fields are string values, named: "name", "email". . 2 fields are array values, named: "phoneNumbers", "hobbies". . 1 field is a integer value, named: "age". . 1 field is a object value, named: "address". 
 Description including object and array details: 
-At depth 1: This json file contains 1 field. 1 field is an object.
-At depth 2: "items" is an object, belonging to This json file, which contains 1 field. 1 field is an array.
-At depth 3: "item" is an array, which contains 6 fields. 6 fields are objects.
-At depth 3: There is an anonymous object, belonging to "item", which contains 6 fields. 1 field is an object, 1 field is an array.
-At depth 4: "batters" is an object, belonging to , which contains 1 field. 1 field is an array.
-At depth 4: "topping" is an array, which contains 7 fields. 7 fields are objects.
-At depth 3: There is an anonymous object, belonging to "item", which contains 6 fields. 1 field is an object, 1 field is an array.
-At depth 4: "batters" is an object, belonging to , which contains 1 field. 1 field is an array.
-At depth 4: "topping" is an array, which contains 5 fields. 5 fields are objects.
-At depth 3: There is an anonymous object, belonging to "item", which contains 6 fields. 1 field is an object, 1 field is an array.
-At depth 4: "batters" is an object, belonging to , which contains 1 field. 1 field is an array.
-At depth 4: "topping" is an array, which contains 4 fields. 4 fields are objects.
-At depth 3: There is an anonymous object, belonging to "item", which contains 7 fields. 2 fields are objects, 1 field is an array.
-At depth 4: "batters" is an object, belonging to , which contains 1 field. 1 field is an array.
-At depth 4: "topping" is an array, which contains 2 fields. 2 fields are objects.
-At depth 4: "fillings" is an object, belonging to , which contains 1 field. 1 field is an array.
-At depth 3: There is an anonymous object, belonging to "item", which contains 4 fields. 
-At depth 3: There is an anonymous object, belonging to "item", which contains 7 fields. 2 fields are objects, 1 field is an array.
-At depth 4: "batters" is an object, belonging to , which contains 1 field. 1 field is an array.
-At depth 4: "topping" is an array, which contains 4 fields. 4 fields are objects.
-At depth 4: "fillings" is an object, belonging to , which contains 1 field. 1 field is an array.
+At depth 0: This json file contains 7 fields. 1 field is an object, 2 fields are arrays.
+At depth 1: "address" is an object, belonging to This json file, which contains 4 fields. 
+At depth 1: "phoneNumbers" is an array, which contains 2 fields. 2 fields are objects.
+At depth 1: There is an anonymous object, belonging to "phoneNumbers", which contains 2 fields. 
+At depth 1: There is an anonymous object, belonging to "phoneNumbers", which contains 2 fields. 
+At depth 1: "hobbies" is an array, which contains 3 fields. 
 Full description: 
-At depth 1: This json file contains 1 field, which is a object value named: "items". 
-At depth 2: "items" is an object, belonging to This json file, which contains 1 field, which is a array value named: "item". 
-At depth 3: "item" is an array, which contains 6 fields, which are all object values. 3 objects are of the same structure. 2 objects are of the same structure. 1 object has a unique structure. 
-At depth 3: There is an anonymous object, belonging to "item", which contains 6 fields. 3 fields are string values named: "id" with value "0001", "type" with value "donut", "name" with value "Cake". 1 field is a array value named: "topping". 1 field is a integer value named: "ppu" with value 0.55. 1 field is a object value named: "batters". 
-At depth 4: "batters" is an object, belonging to , which contains 1 field, which is a array value named: "batter". 
-At depth 4: "topping" is an array, which contains 7 fields, which are all object values. 7 objects are of the same structure. 
-At depth 3: There is an anonymous object, belonging to "item", which contains 6 fields. 3 fields are string values named: "id" with value "0002", "type" with value "donut", "name" with value "Raised". 1 field is a array value named: "topping". 1 field is a integer value named: "ppu" with value 0.55. 1 field is a object value named: "batters". 
-At depth 4: "batters" is an object, belonging to , which contains 1 field, which is a array value named: "batter". 
-At depth 4: "topping" is an array, which contains 5 fields, which are all object values. 5 objects are of the same structure. 
-At depth 3: There is an anonymous object, belonging to "item", which contains 6 fields. 3 fields are string values named: "id" with value "0003", "type" with value "donut", "name" with value "Old Fashioned". 1 field is a array value named: "topping". 1 field is a integer value named: "ppu" with value 0.55. 1 field is a object value named: "batters". 
-At depth 4: "batters" is an object, belonging to , which contains 1 field, which is a array value named: "batter". 
-At depth 4: "topping" is an array, which contains 4 fields, which are all object values. 4 objects are of the same structure. 
-At depth 3: There is an anonymous object, belonging to "item", which contains 7 fields. 3 fields are string values named: "id" with value "0004", "type" with value "bar", "name" with value "Bar". 1 field is a array value named: "topping". 1 field is a integer value named: "ppu" with value 0.75. 2 fields are object values named: "batters", "fillings". 
-At depth 4: "batters" is an object, belonging to , which contains 1 field, which is a array value named: "batter". 
-At depth 4: "topping" is an array, which contains 2 fields, which are all object values. 2 objects are of the same structure. 
-At depth 4: "fillings" is an object, belonging to , which contains 1 field, which is a array value named: "filling". 
-At depth 3: There is an anonymous object, belonging to "item", which contains 4 fields. 3 fields are string values named: "id" with value "0005", "type" with value "twist", "name" with value "Twist". 1 field is a integer value named: "ppu" with value 0.65. 
-At depth 3: There is an anonymous object, belonging to "item", which contains 7 fields. 3 fields are string values named: "id" with value "0006", "type" with value "filled", "name" with value "Filled". 1 field is a array value named: "topping". 1 field is a integer value named: "ppu" with value 0.75. 2 fields are object values named: "batters", "fillings". 
-At depth 4: "batters" is an object, belonging to , which contains 1 field, which is a array value named: "batter". 
-At depth 4: "topping" is an array, which contains 4 fields, which are all object values. 4 objects are of the same structure. 
-At depth 4: "fillings" is an object, belonging to , which contains 1 field, which is a array value named: "filling". 
+At depth 0: This json file contains 7 fields. 1 field is a boolean value named: "isMarried" with value true. 2 fields are string values named: "name" with value "Jane Doe", "email" with value "jane.doe@example.com". 2 fields are array values named: "phoneNumbers", "hobbies". 1 field is a integer value named: "age" with value 35. 1 field is a object value named: "address". 
+At depth 1: "address" is an object, belonging to This json file, which contains 4 fields, which are all string values named: "street" with value "123 Main St", "city" with value "Anytown", "state" with value "CA", "zip" with value "12345". 
+At depth 1: "phoneNumbers" is an array, which contains 2 fields, which are all object values. 2 objects are of the same structure. 
+At depth 1: There is an anonymous object, belonging to "phoneNumbers", which contains 2 fields, which are all string values named: "type" with value "home", "number" with value "555-555-1234". 
+At depth 1: There is an anonymous object, belonging to "phoneNumbers", which contains 2 fields, which are all string values named: "type" with value "work", "number" with value "555-555-5678". 
+At depth 1: "hobbies" is an array, which contains 3 fields
