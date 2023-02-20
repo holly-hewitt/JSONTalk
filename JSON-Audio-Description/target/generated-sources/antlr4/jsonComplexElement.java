@@ -19,9 +19,12 @@ public class jsonComplexElement extends jsonElement {
 	/**
 	 * Constructor for named complex elements
 	 * 
-	 * @param name
-	 * @param ctx
-	 * @param fieldNo
+	 * @param name    The name of the element
+	 * @param fieldNo The number of children fields belonging to the complex
+	 *                element. If the complex element is an object, the number of
+	 *                child fields, or if it is an array, the number of entries.
+	 * @param depth   The depth of the complex element within the abstract syntax
+	 *                tree.
 	 */
 	public jsonComplexElement(String name, int fieldNo, int depth) {
 		super(name, depth);
@@ -34,8 +37,11 @@ public class jsonComplexElement extends jsonElement {
 	/**
 	 * Constructor for anonymous complex elements
 	 * 
-	 * @param fieldNo
-	 * @param depth
+	 * @param fieldNo The number of children fields belonging to the complex
+	 *                element. If the complex element is an object, the number of
+	 *                child fields, or if it is an array, the number of entries.
+	 * @param depth   The depth of the complex element within the abstract syntax
+	 *                tree.
 	 */
 	public jsonComplexElement(int fieldNo, int depth) {
 		super(depth);
@@ -56,42 +62,56 @@ public class jsonComplexElement extends jsonElement {
 	}
 
 	/**
-	 * @return the childObjs
+	 * Getter for the childObjs arraylist.
+	 * 
+	 * @return The list of all children of the complex element that are objects.
 	 */
 	public ArrayList<jsonObject> getChildObjs() {
 		return childObjs;
 	}
 
 	/**
-	 * @return the depth
+	 * Getter for the depth of the complex object.
+	 * 
+	 * @return The depth of the complex element.
 	 */
 	public int getDepth() {
 		return depth;
 	}
 
 	/**
-	 * @param depth the depth to set
+	 * Setter for the depth of the complex element
+	 * 
+	 * @param depth The depth to set
 	 */
 	public void setDepth(int depth) {
 		this.depth = depth;
 	}
 
 	/**
-	 * @return the fieldNo
+	 * Getter for the field number of the complex element.
+	 * 
+	 * @return The field number will be returned. If the complex element is a
+	 *         jsonObject, the number of fields contained in the object will be
+	 *         returned. If the complex element is a jsonArray, the number of items
+	 *         in the array will be returned.
 	 */
 	public int getFieldNo() {
 		return fieldNo;
 	}
 
-	/**
-	 * @return the childArrs
+
+	 /** Getter for the childArrs arraylist.
+	 * 
+	 * @return The list of all children of the complex element that are arrays.
 	 */
 	public ArrayList<jsonArray> getChildArrs() {
 		return childArrs;
 	}
 
 	/**
-	 * @param childObj
+	 * Method to add a child object to the list of children objects of the complex element.
+	 * @param childObj The child object to be added to the list of child objects.
 	 */
 	public void addChildObj(jsonObject childObj) {
 		childObjs.add(childObj);
@@ -99,7 +119,8 @@ public class jsonComplexElement extends jsonElement {
 	}
 
 	/**
-	 * @param childArr
+	 * Method to add a child array to the list of children arrays of the complex element.
+	 * @param childArr The child array to be added to the list of child arrays.
 	 */
 	public void addChildArr(jsonArray childArr) {
 		childArrs.add(childArr);
@@ -107,7 +128,8 @@ public class jsonComplexElement extends jsonElement {
 	}
 
 	/**
-	 * @param child
+	 * Method to add a simple child element (i.e. int, string, null, boolean values) to the list of child elements belonging to the complex element.
+	 * @param child The child element to be added to the list of children
 	 */
 	public void addChildElement(jsonElement child) {
 		children.get(child.typeName).add(child);
@@ -288,8 +310,8 @@ public class jsonComplexElement extends jsonElement {
 	/**
 	 * Helper method for the listAllChildren and listAllChildrenAndValues methods
 	 * 
-	 * @param numOfType
-	 * @param type
+	 * @param numOfType Number of elements of the specified type.
+	 * @param type The type of the elements. E.g. "integer", "string" etc.
 	 * @return A string description in the form: "<numOfType> fields are/is a <type>
 	 *         value(s)"
 	 */
@@ -346,8 +368,8 @@ public class jsonComplexElement extends jsonElement {
 	/**
 	 * Helper method for the listAllChildren and listAllChildrenAndValues methods.
 	 * 
-	 * @param objList: Takes a list of objects
-	 * @return groupedObjects: a list of object lists, where objects are grouped
+	 * @param objList Takes a list of objects
+	 * @return A list of object lists, where objects are grouped
 	 *         into the same lists if they have the same structure
 	 */
 	private ArrayList<ArrayList<jsonElement>> groupSimilarObjects(ArrayList<jsonElement> objList) {
@@ -374,11 +396,12 @@ public class jsonComplexElement extends jsonElement {
 	/**
 	 * Helper method for the listAllCHildren and listAllChildrenAndValues methods.
 	 * Uses the groupedObjs data structure produced by the groupSimilarObjects
-	 * method and produces a description which takes provides information about objects of the
-	 * same structure.
+	 * method and produces a description which takes provides information about
+	 * objects of the same structure.
 	 * 
-	 * @param groupedObjs
-	 * @return Description in form: "x objects have unique structure, y objects are of the same structure"
+	 * @param groupedObjs A list of lists. Where elements are in the same list if they have similar structure and all children objects are present within exactly 1 list.
+	 * @return Description in form: "x objects have unique structure, y objects are
+	 *         of the same structure"
 	 */
 	private String describeSimObjects(ArrayList<ArrayList<jsonElement>> groupedObjs) {
 		String description = "";

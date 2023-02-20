@@ -1,5 +1,4 @@
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -15,24 +14,28 @@ import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
  */
 public class jsonDescriptorVisitor<T> extends AbstractParseTreeVisitor<T> implements jsonVisitor<T> {
 
+	/**
+	 * The ctxElems list keeps track of each individual jsonComplexElement object
+	 * created when visiting each object or array node of the abstract syntax tree
+	 * of the json file. This allows for keeping track of nodes that have already
+	 * been visited, and for setting the parents and children of elements.
+	 */
 	public static LinkedHashMap<ParserRuleContext, jsonComplexElement> ctxElems;
-	public static LinkedHashMap<String, ArrayList<jsonComplexElement>> objects;
-	public static ArrayList<jsonComplexElement> visited;
-	//public static LinkedHashMap<ParserRuleContext, jsonComplexElement> ctxElems;
 
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
+	 * Initialises the ctxElems data structure, then returns the result of calling
+	 * AbstractParseTreeVisitor.visitChildren(org.antlr.v4.runtime.tree.RuleNode) on
+	 * ctx.
 	 * </p>
 	 */
 	@Override
 	public T visitJson(jsonParser.JsonContext ctx) {
 		ctxElems = new LinkedHashMap<ParserRuleContext, jsonComplexElement>();
-		objects = new LinkedHashMap<String, ArrayList<jsonComplexElement>>();
-		visited = new ArrayList<jsonComplexElement>();
+		// objects = new LinkedHashMap<String, ArrayList<jsonComplexElement>>();
+		// visited = new ArrayList<jsonComplexElement>();
 		return visitChildren(ctx);
 	}
 
@@ -40,48 +43,40 @@ public class jsonDescriptorVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * {@inheritDoc}
 	 *
 	 * <p>
-	 * The default implementation returns the result of calling
+	 * Creates a jsonObject object for the visited object. Sets the parent of the
+	 * object accordingly. The method then returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 * </p>
 	 */
 	@Override
 	public T visitObj(jsonParser.ObjContext ctx) {
 
+		// set the number of children of the object
+		// accounts for "{", "}" and "," in the abstract syntax tree
 		int numChildren = ctx.getChildCount();
-		// account for {}
 		numChildren -= 2;
-		// account for ,
 		numChildren -= (numChildren / 2);
-		
-		
 
 		String objectName = ctx.parent.parent.getChild(0).toString();
-		//System.out.println(ctx.depth()/3);
-		
 
-		// if object is not anonymous, create named jsonObject
+		// 1: create named jsonObject or unnamed jsonObject, depending on whether or not
+		// the object is part of an array
+		// 2: set the parent of the object
+		// 3: add the object to the children of the parent
 		if (!objectName.equals("[")) {
 
-			jsonObject currentObj = new jsonObject(objectName, numChildren, ctx, ctx.depth()/3);
+			jsonObject currentObj = new jsonObject(objectName, numChildren, ctx, ctx.depth() / 3);
 
 			if (ctx.parent.parent.parent != null) {
 				if (ctxElems.get(ctx.parent.parent.parent) != null) {
 					ctxElems.get(ctx.parent.parent.parent).addChildObj(currentObj);
 					currentObj.setParent(ctxElems.get(ctx.parent.parent.parent));
-					
-					
-					
 				}
 			}
-
-			// add object to hashmap
 			ctxElems.put(ctx, currentObj);
 
-		} // if object is anonymous create, unnamed jsonObject
-		else {
-			
-
-			jsonObject currentObj = new jsonObject(numChildren, ctx, ctx.depth()/3);
+		} else {
+			jsonObject currentObj = new jsonObject(numChildren, ctx, ctx.depth() / 3);
 			if (ctx.parent.parent.parent.parent != null) {
 				if (ctxElems.get(ctx.parent.parent) != null) {
 					ctxElems.get(ctx.parent.parent).addChildObj(currentObj);
@@ -89,9 +84,6 @@ public class jsonDescriptorVisitor<T> extends AbstractParseTreeVisitor<T> implem
 				}
 			}
 			ctxElems.put(ctx, currentObj);
-			
-
-
 		}
 		return visitChildren(ctx);
 	}
@@ -106,9 +98,6 @@ public class jsonDescriptorVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 */
 	@Override
 	public T visitPair(jsonParser.PairContext ctx) {
-		//System.out.println("key: " + key + ctx.value().depth()/3);
-		//System.out.println(ctx.value().STRING().getText());
-		ctx.value().depth();
 		return visitChildren(ctx);
 	}
 
@@ -116,21 +105,22 @@ public class jsonDescriptorVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * {@inheritDoc}
 	 *
 	 * <p>
-	 * The default implementation returns the result of calling
+	 * Creates a jsonObject object for the visited object. Sets the parent of the
+	 * object accordingly. The method then returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.
 	 * </p>
 	 */
 	@Override
 	public T visitArr(jsonParser.ArrContext ctx) {
-		//System.out.println("Array Depth: " + ctx.depth());
 		String arrayName = ctx.parent.parent.getChild(0).toString();
+
+		// set the number of children of the object
+		// accounts for "{", "}" and "," in the abstract syntax tree
 		int numChildren = ctx.getChildCount();
-		// account for {}
 		numChildren -= 2;
-		// account for ,
 		numChildren -= (numChildren / 2);
 
-		jsonArray currentArr = new jsonArray(numChildren, arrayName, ctx.depth()/3);
+		jsonArray currentArr = new jsonArray(numChildren, arrayName, ctx.depth() / 3);
 		if (ctx.parent.parent.parent != null) {
 			if (ctxElems.get(ctx.parent.parent.parent) != null) {
 				ctxElems.get(ctx.parent.parent.parent).addChildArr(currentArr);
@@ -146,8 +136,10 @@ public class jsonDescriptorVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * {@inheritDoc}
 	 *
 	 * <p>
-	 * The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.
+	 * This method creates jsonElement objects for any string, integer, boolean or
+	 * null value visited. The child jsonElement is then added to the children of
+	 * the parent complexElement. The method then returns the result of
+	 * calling {@link #visitChildren} on {@code ctx}.
 	 * </p>
 	 */
 	@Override
@@ -162,16 +154,16 @@ public class jsonDescriptorVisitor<T> extends AbstractParseTreeVisitor<T> implem
 		if (ctx.NUMBER() != null) {
 			typename = "integer";
 		}
-		
+
 		if (ctx.getChild(0).toString().equals("true") || ctx.getChild(0).toString().equals("false")) {
 			typename = "boolean";
 		}
-		
+
 		if (ctx.getChild(0).toString().equals("null")) {
 			typename = "null";
 		}
 		if (typename != null) {
-			jsonElement elem = new jsonElement(ctx.getParent().getChild(0).toString(), typename, ctx.depth()/3);
+			jsonElement elem = new jsonElement(ctx.getParent().getChild(0).toString(), typename, ctx.depth() / 3);
 			if (ctx.parent.parent.parent.parent != null) {
 				if (ctxElems.get(ctx.parent.parent) != null) {
 					ctxElems.get(ctx.parent.parent).addChildElement(elem);

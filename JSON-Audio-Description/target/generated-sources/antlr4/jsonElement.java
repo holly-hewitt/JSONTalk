@@ -8,17 +8,32 @@
  */
 public class jsonElement {
 
+	/**
+	 * Name of the jsonElement. It will be set to "" if the element is anonymous.
+	 */
 	protected String name;
+	/**
+	 * typeName of the element. Represented as a string, for example, "string" or "boolean".
+	 */
 	protected String typeName;
+	/**
+	 * Depth within the abstract syntax tree that the element is positioned at.
+	 */
 	protected int depth;
+	/**
+	 * Value of the jsonElement.
+	 */
 	protected String value;
+	/**
+	 * Direct parent element of the jsonElement. This will either be a jsonObject or jsonArray.
+	 */
 	protected jsonComplexElement parent;
 
 	
 	/**
 	 * Constructor for named elements with an unspecified type name
-	 * @param name
-	 * @param depth
+	 * @param name Name of the element.
+	 * @param depth Depth of the element within the abstract syntax tree.
 	 */
 	public jsonElement(String name, int depth) {
 		super();
@@ -28,9 +43,9 @@ public class jsonElement {
 
 	/**
 	 * Constructor for named elements
-	 * @param name
-	 * @param typename
-	 * @param depth
+	 * @param name Name of the element.
+	 * @param typename Type name of the element.
+	 * @param depth Depth of the element within the abstract syntax tree.
 	 */
 	public jsonElement(String name, String typename, int depth) {
 		super();
@@ -42,7 +57,7 @@ public class jsonElement {
 	
 	/**
 	 * Constructor for element with unspecified name and type name
-	 * @param depth
+	 * @param depth Depth of the element within the abstract syntax tree.
 	 */
 	public jsonElement(int depth) {
 		super();
@@ -52,7 +67,7 @@ public class jsonElement {
 
 	/**
 	 * Name getter method
-	 * @return the name
+	 * @return The name of the element
 	 */
 	public String getName() {
 		return name;
@@ -60,7 +75,7 @@ public class jsonElement {
 
 	/**
 	 * Name setter method
-	 * @param name
+	 * @param name The name to set.
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -68,7 +83,7 @@ public class jsonElement {
 
 	/**
 	 * Parent setter method
-	 * @param parent
+	 * @param parent The jsonComplexElement that should be set as the parent of the element.
 	 */
 	public void setParent(jsonComplexElement parent) {
 		this.parent = parent;
@@ -76,7 +91,7 @@ public class jsonElement {
 
 	/**
 	 * Value getter method
-	 * @return value
+	 * @return The value of the element.
 	 */
 	public String getValue() {
 		return value;
@@ -84,7 +99,7 @@ public class jsonElement {
 
 	/**
 	 * Value setter method
-	 * @param value
+	 * @param value The string value that should be set as the value of the element.
 	 */
 	public void setValue(String value) {
 		this.value = value;
@@ -92,7 +107,7 @@ public class jsonElement {
 
 	/**
 	 * typeName getter method
-	 * @return typeName
+	 * @return The type name of the element.
 	 */
 	public String getTypeName() {
 		return typeName;
@@ -100,13 +115,14 @@ public class jsonElement {
 
 	/**
 	 * typeName setter method
-	 * @param typeName
+	 * @param typeName The type name that should be set as the typeName of the element.
 	 */
 	public void setTypeName(String typeName) {
 		this.typeName = typeName;
 	}
 
 	/**
+	 * Generates a simple description of the element, including the name and type name of the element.
 	 * @return Simple description of element in form: "<name> is a <typeName> value"
 	 */
 	protected String elemDescription() {
