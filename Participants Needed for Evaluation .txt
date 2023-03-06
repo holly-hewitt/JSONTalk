@@ -1,0 +1,9 @@
+Participants Needed for Evaluation of JSONTalk - A Summarising Tool for JSON Files (15 mins, Ages 16+, Some CS knowledge required)
+
+Hello r/AskComputerScience (Please remove this post if it is not allowed)
+I am a student at the University of Glasgow and I am currently recruiting participants to evaluate the tool I developed for my honours project. The tool is called JSONTalk and it is a summarising tool for JSON files.
+The purpose of this study is to evaluate the effectiveness of JSONTalk in helping individuals understand and analyse JSON files. The study should take around 15 minutes and participants will be asked to answer a series of questions based on 3 different screenreader transcripts of JSON files.
+Participants will be randomly divided into two groups. One group will be given the opportunity to download and use JSONTalk to help them answer the questions, while the other group will be answering the questions without the tool. Everyone clicks the same link, and the allocation will happen automatically.
+You do not need to have much JSON knowledge to participate, however, some programming background is required. If you have any questions, please do not hesitate to contact me at 2463548h@student.gla.ac.uk. 
+Your participation in this study would be greatly appreciated and would contribute to the development of this tool.
+Link to complete study:  https://uofg.qualtrics.com/jfe/form/SV_5u0X9Ehoan0WNng 
