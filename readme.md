@@ -25,3 +25,29 @@ Here's an overview of the structure as it stands:
 ## Important
 * It should be easy to rebuild and run your project and your dissertation
         * Include clear instructions in the relevant directories to make this possible
+
+This project has involved the development of a command line tool for generating natural language descriptions of JSON files, for my Level 4 honours Computer Science Project. 
+The documentation for the code is available to view at : https://holly-hewitt.github.io/JSONTalk/index.html
+
+We have packaged JSONTalk as jar file that should run on any system that has Java installed.
+JSONTalk is a command line tool that takes an input JSON file and generate various different natural language descriptions of the file.
+Usage: java -jar jsontalk.jar [-fhlrV] [-oa] [-tl] [-d=] [-o=] filename
+Description level options (By default, no description levels are turned on. These explicitly need to be requested through the following options):
+-f : Generates a full description of the file.
+-oa : Generates a structural description of the file.
+-tl : Generates a top level description of the file
+Additional description options (By default, the depth option is set to 100, and the nesting option is not enabled):
+-d=<x> : The description is only generated for JSON elements up to depth <x>
+-n : A "Depth <y>" indicator will be added to the start of each line of the description
+Output modes (The default is printing to command line):
+-r : Use the tools integrated text-to-speech engine to read the description aloud
+-o=<output file> : Specify a file path for the description to be saved to
+
+
+Usage Example:
+Suppose I had extracted the folder to my downloads folder, and I want to generate a full description and top level description of the a.json file.
+1. cd into the "files for evaluation" directory
+2. run the following command
+java -jar jsontalk.jar -f -tl "C:\Users\User\Downloads\lFiles for evaluation\a.json"
+
+  
