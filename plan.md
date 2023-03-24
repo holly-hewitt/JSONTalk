@@ -1,9 +1,9 @@
 # Plan
 
-* PROJECT TITLE
-* YOUR NAME
-* STUDENT ID
-* SUPERVISOR NAME
+* Audio description for JSON files
+* Holly Hewitt
+* 2463548H
+* Jeremy Singer
 
 Week-by-week plan for the whole project. Update this as you go along.
 
