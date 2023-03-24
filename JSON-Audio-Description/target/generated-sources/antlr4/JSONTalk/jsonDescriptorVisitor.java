@@ -6,9 +6,13 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**
- * This class provides an empty implementation of {@link jsonVisitor}, which can
- * be extended to create a visitor which only needs to handle a subset of the
- * available methods.
+ * This class provides an implementation of {@link jsonVisitor}. Using the
+ * Visitor design pattern, nodes of the Abstract Syntax tree are traversed, and
+ * the ctxElems data structure is built up, by instantiating jsonComplexElement
+ * objects and adding them to the data structure, along with their unique
+ * ParserRuleContext. Adding a unique ParseRuleCOntext object alongside the
+ * objects allows for the addition of identical objects that may be present
+ * within the file to the description.
  *
  * @param <T> The return type of the visit operation. Use {@link Void} for
  *            operations with no return type.
@@ -139,8 +143,8 @@ public class jsonDescriptorVisitor<T> extends AbstractParseTreeVisitor<T> implem
 	 * <p>
 	 * This method creates jsonElement objects for any string, integer, boolean or
 	 * null value visited. The child jsonElement is then added to the children of
-	 * the parent complexElement. The method then returns the result of
-	 * calling {@link #visitChildren} on {@code ctx}.
+	 * the parent complexElement. The method then returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.
 	 * </p>
 	 */
 	@Override
