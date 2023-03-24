@@ -2,7 +2,8 @@
 
 This project involves the development of a command line tool for generating natural language descriptions of JSON files, as part of a Level 4 honours Computer Science project. 
 
-The code documentation is available at: https://holly-hewitt.github.io/JSONTalk/index.html
+The code documentation is available at: 
+https://holly-hewitt.github.io/JSONTalk/JSONTalk/package-summary.html
 
 JSONTalk has been packaged as a jar file that can run on any system with Java installed. It takes an input JSON file and generates various natural language descriptions of the file.
 
