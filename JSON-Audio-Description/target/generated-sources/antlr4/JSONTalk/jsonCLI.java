@@ -16,7 +16,7 @@ import picocli.CommandLine.Parameters;
  * This class is responsible for parsing the command line options and arguments and producing the required description(s)
  *
  */
-@Command(name = "jsonCLI", mixinStandardHelpOptions = true)
+@Command(name = "java -jar jsontalk.jar", mixinStandardHelpOptions = true)
 public class jsonCLI implements Runnable {
 
     @Option(names = {"-tl", "--Toplevel"}, description = "Generate top level description of JSON file")
