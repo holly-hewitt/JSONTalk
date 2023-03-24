@@ -253,3 +253,123 @@
 ### 31 Jan
 * *2 hours* Evaluation method planning
 * *1 hour* Exploring "full description" option of CLI and considering what to include
+
+### 1 Feb
+* *2 hours* Planning questions for evaluation
+* *1 hour* Completing other students' evaluations in return for future participation in mine
+
+### 2 Feb
+* *1 hour* Planning evaluation section of dissertation
+* *1 hour* Learning how to use Latex
+
+## Week 5
+
+### 7 Feb
+* *2 hours* Finalizing CLI tool
+* *2 hours* Packaging CLI tool as jar file
+* *0.5 hour* Meeting with supervisor
+
+### 8 Feb
+* *1 hour* Writing up the documentation for CLI tool
+* *2 hours* Generating JavaDocs for code
+
+### 9 Feb
+* *1 hour* Writing up the user manual for the CLI tool
+
+## Week 6
+
+### 14 Feb
+* *2 hours* Designing evaluation questionnaire on Qualtrics
+* *1 hour* Performing a pilot study to test the questionnaire
+* *0.5 hour* Meeting with supervisor
+
+### 15 Feb
+* *1 hour* Making necessary changes to the evaluation questionnaire based on pilot study results
+
+### 16 Feb
+* *2 hours* Planning results visualisations and statistical tests
+
+## Week 7
+
+### 21 Feb
+* *1 hour* Recruiting participants for evaluation
+* *1 hour* Sending reminder emails to participants
+* *0.5 hour* Meeting with supervisor
+
+### 22 Feb
+* *2 hours* Launching the evaluation
+
+### 23 Feb
+* *3 hour* Planning for dissertation
+
+## Week 8
+
+### 28 Feb
+* *2 hours* Writing up the implementation section of the dissertation
+* *0.5 hour* Meeting with supervisor
+
+### 1 Mar
+* *2 hours* Writing up the implementation section of the dissertation
+
+### 2 Mar
+* *1 hour* Planning and organizing dissertation
+
+## Week 9
+
+### 7 Mar
+* *2 hours* Writing up the design and analysis section of the dissertation
+* *0.5 hour* Meeting with supervisor
+
+### 8 Mar
+* *2 hours* Writing up the background section of the dissertation
+
+### 9 Mar
+* *1 hour* Participating in other students' user studies in return for their participation in your study
+* *3 hours* Writing background of dissertation
+
+### 10 Mar
+* *4 hours* Analysing and processing evaluation results
+
+## Week 10
+
+### 14 Mar
+* *2 hours* Writing up the evaluation results section of the dissertation
+* *0.5 hour* Meeting with supervisor
+
+### 15 Mar
+* *2 hours* Writing up the evaluation results section of the dissertation
+
+### 16 Mar
+* *5 hours* Performed exploratory ChatGPT study
+
+### 17 Mar
+* *2 hours* Edited implementation section of dissertation
+
+### 18 Mar
+* *3 hours* Editing dissertation
+
+### 19 Mar
+* *4 hours* Writing up introduction of dissertation
+
+### 20 Mar
+* *3 hours* Writing up conclusion of dissertation
+
+## Week 11
+
+### 21 Mar
+* *2 hours* Adding more details to background section of dissertation
+* *3 hours* Planning for conclusion writing of dissertation
+
+### 22 Mar
+* *6 hours* Dissertation redrafting
+* *0.5 hours* Meeting with supervisor
+* *2 hours* Making slides for presentation
+
+### 23 Mar
+* *8 hours* Dissertation writing
+* *5 hours* Presentation writing and recording
+* *1 hour* Tidy up git repo
+
+### 24 Mar
+* *2 hours* Dissertation redrafting
+* *1 hour* Writing abstract
