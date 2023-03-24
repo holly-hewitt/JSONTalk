@@ -123,7 +123,7 @@ public class jsonElement {
 
 	/**
 	 * Generates a simple description of the element, including the name and type name of the element.
-	 * @return Simple description of element in form: "<name> is a <typeName> value"
+	 * @return Simple description of element in form: name is a typeName value
 	 */
 	protected String elemDescription() {
 		String description = String.format("%s is a %s value", name, typeName);

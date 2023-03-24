@@ -1,17 +1,9 @@
 
 Top level description: 
-At depth 0: This json file contains 7 fields. 1 field is a boolean value, named: "isMarried". . 2 fields are string values, named: "name", "email". . 2 fields are array values, named: "phoneNumbers", "hobbies". . 1 field is a integer value, named: "age". . 1 field is a object value, named: "address". 
+At depth 0: This json file contains 3 fields. 2 fields are string values, named: "name", "email". . 1 field is a object value, named: "address". 
 Description including object and array details: 
-At depth 0: This json file contains 7 fields. 1 field is an object, 2 fields are arrays.
+At depth 0: This json file contains 3 fields. 1 field is an object.
 At depth 1: "address" is an object, belonging to This json file, which contains 4 fields. 
-At depth 1: "phoneNumbers" is an array, which contains 2 fields. 2 fields are objects.
-At depth 1: There is an anonymous object, belonging to "phoneNumbers", which contains 2 fields. 
-At depth 1: There is an anonymous object, belonging to "phoneNumbers", which contains 2 fields. 
-At depth 1: "hobbies" is an array, which contains 3 fields. 
 Full description: 
-At depth 0: This json file contains 7 fields. 1 field is a boolean value named: "isMarried" with value true. 2 fields are string values named: "name" with value "Jane Doe", "email" with value "jane.doe@example.com". 2 fields are array values named: "phoneNumbers", "hobbies". 1 field is a integer value named: "age" with value 35. 1 field is a object value named: "address". 
+At depth 0: This json file contains 3 fields. 2 fields are string values named: "name" with value "Jane Doe", "email" with value "jane.doe@example.com". 1 field is a object value named: "address". 
 At depth 1: "address" is an object, belonging to This json file, which contains 4 fields, which are all string values named: "street" with value "123 Main St", "city" with value "Anytown", "state" with value "CA", "zip" with value "12345". 
-At depth 1: "phoneNumbers" is an array, which contains 2 fields, which are all object values. 2 objects are of the same structure. 
-At depth 1: There is an anonymous object, belonging to "phoneNumbers", which contains 2 fields, which are all string values named: "type" with value "home", "number" with value "555-555-1234". 
-At depth 1: There is an anonymous object, belonging to "phoneNumbers", which contains 2 fields, which are all string values named: "type" with value "work", "number" with value "555-555-5678". 
-At depth 1: "hobbies" is an array, which contains 3 fields
