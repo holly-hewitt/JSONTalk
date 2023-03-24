@@ -1,46 +1,727 @@
-@inproceedings{Pey17,
-  author    = {Simon {Peyton Jones}},
-  title     = {How to Write a Great Research Paper},
-  booktitle = {2017 Imperial College Computing Student Workshop, {ICCSW} 2017, September
-               26-27, 2017, London, {UK}},
-  pages     = {1:1--1:1},
-  year      = {2017},    
+
+
+ @misc{stack22,
+    title = {Stack Overflow Developer Survey 2022}, 
+    author = {Stack Overflow},
+    url={https://survey.stackoverflow.co/2022/#section-demographics-disability-status}, 
+    abstractNote={In May 2022 over 70,000 developers told us how they learn and level up, which tools they’re using, and what they want.}, 
+    year={2022},
+    journal={Stack Overflow}, 
+    language={en} }
+
+
+
+@inproceedings{JSON,
+  title={Foundations of JSON schema},
+  author={Pezoa, Felipe and Reutter, Juan L and Suarez, Fernando and Ugarte, Mart{\'\i}n and Vrgo{\v{c}}, Domagoj},
+  booktitle={Proceedings of the 25th International Conference on World Wide Web},
+  pages={263--273},
+  year={2016},
+  organization={International World Wide Web Conferences Steering Committee}
+}
+
+  @inproceedings{audiohighlight_2018, 
+    title={AudioHighlight: Code Skimming for Blind Programmers}, 
+    ISSN={2576-3148}, 
+    DOI={10.1109/ICSME.2018.00030}, 
+    abstractNote={Blind programmers use a screen reader to read code aloud. Screen readers force blind programmers to read code sequentially one line at a time. In contrast, sighted programmers are able to skim visually to the most important code areas, assisted by syntax highlighting. However, there is a place where there is a widely adopted approach to skimming a structured document: the web. Modern screen readers employ what is known as a virtual cursor to navigate structural information on webpages such as HTML heading tags. These tags can indicate different sections and subsections in the structure of a page. We harness the existing familiarity of blind computer users with this interface in our approach which we call AudioHighlight. AudioHighlight renders the code inside a web view, either as part of the Eclipse IDE or as a web service. It places HTML heading tags on the structural elements of a source file such as classes, functions and control flow statements. We compare AudioHighlight to the state of the art in code skimming represented by a previous code skimming approach called StructJumper. We also compare to the state of practice in reading code on the web as represented by GitHub. We found that AudioHighlight increased the quality and speed of code comprehension as compared to both approaches.}, 
+    booktitle={2018 IEEE International Conference on Software Maintenance and Evolution (ICSME)}, 
+    author={Armaly, Ameer and Rodeghero, Paige and McMillan, Collin}, year={2018}, 
+    month={Sep}, 
+    pages={206–216} }
   
+ @inproceedings{structujumper_2015, 
+    address={New York, NY, USA}, 
+    series={CHI ’15}, 
+    title={StructJumper: A Tool to Help Blind Programmers Navigate and Understand the Structure of Code}, 
+    ISBN={978-1-4503-3145-6}, 
+    url={https://doi.org/10.1145/2702123.2702589}, 
+    DOI={10.1145/2702123.2702589}, 
+    abstractNote={It can be difficult for a blind developer to understand and navigate through a large amount of code quickly, as they are unable to skim as easily as their sighted counterparts. To help blind developers overcome this problem, we present StructJumper, an Eclipse plugin that creates a hierarchical tree based on the nesting structure of a Java class. The programmer can use the TreeView to get an overview of the code structure of the class (including all the methods and control flow statements) and can quickly switch between the TreeView and the Text Editor to get an idea of where they are within the nested structure. To evaluate StructJumper, we had seven blind programmers complete three tasks with and without our tool. We found that the users thought they would use StructJumper and there was a trend that they were faster completing the tasks with StructJumper.}, 
+    booktitle={Proceedings of the 33rd Annual ACM Conference on Human Factors in Computing Systems}, 
+    publisher={Association for Computing Machinery}, 
+    author={Baker, Catherine M. and Milne, Lauren R. and Ladner, Richard E.}, 
+    year={2015}, 
+    month={Apr}, 
+    pages={3043–3052}, 
+    collection={CHI ’15} }
+ 
+ @inproceedings{tactile_code_skimmer_2019, 
+    address={New York, NY, USA}, 
+    series={ASSETS ’19}, 
+    title={Tactile Code Skimmer: A Tool to Help Blind Programmers Feel the Structure of Code}, 
+    ISBN={978-1-4503-6676-2}, 
+    url={https://doi.org/10.1145/3308561.3354616}, 
+    DOI={10.1145/3308561.3354616}, 
+    abstractNote={Skimming new code with a screen reader can be a time-consuming task for blind and visually impaired programmers. Screen readers aid with code navigation, but dictate code line-by-line and read spaces and tabs individually. This often provides more information than is needed. In this work, we present the Tactile Code Skimmer (TCS), a tool to aid blind and visually impaired programmers with skimming code. The device physically reflects the indentation levels of code with actuated slide potentiometers, thus helping reduce the “hearing load” that often accompanies screen readers. We describe the TCS design and implementation. Based on feedback from participants obtained through demos and an in-depth session, we discuss some considerations for tactile tools that aid with code skimming.}, 
+    booktitle={Proceedings of the 21st International ACM SIGACCESS Conference on Computers and Accessibility}, 
+    publisher={Association for Computing Machinery}, 
+    author={Falase, Olutayo and Siu, Alexa F. and Follmer, Sean}, 
+    year={2019}, 
+    month={Oct}, 
+    pages={536–538}, 
+    collection={ASSETS ’19} }
+ 
+ @inproceedings{ACONT_2018, 
+    address={New York, NY, USA}, 
+    series={CHI EA ’18}, 
+    title={An Initial Investigation into Non-visual Code Structure Overview Through Speech, Non-speech and Spearcons}, 
+    ISBN={978-1-4503-5621-3}, 
+    url={https://doi.org/10.1145/3170427.3188696}, 
+    DOI={10.1145/3170427.3188696}, 
+    abstractNote={We investigate a novel, non-visual approach to overviewing object-oriented source code and evaluate the efficiency of different categories of sounds for the purpose of getting an overview of source code structure for a visually-impaired computer programmer. A user-study with ten sighted and three non-sighted participants compared the effectiveness of speech, non-speech and spearcons on measures of accuracy and enjoyment for the task of quickly overviewing a class file. Results showed positive implications for the use of non-speech sounds in identifying programming constructs and for aesthetic value, although the effectiveness of the other sound categories in these measurements are not ruled out. Additionally, various design choices of the application impacted results, which should be of interest to designers of auditory display, accessibility and education.}, 
+    booktitle={Extended Abstracts of the 2018 CHI Conference on Human Factors in Computing Systems}, 
+    publisher={Association for Computing Machinery}, 
+    author={Hutchinson, Joe and Metatla, Oussama}, 
+    year={2018}, 
+    month={Apr}, 
+    pages={1–6}, 
+    collection={CHI EA ’18} }
+ 
+ @inproceedings{GUIDL_2012, 
+    title={A new approach towards visual programming for the blinds}, 
+    abstractNote={Visual user interfaces have left blind programmers that were able to perform programming job for years in a challenging situation. This problem has especially been present in classical desktop programming due to the nature of technology used in this field. Efforts have been made to help blinds work with graphical interfaces but none of them gave a fully usable solution for blind programming professionals. To solve this issue several different approaches can be applied but only one of them can lead to generally usable solution. In this paper mentioned approaches are discussed and proposed solution is described in more detail in the form of GUIDL (Graphical User Interface Description Language) that represents a new system that would include a new description language and would enable blinds to make graphical interfaces as a part of their programs in a way that would be acceptable to not only professional programmers but also to designers and other blind computer hobbyists. The demands for this kind of system as a combination of initial ideas and results obtained by research among the blind programmers will also be presented. Finally, a formal description of proposed system and its parts including a description language as its core part will be given.}, 
+    booktitle={2012 Proceedings of the 35th International Convention MIPRO}, 
+    author={Konecki, Mario}, 
+    year={2012}, 
+    month={May}, 
+    pages={935–940} }
+ 
+ @inproceedings{Pseudospatial_blocks_2016, 
+    address={New York, NY, USA}, 
+    series={ASSETS ’16}, 
+    title={An Accessible Blocks Language: Work in Progress}, 
+    ISBN={978-1-4503-4124-0}, 
+    url={https://doi.org/10.1145/2982142.2982150}, 
+    DOI={10.1145/2982142.2982150}, 
+    abstractNote={Block languages are extensively used to introduce programming to children. They replace the complex and error prone syntax of textual languages with simple shape cues that show how program elements can be combined. In their present form, blind learners cannot use them, because they rely on graphical presentation of code, and mouse interactions. We are working on a nonvisual blocks language called Pseudospatial Blocks (PB), that supports program creation using keyboard commands with synthetic speech output. It replaces visual shape cues for language syntax, the key feature of block languages, with filtering of program elements by syntactic category.}, 
+    booktitle={Proceedings of the 18th International ACM SIGACCESS Conference on Computers and Accessibility}, 
+    publisher={Association for Computing Machinery}, 
+    author={Koushik, Varsha and Lewis, Clayton}, 
+    year={2016}, 
+    month={Oct}, 
+    pages={317–318}, 
+    collection={ASSETS ’16} }
+ 
+ @article{Noodle_2014, 
+    title={Work in Progress Report: Nonvisual Visual Programming}, 
+    abstractNote={Visual programming systems are widely used to introduce children and other learners to programming, but they cannot be used by blind people. Inspired by the ideas of blind computer scientist T.V.Raman, the Noodle system provides nonvisual access to a dataflow programming system, a popular model for visual programming systems. This paper describes the design and implementation of Noodle and some of its capabilities. The paper suggests that the same approach used to develop Noodle could be applied to increase the accessibility of other visual programming systems for learners with disabilities.}, 
+    journal = {PPIG 2014 - 25th Annual Workshop},
+    author={Lewis, Clayton}, 
+    year={2014}, 
+    language={en} }
+ 
+ @inproceedings{BridgIT_2011, 
+    address={New York, NY, USA}, 
+    series={GAS ’11}, 
+    title={The architectural challenges of adding accessibility features to ALICE as a case study of maintenance in educational software}, 
+    ISBN={978-1-4503-0578-5}, 
+    url={https://doi.org/10.1145/1984674.1984686}, 
+    DOI={10.1145/1984674.1984686}, 
+    abstractNote={Games take many forms, including educational environments. Alice is an example of an engaging environment that teaches object-oriented programming through the development of animations. The AliceVI project sought to extent Alice to visually impaired users. This paper describes how the architectural of Alice impacted the ability to add accessibility features. The result has been to start a system, named BridgIT, from scratch. The technology and proposed architecture is discussed for the new system, which takes the tenets of Alice to a new group of users.}, 
+    booktitle={Proceedings of the 1st International Workshop on Games and Software Engineering},
+    publisher={Association for Computing Machinery}, 
+    author={Ludi, Stephanie and Adams, George and Blankenship, Bradley and Dapiran, Michael}, 
+    year={2011}, 
+    month={May}, 
+    pages={33–35}, 
+    collection={GAS ’11} }
+ 
+ @article{Blockly1_2017, 
+    title={Design Considerations to Increase Block-based Language Accessibility for Blind Programmers Via Blockly}, 
+    volume={3}, 
+    ISSN={25753916, 25737147}, 
+    DOI={10.18293/VLSS2017-013}, 
+    abstractNote={Block-based programming languages are a popular means to introduce novices, specifically children, to programming and computational thinking concepts. They are tools to broaden participation in computing. At the same time, block-based languages and environments are an obstacle in broadening participation for many users with disabilities. In particular, block-based programming environments are not accessible to users who are visually impaired. This lack of access impacts students who are participating in computing outreach, in the classroom, or in informal settings that foster interest in computing. This paper will discuss accessibility design issues in block-based programming environments, with a focus on the programming workflow. Using Google’s Blockly as a model, an accessible programming workflow is presented that works alongside the conventional mouse-driven workflow typical of blockbased programming. The project presented is still in progress.}, 
+    number={1}, 
+    journal={Journal of Visual Languages and Sentient Systems}, 
+    author={Ludi, Stephanie and Spencer, Mary}, 
+    year={2017}, 
+    month={Jul}, 
+    pages={119–124}, 
+    language={en} }
+ 
+ @article{Blocks4All_2017, title={Blocks4All: making block programming languages accessible for blind children}, ISSN={1558-2337}, DOI={10.1145/3051519.3051525}, abstractNote={Block programming languages, such as Scratch and Blockly, are being used as to introduce children to programming, but because they rely heavily on visual aspects, blind children are being left behind their peers in access to computer science education. We propose finding new techniques to make these types of programs accessible to blind children. We plan to use an iterative design process to create a web-based application on a touchscreen laptop, where children can synthesize music using different instruments and recordings of themselves. We plan to work with students at a local school to test and refine initial prototypes in a workshop setting. We will then evaluate the final prototype in a longitudinal study with students: collecting the programs that they create over a two-week period, and conducting observations and interviews throughout that period in order to evaluate Blocks4All.}, number={117}, journal={ACM SIGACCESS Accessibility and Computing}, author={Milne, Lauren R.}, year={2017}, month={Feb}, pages={26–29} }
+ 
+ @inproceedings{Audio_programming_language_2006, address={Berlin, Heidelberg}, series={Lecture Notes in Computer Science}, title={APL: Audio Programming Language for Blind Learners}, ISBN={978-3-540-36021-6}, DOI={10.1007/11788713_192}, abstractNote={Programming skills are strongly emphasized in computer science. Programming languages are constructed based on sighted people as end-users. We have designed Audio Programming Language for blind learners based on audio interfaces to support novice blind learners to develop and exercise problem solving skills. APL was designed with blind learners from the beginning to construct programs and solve problems with increasingly complexity. Audio Programming Language was usability tested during and after implementation. Blind learners used, wrote programs, and helped to make improvements to this programming language. Testing results evidence that APL mapped the mental models of blind learners and helped to motivate them to write programs and thus entering to the programming field.}, booktitle={Computers Helping People with Special Needs}, publisher={Springer}, author={Sánchez, Jaime and Aguayo, Fernando}, editor={Miesenberger, Klaus and Klaus, Joachim and Zagler, Wolfgang L. and Karshmer, Arthur I.}, year={2006}, pages={1334–1341}, collection={Lecture Notes in Computer Science}, language={en} }
+ 
+ @inproceedings{code_mirror_block_2019, address={New York, NY, USA}, series={SIGCSE ’19}, title={Accessible AST-Based Programming for Visually-Impaired Programmers}, ISBN={978-1-4503-5890-3}, url={https://doi.org/10.1145/3287324.3287499}, DOI={10.1145/3287324.3287499}, abstractNote={Most programmers rely on visual tools (block-based editors, auto-indentation, bracket matching, syntax highlighting, etc.), which are inaccessible to visually-impaired programmers. While prior language-specific, downloadable tools have demonstrated benefits for the visually-impaired, we lack language-independent, cloud-based tools, both of which are critically needed. We present a new toolkit for building fully-accessible, browser-based programming environments for multiple languages. Given a parser that meets certain specifications, this toolkit will generate a block editor familiar to sighted users that also communicates the structure of a program using spoken descriptions, and allows for navigation using standard (accessible) keyboard shortcuts. This paper presents the toolkit and a first evaluation of it. While the toolkit allows for full editing of code, we chose to focus strictly on navigation for this evaluation, using the navigation-only study design of Baker, Milne and Ladner. Visually-impaired programmers completed several tasks with and without our tool, and we compared their results and experience. Users had improved accuracy when completing tasks, were significantly better able to orient when reading code, and felt better about completing the tasks when using the tool. Moreover, these improvements came with no significant change in task completion time over plain text, even for experienced programmers who navigate text using screen readers set to high words-per-minutes.}, booktitle={Proceedings of the 50th ACM Technical Symposium on Computer Science Education}, publisher={Association for Computing Machinery}, author={Schanzer, Emmanuel and Bahram, Sina and Krishnamurthi, Shriram}, year={2019}, month={Feb}, pages={773–779}, collection={SIGCSE ’19} }
+
+
+ @article{aural_tree_navigator_2003,
+author = {Smith, Ann C. and Cook, Justin S. and Francioni, Joan M. and Hossain, Asif and Anwar, Mohd and Rahman, M. Fayezur},
+title = {Nonvisual Tool for Navigating Hierarchical Structures},
+year = {2003},
+issue_date = {Sept. 2003 - Jan. 2004},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+number = {77–78},
+issn = {1558-2337},
+url = {https://doi.org/10.1145/1029014.1028654},
+doi = {10.1145/1029014.1028654},
+abstract = {The hierarchical structure of a program can be quite complex. As such, many Integrated Development Environments (IDEs) provide graphical representations of program structure at different levels of abstraction. Such representations are not very accessible to non-sighted programmers, as screen readers are not able to portray the underlying hierarchical structure of the information. In this paper, we define a set of requirements for an accessible tree navigation strategy. An implementation of this strategy was developed as a plug-in to the Eclipse IDE and was tested by twelve student programmers. The evaluation of the tool shows the strategy to be an efficient and effective way for a non-sighted programmer to navigate hierarchical structures.},
+journal = {SIGACCESS Access. Comput.},
+month = {sep},
+pages = {133–139},
+numpages = {7},
+keywords = {navigation, hierarchical structures, java programmers}
+}
+ 
+ @inproceedings{Javaspeak_2000, address={New York, NY, USA}, series={Assets ’00}, title={A Java programming tool for students with visual disabilities}, ISBN={978-1-58113-313-4}, url={https://doi.org/10.1145/354324.354356}, DOI={10.1145/354324.354356}, abstractNote={This paper reports on a tool for assisting students with visual disabilities in learning how to program. The tool is meant to be used by computer science majors learning the programming language Java. As part of the developmental process of building this tool, we have implemented a rapid prototype to be used by people with disabilities in order to define appropriate requirements for the full version of the tool. This requires that the prototype is completely usable via a keyboard and speech interface, and it is easily adaptable for trying out different strategies. In this paper, we present the motivation and philosophy of the full tool, called JavaSpeak. We also present the details of a prototype implementation of JavaSpeak.}, booktitle={Proceedings of the fourth international ACM conference on Assistive technologies}, publisher={Association for Computing Machinery}, author={Smith, Ann C. and Francioni, Joan M. and Matzek, Sam D.}, year={2000}, month={Nov}, pages={142–148}, collection={Assets ’00} }
+ 
+ @inproceedings{Wicked_audio_debugger_2007, title={WAD: A Feasibility study using the Wicked Audio Debugger}, ISSN={1092-8138}, DOI={10.1109/ICPC.2007.42}, abstractNote={Contemporary programmers have a predominately visual experience. Computer code is read from sophisticated text editors, analyzed using visual tools, designed using UML, and debugged using a watch window. Little research has attempted to create tools for the non-sighted programmer, using either haptic or aural feedback. In this paper, we present WAD, the wicked audio debugger, a new debugger for Microsoft Visual Studio 2005 that sonifies computer code as an aid to the programmer. This paper has two primary contributions, namely the tool itself and the results of a feasibility study. We conducted this feasibility study to test participants’ ability to comprehend dynamic program behavior, including tracking the value of state variables and control flow. Results of our feasibility study show that participants were able to comprehend approximately 86\% of dynamic program behavior using audio only.}, booktitle={15th IEEE International Conference on Program Comprehension (ICPC ’07)}, author={Stefik, Andreas and Alexander, Roger and Patterson, Robert and Brown, Jonathan}, year={2007}, month={Jun}, pages={69–80} }
+ 
+ @inproceedings{Sodbeans_2009, title={SODBeans}, ISSN={1092-8138}, DOI={10.1109/ICPC.2009.5090064}, abstractNote={Comprehending and debugging computer programs are inherently difficult tasks for sighted programmers. These tasks are even more difficult for non-sighted programmers, who rely on audio-based representations of programs. The state-of-the-art approach to building program execution and debugging environments for non-sighted programmers is to retrofit existing visual environments with screen readers. Because of intrinsic differences in the ways humans process auditory and visual information, we argue that these environments are insensitive to the needs of the blind community. We present an alternative: SODBeans (the SonifiedOmniscient Debugger in Netbeans), a compiler, debugger, and accessibility architecture for Netbeans 6.5.}, booktitle={2009 IEEE 17th International Conference on Program Comprehension}, author={Stefik, Andreas and Haywood, Andrew and Mansoor, Shahzada and Dunda, Brock and Garcia, Daniel}, year={2009}, month={May}, pages={293–294} }
+ 
+ @inproceedings{Quorum_2017, address={New York, NY, USA}, series={SIGCSE ’17}, title={The Quorum Programming Language (Abstract Only)}, ISBN={978-1-4503-4698-6}, url={https://doi.org/10.1145/3017680.3022377}, DOI={10.1145/3017680.3022377}, abstractNote={Quorum is a relatively new programming language that was originally designed for students with disabilities. In recent years, as its adoption has increased worldwide in K-12 (largely in middle/high school) and at universities, it has expanded to be a powerful, commercial-grade, programming language that includes support for 3D gaming, music, and other fun and creative activities. While new features are designed for all, they maintain compatibility for people with disabilities, including a novel way for individuals who are blind to create 3D games. Finally, Quorum is the first language to use human-factors evidence from both field data and randomized controlled trials in its design. This approach provides the broader research community an organized way to influence the design of the language over time according to evidence based practices. We call this approach evidence-oriented programming. A laptop would help participants follow along with the session and handouts will be provided. Quorum can be found at https://www.quorumlanguage.com/.}, booktitle={Proceedings of the 2017 ACM SIGCSE Technical Symposium on Computer Science Education}, publisher={Association for Computing Machinery}, author={Stefik, Andreas and Ladner, Richard}, year={2017}, month={Mar}, pages={641}, collection={SIGCSE ’17} }
+ 
+@inproceedings{blocks4all_18,
+author = {Milne, Lauren R. and Ladner, Richard E.},
+title = {Blocks4All: Overcoming Accessibility Barriers to Blocks Programming for Children with Visual Impairments},
+year = {2018},
+isbn = {9781450356206},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3173574.3173643},
+doi = {10.1145/3173574.3173643},
+abstract = {Blocks-based programming environments are a popular tool to teach children to program, but they rely heavily on visual metaphors and are therefore not fully accessible for children with visual impairments. We evaluated existing blocks-based environments and identified five major accessibility barriers for visually impaired users. We explored techniques to overcome these barriers in an interview with a teacher of the visually impaired and formative studies on a touchscreen blocks-based environment with five children with visual impairments. We distill our findings on usable touchscreen interactions into guidelines for designers of blocks-based environments.},
+booktitle = {Proceedings of the 2018 CHI Conference on Human Factors in Computing Systems},
+pages = {1–10},
+numpages = {10},
+keywords = {visual impairments, accessibility, blocks-based programming environments, computer science education},
+location = {Montreal QC, Canada},
+series = {CHI '18}
+}
+ 
+@inproceedings{blocks4all_17,
+author = {Milne, Lauren R. and Baker, Catherine M. and Ladner, Richard E.},
+title = {Blocks4All Demonstration: A Blocks-Based Programming Environment for Blind Children},
+year = {2017},
+isbn = {9781450349260},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3132525.3134774},
+doi = {10.1145/3132525.3134774},
+abstract = {Blocks-based programming environments, such as Scratch and Blockly, are designed to make learning programming easier for young children. They are increasingly being used for both formal and informal curriculum, such as many of Code.org's hour of code projects. However, these block-based environments rely heavily on visual metaphors and interactions, making them inaccessible for blind children. We describe our initial design of a touchscreen-based blocks environment that is accessible for blind children.},
+booktitle = {Proceedings of the 19th International ACM SIGACCESS Conference on Computers and Accessibility},
+pages = {313–314},
+numpages = {2},
+keywords = {touchscreen interactions., blind, children, educational technology, accessibility},
+location = {Baltimore, Maryland, USA},
+series = {ASSETS '17}
+}
+ 
+ @inproceedings{codetalk_18,
+author = {Potluri, Venkatesh and Vaithilingam, Priyan and Iyengar, Suresh and Vidya, Y. and Swaminathan, Manohar and Srinivasa, Gopal},
+title = {CodeTalk: Improving Programming Environment Accessibility for Visually Impaired Developers},
+year = {2018},
+isbn = {9781450356206},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3173574.3174192},
+doi = {10.1145/3173574.3174192},
+abstract = {In recent times, programming environments like Visual Studio are widely used to enhance programmer productivity. However, inadequate accessibility prevents Visually Impaired (VI) developers from taking full advantage of these environments. In this paper, we focus on the accessibility challenges faced by the VI developers in using Graphical User Interface (GUI) based programming environments. Based on a survey of VI developers and based on two of the authors' personal experiences, we categorize the accessibility difficulties into Discoverability, Glanceability, Navigability, and Alertability. We propose solutions to some of these challenges and implement these in CodeTalk, a plugin for Visual Studio. We show how CodeTalk improves developer experience and share promising early feedback from VI developers who used our plugin.},
+booktitle = {Proceedings of the 2018 CHI Conference on Human Factors in Computing Systems},
+pages = {1–11},
+numpages = {11},
+keywords = {programming environments, accessibility, visually impaired, audio debugging},
+location = {Montreal QC, Canada},
+series = {CHI '18}
 }
 
-@book{Wil09,
-  title={Style: the basics of clarity and grace},
-  author={Williams, Joseph M and Bizup, Joseph},
-  year={2009},
-  publisher={Pearson Longman}
-}
-
-@book{Pin15,
-  title={The sense of style: The thinking person's guide to writing in the 21st century},
-  author={Pinker, Steven},
+@inproceedings{epifani2015designing,
+  title={Designing for visually impaired developers},
+  author={Epifani, Andrea and Boden, Marie and Meinicke, Larissa and Matthews, Ben and Viller, Stephen},
   year={2015},
-  publisher={Penguin Books}
+  pages={609-622},
+  ISBN = {9780646943183},
+  publisher={The International Association of Societies of Design Research},
+  booktitle = {IASDR 2015 Interplay: Proceedings},
+  location = {Brisbane, Australia}
 }
 
-@book{StrWhi07,
-  title={The Elements of style},
-  author={Strunk, William and Whyte, EB},
+@article{friesen2019introducing,
+  title={Introducing json},
+  author={Friesen, Jeff and Friesen, Jeff},
+  journal={Java XML and JSON: Document Processing for Java SE},
+  pages={187--203},
+  year={2019},
+  publisher={Springer}
+}
+
+@article{nurseitov2009comparison,
+  title={Comparison of JSON and XML data interchange formats: a case study.},
+  author={Nurseitov, Nurzhan and Paulson, Michael and Reynolds, Randall and Izurieta, Clemente},
+  journal={Caine},
+  volume={9},
+  pages={157--162},
+  year={2009}
+}
+
+@article{assistive_tech_funding,
+author = {Kiu Tay-Teo and Diane Bell and Matthew Jowett},
+title = {Financing options for the provision of assistive products},
+journal = {Assistive Technology},
+volume = {33},
+number = {sup1},
+pages = {109-123},
+year  = {2021},
+publisher = {Taylor & Francis},
+doi = {10.1080/10400435.2021.1974979},
+    note ={PMID: 34951829},
+URL = {https://doi.org/10.1080/10400435.2021.1974979},
+eprint = {https://doi.org/10.1080/10400435.2021.1974979}
+}
+  @article{Myna, title={An Empirical Evaluation of a Vocal User Interface for Programming by Voice}, volume={8}, ISSN={1935-570X}, abstractNote={Although Graphical User Interfaces GUIs often improve usability, individuals with physical disabilities may be unable to use a mouse and keyboard to navigate through a GUI-based application. In such situations, a Vocal User Interface VUI may be a viable alternative. Existing vocal tools e.g., Vocal Joystick can be integrated into software applications; however, integrating an assistive technology into a legacy application may require tedious and manual adaptation. Furthermore, the challenges are deeper for an application whose GUI changes dynamically e.g., based on the context of the program and evolves with each new application release. This paper provides a discussion of challenges observed while mapping a GUI to a VUI. The context of the authors’ examples and evaluation are taken from Myna, which is the VUI that is mapped to the Scratch programming environment. Initial user studies on the effectiveness of Myna are also presented in the paper.}, number={2}, journal={International Journal of Information Technologies and Systems Approach}, author={Wagner, Amber and Gray, Jeff}, year={2015}, month={Jul}, pages={47–63} }
+
+ @misc{braille, title={English:  Refreshable Braille display 40 cells}, rights={Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.2 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts. A copy of the license is included in the section entitled GNU Free Documentation License.http://www.gnu.org/copyleft/fdl.htmlGFDLGNU Free Documentation Licensetruetrue}, url={https://commons.wikimedia.org/wiki/File:Plage-braille.jpg}, author={Sebastien.delorme}, year={2008}, month={Nov} }
+
+ @book{miele2017assistive,
+  title={Assistive Technology for Individuals with Visual Impairments},
+  author={Miele, Joshua A},
+  year={2017},
+  publisher={Taylor \& Francis}
+}
+
+
+
+@misc{WHO_2021, 
+   title={Visual Impairment and Blindness}, 
+   url={https://www.who.int/news-room/fact-sheets/detail/blindness-and-visual-impairment},
+   author={World Health Organization},
+   year={2021}
+}
+
+@book{keates2003countering,
+  title={Countering Design Exclusion: An Introduction to Inclusive Design},
+  author={Keates, S. and Clarkson, J.},
+  year={2003},
+  publisher={Springer},
+  chapter={6}
+}
+
+@book{petrie2014inclusive,
+title={Inclusive Designing: Joining Usability, Accessibility, and Inclusion},
+author={Petrie, Helen and Darzentas, Jenny and Power, Christopher and Swallow, David and
+Cullen, Rebecca and Gaved, Mark},
+year={2014},
+publisher={Springer}
+}
+@book{lazar2015ensuring,
+    title={Ensuring Digital Accessibility Through Process and Policy},
+    author={Lazar, Jonathan and Goldstein, David and Taylor, Holly},
+    year={2015},
+    publisher={Elsevier}
+}
+
+@inproceedings{wobbrock2005user,
+    title={User-defined gestures for surface computing},
+    author={Wobbrock, Jacob O and Wilson, Andrew D and Li, Yangming},
+    booktitle={Proceedings of the 18th annual ACM symposium on User interface software and 
+    technology},
+    pages={193--202},
+    year={2005}
+}
+
+@inproceedings{barnard2016coding,
+    title={Coding challenges for blind computer programmers},
+    author={Barnard, Louise and Priyadarshi, Abhishek and Patel, Dilan and Unadkat, Tirth 
+    and Raju, Swapnil},
+    booktitle={Proceedings of the 2016 CHI Conference Extended Abstracts on Human Factors in 
+    Computing Systems},
+    pages={1082--1088},
+    year={2016},
+    organization={ACM}
+}
+
+@inproceedings{eide2005universal,
+    title={Universal design of computer programming environments for blind users},
+    author={Eide, Asbj{\o}rn F{\o}lstad and Pettersen, Kristin Ytterstad},
+    booktitle={International Cross-Disciplinary Workshop on Web Accessibility (W4A)},
+    year={2005}
+}
+
+@inproceedings{rello2017good,
+    title={Good labels overcome limits in mobile haptic pattern recognition for blind people},
+    author={Rello, Luz and Basari, Ahmet S and Facoetti, Andrea and Moretti, Gianluca and 
+    Caltenco, Hector},
+    booktitle={Proceedings of the 2017 CHI Conference on Human Factors in Computing Systems},
+    pages={1581--1586},
+    year={2017},
+    organization={ACM}
+}
+
+@article{WebAIM,
+  title={WebAIM Million - An accessibility analysis of the top 1,000,000 home pages},
+  author={WebAIM},
+  year={2021},
+  url={https://webaim.org/projects/million/},
+  note={Accessed: 2022-03-08}
+}
+
+
+
+   @article{Mountapmbeme_Okafor_Ludi_2022, title={Addressing Accessibility Barriers in Programming for People with Visual Impairments: A Literature Review}, volume={15}, url={https://doi.org/10.1145/3507469}, DOI={10.1145/3507469}, abstractNote={Accessibility issues with programming languages and programming environments pose a major barrier for students with visual impairments to participate in computing related courses as well as threatens the productivity of professional programmers with visual impairments. To remedy this, the past two decades have witnessed an increase in accessibility research designed to investigate and address the challenges faced by people with visual impairments while programming or learning how to program. We conducted a literature review of accessibility research in this domain. The aim was to identify, aggregate, and highlight known accessibility barriers to programming faced by professional programmers and students with visual impairments learning how to code as well as to identify all solutions that have been proposed to address these barriers. We selected and analyzed 70 papers reporting on accessibility of programming and programming environments for people with visual impairments. Numerous barriers to programming by people with visual impairments have been identified in the literature. Some of these barriers are understudied and present opportunities for future work. A lot of studies have also proposed tools and new accessible programming languages to address the accessibility issues of current programming languages and programming environments.}, number={1}, journal={ACM Transactions on Accessible Computing}, author={Mountapmbeme, Aboubakar and Okafor, Obianuju and Ludi, Stephanie}, year={2022}, month={Mar}, pages={7:1-7:26} }
+
+@article{scratch,
+  title={Scratch: Programming for all},
+  author={Resnick, Mitchel and Maloney, John and Monroy-Hern{\'a}ndez, Andr{\'e}s and Rusk, Natalie and Eastmond, Evelyn and Brennan, Karen and Millner, Amon and Rosenbaum, Eric and Silver, Jay and Silverman, Brian and others},
+  journal={Communications of the ACM},
+  volume={52},
+  number={11},
+  pages={60--67},
+  year={2009},
+  publisher={ACM}
+}
+
+@inproceedings{Albusays_Ludi_2016, 
+    address={New York, NY, USA}, series={CHASE ’16}, title={Eliciting programming challenges faced by developers with visual impairments: exploratory study}, ISBN={978-1-4503-4155-4}, url={https://doi.org/10.1145/2897586.2897616}, DOI={10.1145/2897586.2897616}, abstractNote={Without understanding the programming difficulties faced by developers with visual impairments, the research community cannot begin to work on effective solutions to overcome these potential problems. This paper will describe our initial empirically based study to identify the problems blind software developers face. We analyzed 69 survey responses with blind developers in an effort to identify the aspects that are indeed a challenge to software development. The results indicate a number of difficulties, workarounds, and basis requirements that will serve as domain and stakeholder understand.}, booktitle={Proceedings of the 9th International Workshop on Cooperative and Human Aspects of Software Engineering}, publisher={Association for Computing Machinery}, author={Albusays, Khaled and Ludi, Stephanie}, year={2016}, month={May}, pages={82–85}, collection={CHASE ’16} 
+}
+
+@misc{Characters_per_line,
+  author = "Wikipedia",
+  title = "Characters per line --- {W}ikipedia{,} The Free Encyclopedia",
+  year = "2023",
+  url = "https://en.wikipedia.org/wiki/Characters_per_line",
+  note = "[Online; accessed 08-March-2023]"
+}
+
+
+
+   @misc{EN-Screenreader, url={https://www.ionos.co.uk/digitalguide/fileadmin/DigitalGuide/Screenshots_2018/EN-Screenreader.png}, year={2020}, author={IONOS Digital Journal} }
+
+   
+
+   @misc{ide-overview, url={https://learn.microsoft.com/en-us/visualstudio/get-started/media/vs-2022/ide-overview.png?view=vs-2017&viewFallbackFrom=vs-2022}, journal={Welcome to the Visual Studio IDE}, year={2023} }
+
+
+
+   @inproceedings{Mealin_Murphy-Hill_2012, title={An exploratory study of blind software developers}, ISSN={1943-6106}, DOI={10.1109/VLHCC.2012.6344485}, abstractNote={As a research community, we currently know very little about the challenges faced by blind software developers. Without knowing what those challenges are, the community cannot effectively address these challenges. In this paper, we describe the first exploratory empirical study, where we conducted eight interviews with blind software developers to identify aspects of software development that are a challenge. Our results suggest that visually impaired software developers face challenges, for instance, when using screen readers to look up information when writing code. We discuss a variety of implications, including that blind software developers need additional support in discovering relevant software development tools.}, booktitle={2012 IEEE Symposium on Visual Languages and Human-Centric Computing (VL/HCC)}, author={Mealin, Sean and Murphy-Hill, Emerson}, year={2012}, month={Sep}, pages={71–74} }
+
+
+ @article{Barbaglia_Murzilli_Cudini_2017, title={Definition of REST web services with JSON schema}, volume={47}, ISSN={1097-024X}, DOI={10.1002/spe.2466}, abstractNote={The Web has evolved from being a collection of documents to a collection of interconnected services that interoperate throughout the Internet. Web services are a natural consequence of this evolution. The web services model was initially centered around the eXtensible Markup Language (XML). Such services can be described by Web Services Description Language documents that are formally defined through the XML Schema Definition language. However, in recent years the popularity of XML-based web services has declined, as more developers favor JavaScript Object Notation (JSON)-based alternatives. Although the use of the latter language is spreading, no official standard to formally describe JSON documents exists. The aim of this article is to demonstrate how JSON Schema, and particularly the JSON Hyper Schema extension, is suitable to describe JSON-based web services that follow the REST architectural pattern. Copyright © 2016 John Wiley & Sons, Ltd.}, number={6}, journal={Software: Practice and Experience}, author={Barbaglia, Guido and Murzilli, Simone and Cudini, Stefano}, year={2017}, pages={907–920}, language={en} }
+
+ @article{salton1975vector,
+  title={A vector space model for automatic indexing},
+  author={Salton, G. and Wong, A. and Yang, C.-S.},
+  journal={Communications of the ACM},
+  volume={18},
+  number={11},
+  pages={613--620},
+  year={1975},
+}
+
+@article{blei2003latent,
+  title={Latent dirichlet allocation},
+  author={Blei, D. M. and Ng, A. Y. and Jordan, M. I.},
+  journal={Journal of machine Learning research},
+  volume={3},
+  number={Jan},
+  pages={993--1022},
+  year={2003},
+}
+
+@article{landauer1998introduction,
+  title={An introduction to latent semantic analysis},
+  author={Landauer, T. K. and Foltz, P. W. and Laham, D.},
+  journal={Discourse processes},
+  volume={25},
+  number={2-3},
+  pages={259--284},
+  year={1998},
+}
+
+@inproceedings{haiduc2010supporting,
+  title={Supporting program comprehension with source code summarization},
+  author={Haiduc, S. and Aponte, J. and Marcus, A.},
+  booktitle={Proceedings of the 32nd ACM/IEEE International Conference on Software Engineering-Volume 2},
+  pages={223--226},
+  year={2010},
+  organization={ACM}
+}
+
+@inproceedings{rodeghero2014improving,
+  title={Improving automated source code summarization via an eye-tracking study of programmers},
+  author={Rodeghero, P. and McMillan, C. and McBurney, P. W. and Bosch, N. and D'Mello, S.},
+  booktitle={Proceedings of the 36th international conference on Software engineering},
+  pages={390--401},
+  year={2014},
+  organization={ACM}
+}
+
+@inproceedings{mimno2007mixtures,
+  title={Mixtures of hierarchical topics with pachinko allocation},
+  author={Mimno, D. and Li, W. and McCallum, A.},
+  booktitle={Proceedings of the 24th international conference on Machine learning},
+  pages={633--640},
   year={2007},
-  publisher={Penguin}
+  organization={ACM}
 }
 
-@book{Von80,
-  title={How to write with style},
-  author={Vonnegut, Kurt},
-  year={1980},
-  publisher={International Paper Company}
+@inproceedings{rastkar2010summarizing,
+  title={Summarizing software concerns},
+  author={Rastkar, S.},
+  booktitle={Proceedings of the 32nd ACM/IEEE International Conference on Software EngineeringVolume 2},
+  pages={527--528},
+  year={2010},
+  organization={ACM}
 }
 
-@incollection{Orw68,
-  title={Politics and the {English} language},
-  author={Orwell, George},
-  booktitle={The collected essays, journalism and letters of George Orwell},
-  pages={127--140},
-  year={1968},
-  publisher={Harcourt, Brace, Javanovich}
+@article{dawood2017source,
+  title={Source code analysis extractive approach to generate textual summary},
+  author={Dawood, K. A. and Sharif, K. Y. and Wei, K. T.},
+  journal={Journal of Theoretical \& Applied Information Technology},
+  volume={95},
+  number={21},
+  year={2017},
 }
+
+@inproceedings{moreno2013automatic,
+  title={Automatic generation of natural language summaries for java classes},
+  author={Moreno, Laura and Aponte, John and Sridhara, Giriprasad and Marcus, Andrian and Pollock, Lori and VijayShanker, Kartik},
+  booktitle={2013 21st International Conference on Program Comprehension (ICPC)},
+  pages={23--32},
+  year={2013},
+  organization={IEEE}
+}
+
+@inproceedings{abid2015using,
+  title={Using stereotypes in the automatic generation of natural language summaries for c++ methods},
+  author={Abid, Nauman J and Dragan, Nicolae and Collard, Marie L and Maletic, Jonathan I},
+  booktitle={2015 IEEE International Conference on Software Maintenance and Evolution (ICSME)},
+  pages={561--565},
+  year={2015},
+  organization={IEEE}
+}
+
+@inproceedings{malhotra2018class,
+  title={Class level code summarization based on dependencies and micro patterns},
+  author={Malhotra, Monika and Chhabra, Jitender Kumar},
+  booktitle={2018 Second International Conference on Inventive Communication and Computational Technologies (ICICCT)},
+  pages={1011--1016},
+  year={2018},
+  organization={IEEE}
+}
+
+@inproceedings{rai2017method,
+  title={Method level text summarization for java code using nano-patterns},
+  author={Rai, Sweta and Gaikwad, Tanuja and Jain, Shailendra and Gupta, Ankit},
+  booktitle={2017 24th Asia-Pacific Software Engineering Conference (APSEC)},
+  pages={199--208},
+  year={2017},
+  organization={IEEE}
+}
+
+@inproceedings{wong2013autocomment,
+  author = {Wong, Emery and Yang, Jing and Tan, Lin},
+  booktitle = {2013 28th IEEE/ACM International Conference on Automated Software Engineering (ASE)},
+  title = {Autocomment: Mining question and answer sites for automatic comment generation},
+  year = {2013},
+  pages = {562--567},
+  organization = {IEEE}
+}
+
+@inproceedings{wong2015clocom,
+  author = {Wong, Emery and Liu, Ting and Tan, Lin},
+  booktitle = {2015 IEEE 22nd International Conference on Software Analysis, Evolution, and Reengineering (SANER)},
+  title = {Clocom: Mining existing source code for automatic comment generation},
+  year = {2015},
+  pages = {380--389},
+  organization = {IEEE}
+}
+
+@article{badihi2017crowdsummarizer,
+  author = {Badihi, Sara and Heydarnoori, Abbas},
+  journal = {IEEE Software},
+  number = {2},
+  pages = {71--80},
+  title = {Crowdsummarizer: Automated generation of code summaries for java programs through crowdsourcing},
+  volume = {34},
+  year = {2017}
+}
+
+@inproceedings{huang2017mining,
+  author = {Huang, Yan and Zheng, Qinghua and Chen, Xiang and Xiong, Yingfei and Liu, Zhilei and Luo, Xiaodong},
+  booktitle = {Proceedings of the 11th ACM/IEEE International Symposium on Empirical Software Engineering and Measurement},
+  title = {Mining version control system for automatically generating commit comment},
+  year = {2017},
+  pages = {414--423},
+  organization = {IEEE Press}
+}
+
+@article{xia2017measuring,
+  title={Measuring program comprehension: A large-scale field study with professionals},
+  author={Xia, Xin and Bao, Lingxiao and Lo, David and Xing, Zhenchang and Hassan, Ahmed E and Li, Shan},
+  journal={IEEE Transactions on Software Engineering},
+  volume={44},
+  number={10},
+  pages={951--976},
+  year={2017},
+  publisher={IEEE}
+}
+
+@inproceedings{mcburney2014automatic,
+  title={Automatic documentation generation via source code summarization of method context},
+  author={McBurney, Peter W and McMillan, Chris},
+  booktitle={Proceedings of the 22nd International Conference on Program Comprehension},
+  pages={279--290},
+  year={2014},
+  organization={ACM}
+}
+
+@inproceedings{wang2017automatically,
+  title={Automatically generating natural language descriptions for object-related statement sequences},
+  author={Wang, Xiaodan and Pollock, Lori and Vijay-Shanker, K},
+  booktitle={2017 IEEE 24th International Conference on Software Analysis, Evolution and Reengineering (SANER)},
+  pages={205--216},
+  year={2017},
+  organization={IEEE}
+}
+
+@book{langville2011google,
+  title={Google’s PageRank and beyond: The science of search engine rankings},
+  author={Langville, Amy N and Meyer, Carl D},
+  year={2011},
+  publisher={Princeton University Press}
+}
+
+@article{nazar2016source,
+  title={Source code fragment summarization with small-scale crowdsourcing based features},
+  author={Nazar, N. and Jiang, H. and Gao, G. and Zhang, T. and Li, X. and Ren, Z.},
+  journal={Frontiers of Computer Science},
+  volume={10},
+  number={3},
+  pages={504--517},
+  year={2016}
+}
+
+@inproceedings{rastkar2013code,
+  title={Why did this code change?},
+  author={Rastkar, S. and Murphy, G.C.},
+  booktitle={Proceedings of the 2013 International Conference on Software Engineering},
+  pages={1193--1196},
+  year={2013},
+  organization={IEEE Press}
+}
+
+@article{fowkes2017autofolding,
+  title={Autofolding for source code summarization},
+  author={Fowkes, J. and Chanthirasegaran, P. and Ranca, R. and Allamanis, M. and Lapata, M. and Sutton, C.},
+  journal={IEEE Transactions on Software Engineering},
+  volume={43},
+  number={12},
+  pages={1095--1109},
+  year={2017}
+}
+
+@inproceedings{iyer2016summarizing,
+  title={Summarizing source code using a neural attention model},
+  author={Iyer, S. and Konstas, I. and Cheung, A. and Zettlemoyer, L.},
+  booktitle={Proceedings of the 54th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  pages={2073--2083},
+  year={2016}
+}
+
+@inproceedings{hu2018deep,
+  title={Deep code comment generation},
+  author={Hu, X. and Li, G. and Xia, X. and Lo, D. and Jin, Z.},
+  booktitle={Proceedings of the 26th Conference on Program Comprehension},
+  pages={200--210},
+  year={2018},
+  organization={ACM}
+}
+
+@article{zheng2017code,
+  title={Code attention: Translating code to comments by exploiting domain features},
+  author={Zheng, W. and Zhou, H.-Y. and Li, M. and Wu, J.},
+  journal={arXiv preprint arXiv:1709.07642},
+  year={2017}
+}
+
+@inproceedings{liang2018automatic,
+  title={Automatic generation of text descriptive comments for code blocks},
+  author={Liang, Y. and Zhu, K.Q.},
+  booktitle={Thirty-Second AAAI Conference on Artificial Intelligence},
+  year={2018}
+}
+
+@inproceedings{allamanis2016convolutional,
+  title={A convolutional attention network for extreme summarization of source code},
+  author={Allamanis, M. and Peng, H. and Sutton, C.},
+  booktitle={International Conference on Machine Learning},
+  pages={2091--2100},
+  year={2016}
+}
+@article{deutskens2004response,
+  title={Response rate and response quality of internet-based surveys: an experimental study},
+  author={Deutskens, Elisabeth and De Ruyter, Ko and Wetzels, Martin and Oosterveld, Paul},
+  journal={Marketing letters},
+  volume={15},
+  pages={21--36},
+  year={2004},
+  publisher={Springer}
+}
+
+ @misc{grossbart, title={JSON Diff: The semantic JSON compare tool}, url={https://jsondiff.com/}, journal={JSON Diff - The semantic JSON compare tool}, author={Grossbart, Zach}, year={2015}} 
+
+@misc{chatgpt,
+  title={ChatGPT: An AI Language Model Developed by OpenAI},
+  author={OpenAI},
+  year={2023},
+  howpublished={\url{https://openai.com/}},
+  note={Accessed on March 19, 2023}
+}
+
+ @misc{freetts, title={FreeTTS 1.2.3 - A speech synthesizer written entirely in the Java(TM) programming language}, url={https://freetts.sourceforge.io/docs/index.php}, journal={SourceForge}, author={lamere and ppk96 and schnelle and wwalker}, year={2009} }
+
+ @misc{Picocli, type={Java}, title={picocli - a mighty tiny command line interface}, rights={Apache-2.0}, url={https://github.com/remkop/picocli}, abstractNote={Picocli is a modern framework for building powerful, user-friendly, GraalVM-enabled command line apps with ease. It supports colors, autocompletion, subcommands, and more.  In 1 source file so apps can include as source & avoid adding a dependency. Written in Java, usable from Groovy, Kotlin, Scala, etc.}, author={Popma, Remko}, year={2017} }
+
+  @misc{antlr4, title={ANTLR (ANother Tool for Language Recognition): antlr4/index.md at master · antlr/antlr4}, url={https://github.com/antlr/antlr4}, abstractNote={ANTLR (ANother Tool for Language Recognition) is a powerful parser generator for reading, processing, executing, or translating structured text or binary files. - antlr4/index.md at master · antlr/...}, journal={GitHub}, author={Parr, Terence}, year={2013}, language={en} }
+
+@article{hunt2013gang,
+  title={Gang of four design patterns},
+  author={Hunt, John and Hunt, John},
+  journal={Scala Design Patterns: Patterns for Practical Reuse and Design},
+  pages={135--136},
+  year={2013},
+  publisher={Springer}
+}
+
+@article{martin2000design,
+  title={Design principles and design patterns},
+  author={Martin, Robert C},
+  journal={Object Mentor},
+  volume={1},
+  number={34},
+  pages={597},
+  year={2000}
+}
+
+ @misc{antlrLab, title={ANTLR Lab}, url={http://lab.antlr.org}, abstractNote={Learn, test, and experiment with ANTLR grammars online!}, journal={ANTLR Lab}, author={Parr, Terence} }
+
+@article{parr2013definitive,
+  title={The definitive ANTLR 4 reference},
+  author={Parr, Terence},
+  journal={The Definitive ANTLR 4 Reference},
+  pages={1--326},
+  year={2013},
+  publisher={The Pragmatic Bookshelf}
+}
+
+@article{brooke2013sus,
+  title={SUS: a retrospective},
+  author={Brooke, John},
+  journal={Journal of usability studies},
+  volume={8},
+  number={2},
+  pages={29--40},
+  year={2013},
+  publisher={Usability Professionals' Association Bloomingdale, IL}
+}
+
+ @misc{World, title={Visual Impairment and Blindness}, url={https://www.who.int/news-room/fact-sheets/detail/blindness-and-visual-impairment}, author={World Health Organization}, year={2021} }
+
+  @article{Stefik_Hundhausen_Patterson_2011, title={An empirical investigation into the design of auditory cues to enhance computer program comprehension}, volume={69}, ISSN={10715819}, DOI={10.1016/j.ijhcs.2011.07.002}, abstractNote={Decades of research have led to notable improvements in the representations used to aid human comprehension of computer programs. Much of this research has focused on visual representations, which leaves open the question of how best to design auditory representations of computer programs. While this question has particular relevance for visually impaired programmers, sighted programmers might also beneﬁt from enhanced auditory representations of their programs. In order to investigate this question empirically, ﬁrst, we introduce artifact encoding, a novel approach to rigorously measuring the comprehensibility of auditory representations of computer programs. Using this approach as a foundation, we present an experimental study that compared the comprehensibility of two alternative auditory program representations: one with lexical scoping cues that convey the nesting level of program statements, and another without such scoping cues. The results of our ﬁrst experiment validate both artifact encoding and the scoping cues we used. To see whether auditory cues validated through our paradigm can aid program comprehension in a realistic task scenario, we experimentally compared programmers’ ability to debug programs using three alternative environments: (1) an auditory execution environment with our empirically derived auditory cues; (2) an auditory execution environment with the current state-of-the-art auditory cues generated by a screen reader running on top of Microsoft Visual Studio; and (3) a visual version of the execution environment. The results of our second experiment showed that our comprehensible auditory cues are signiﬁcantly better than the state-of-the-art, affording human performance approaching the effectiveness of visual representations within the statistical margin of error. This research contributes a novel methodology and foundational empirical data that can guide the design of effective auditory representations of computer programs.}, number={12}, journal={International Journal of Human-Computer Studies}, author={Stefik, Andreas and Hundhausen, Christopher and Patterson, Robert}, year={2011}, month={Dec}, pages={820–838}, language={en} }
+
+ @inbook{Shneiderman_2003, address={San Francisco}, series={Interactive Technologies}, title={The Eyes Have It: A Task by Data Type Taxonomy for Information Visualizations}, ISBN={978-1-55860-915-0}, url={https://www.sciencedirect.com/science/article/pii/B9781558609150500469}, DOI={10.1016/B978-155860915-0/50046-9}, abstractNote={A useful starting point for designing advanced graphical user interfaces is the Visual Information-Seeking Mantra: overview first, zoom and filter, then details on demand. But this is only a starting point in trying to understand the rich and varied set of information visualizations that have been proposed in recent years. This paper offers a task by data type taxonomy with seven data types (one-, two-, three-dimensional data, temporal and multi-dimensional data, and tree and network data) and seven tasks (overview, zoom, filter, details-on-demand, relate, history, and extracts).Everything points to the conclusion that the phrase ‘the language of art’ is more than a loose metaphor, that even to describe the visible world in images we need a developed system of schemata. E. H. Gombrich Art and Illusion, 1959 (p. 76)}, booktitle={The Craft of Information Visualization}, publisher={Morgan Kaufmann}, author={Shneiderman, Ben}, editor={Bederson, BENJAMIN B. and Shneiderman, BEN}, year={2003}, month={Jan}, pages={364–371}, collection={Interactive Technologies}, language={en} }
+

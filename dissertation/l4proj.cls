@@ -45,12 +45,21 @@
 
 \usepackage{microtype} % improve typography
 \usepackage{anyfontsize} % allow any size of font
-\usepackage{amsmath,amsfonts,amsbsy,amssymb}
+%\usepackage{amsmath,amsfonts,amsbsy,amssymb}
 \usepackage[style]{abstract} % abstract styling
 
+%%allows for multiple columns
+\usepackage{multicol}
+
+%% for table wrapping
+\usepackage{wrapfig}
+
 % set bibliography styling
-\usepackage{natbib}
-\bibpunct{(}{)}{;}{a}{}{;}
+%\usepackage{natbib}
+%\bibpunct{(}{)}{;}{a}{}{;}
+
+\usepackage[square,numbers]{natbib}
+%\bibliographystyle{abbrvnat}
 
 
 \usepackage{etoolbox}
@@ -97,12 +106,55 @@
     captionpos=b
 }
 %% ---
+%% code for JSON formatting
+%% from: https://tex.stackexchange.com/questions/83085/how-to-improve-listings-display-of-json-files
+\usepackage{bera}% optional: just to have a nice mono-spaced font
+\usepackage{listings}
+\usepackage{xcolor}
+
+\colorlet{punct}{red!60!black}
+\definecolor{background}{HTML}{EEEEEE}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{numb}{magenta!60!black}
+
+\lstdefinelanguage{json}{
+    basicstyle=\normalfont\ttfamily,
+    %%numbers=left,
+    %%numberstyle=\scriptsize,
+    %%stepnumber=1,
+    %%numbersep=5pt,
+    showstringspaces=false,
+    breaklines=true,
+    %frame=lines,
+    backgroundcolor=\color{background},
+    literate=
+     *{0}{{{\color{numb}0}}}{1}
+      {1}{{{\color{numb}1}}}{1}
+      {2}{{{\color{numb}2}}}{1}
+      {3}{{{\color{numb}3}}}{1}
+      {4}{{{\color{numb}4}}}{1}
+      {5}{{{\color{numb}5}}}{1}
+      {6}{{{\color{numb}6}}}{1}
+      {7}{{{\color{numb}7}}}{1}
+      {8}{{{\color{numb}8}}}{1}
+      {9}{{{\color{numb}9}}}{1}
+      {:}{{{\color{punct}{:}}}}{1}
+      {,}{{{\color{punct}{,}}}}{1}
+      {\{}{{{\color{delim}{\{}}}}{1}
+      {\}}{{{\color{delim}{\}}}}}{1}
+      {[}{{{\color{delim}{[}}}}{1}
+      {]}{{{\color{delim}{]}}}}{1},
+}
 
 % nice number printing
 \usepackage{numprint}
 
 % allow PDF graphics
 \usepackage{graphicx}
+\usepackage{pdfpages}
+
+%allow image centering
+\usepackage[export]{adjustbox}
 
 % allow section styling
 %\usepackage{sectsty}
