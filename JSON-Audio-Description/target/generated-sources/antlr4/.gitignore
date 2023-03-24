@@ -8,3 +8,12 @@
 /jsonCLI.java
 /JSON-Audio-Description.uml
 /JSON-Audio-Description.umlcd
+/JSONTalk/
+/json.interp
+/json.tokens
+/jsonBaseListener.java
+/jsonLexer.interp
+/jsonLexer.java
+/jsonLexer.tokens
+/jsonListener.java
+/jsonParser.java
