@@ -26,15 +26,15 @@ Week-by-week plan for the whole project. Update this as you go along.
 
 ## Spring Semester
 
-* **Week 13**
-* **Week 14**
-* **Week 15**
-* **Week 16**
-* **Week 17**
-* **Week 19**
-* **Week 20**
-* **Week 21**
-* **Week 22**
+* **Week 13** Develop command line interface.
+* **Week 14** Evaluation research and testing.
+* **Week 15** Evaluation plan and formal literature review write up.
+* **Week 16** Evaluation recruitment and finish literature review.
+* **Week 17** Conduct evaluation.
+* **Week 19** Analyse evaluation results.
+* **Week 20** Polish product in line with evaluation results.
+* **Week 21** Dissertation write up.
+* **Week 22** Dissertation write up.
 * **Week 23 [TERM ENDS]**
 * **Week 24** Dissertation submission deadline and presentations.
 
