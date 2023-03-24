@@ -9,6 +9,10 @@ import java.util.List;
 import java.util.Iterator;
 import java.util.ArrayList;
 
+/**
+ * Generates an AST representation of a JSON file from the tokens produced from the jsonLexer
+ *
+ */
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast", "CheckReturnValue"})
 public class jsonParser extends Parser {
 	static { RuntimeMetaData.checkVersion("4.11.1", RuntimeMetaData.VERSION); }
@@ -92,6 +96,10 @@ public class jsonParser extends Parser {
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 
+	/**
+	 * ParserRuleContext class for the overall JSON file node (top node of the AST)
+	 *
+	 */
 	@SuppressWarnings("CheckReturnValue")
 	public static class JsonContext extends ParserRuleContext {
 		public ValueContext value() {
@@ -132,6 +140,10 @@ public class jsonParser extends Parser {
 		return _localctx;
 	}
 
+	/**
+	 * ParserRuleContext class for the object nodes of the JSON AST
+	 *
+	 */
 	@SuppressWarnings("CheckReturnValue")
 	public static class ObjContext extends ParserRuleContext {
 		public List<PairContext> pair() {
@@ -208,6 +220,10 @@ public class jsonParser extends Parser {
 		return _localctx;
 	}
 
+	/**
+	 * ParserRuleContextClass for the pair nodes within the JSON AST
+	 *
+	 */
 	@SuppressWarnings("CheckReturnValue")
 	public static class PairContext extends ParserRuleContext {
 		public TerminalNode STRING() { return getToken(jsonParser.STRING, 0); }
@@ -250,6 +266,10 @@ public class jsonParser extends Parser {
 		return _localctx;
 	}
 
+	/**
+	 * ParserRuleContext class for the array nodes within the JSON AST
+	 *
+	 */
 	@SuppressWarnings("CheckReturnValue")
 	public static class ArrContext extends ParserRuleContext {
 		public List<ValueContext> value() {
@@ -326,6 +346,10 @@ public class jsonParser extends Parser {
 		return _localctx;
 	}
 
+	/**
+	 * ParserRuleContext class for the value nodes of the JSON AST
+	 *
+	 */
 	@SuppressWarnings("CheckReturnValue")
 	public static class ValueContext extends ParserRuleContext {
 		public TerminalNode STRING() { return getToken(jsonParser.STRING, 0); }

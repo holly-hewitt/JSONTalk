@@ -9,6 +9,10 @@ import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.misc.*;
 
+/**
+ * Takes an input JSON file and tokenises it.
+ *
+ */
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast", "CheckReturnValue"})
 public class jsonLexer extends Lexer {
 	static { RuntimeMetaData.checkVersion("4.11.1", RuntimeMetaData.VERSION); }
